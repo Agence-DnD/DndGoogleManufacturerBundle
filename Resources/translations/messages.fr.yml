@@ -1,0 +1,62 @@
+dnd_google_manufacturer:
+  list:
+    default: 'Sélectionner une option'
+  form:
+    job_instance:
+      tab:
+        google:
+          title: 'Configuration Google Manufacturer'
+        googleProductPageUrl:
+          title: 'URL de la page produit'
+          help: 'Lien absolu renvoyant à l''URL de la page du produit.'
+        googleId:
+          title: 'Identifiant'
+          help: 'Un identifiant unique envoyé à Google doit être fourni.'
+        googleBrand:
+          title: 'Marque'
+          help: 'Le code marque associé au produit, peut-être nulle.'
+        googleTitle:
+          title: 'Titre'
+          help: 'Le titre associé au produit, peut-être nulle.'
+        googleGtin:
+          title: 'GTIN'
+          help: 'Le code GTIN du produit, doit être renseigné.'
+        googleMpn:
+          title: 'MPN'
+          help: 'Le code MPN du produit, doit être renseigné.'
+        googleDisclosureDate:
+          title: 'Date de dévoilement'
+          help: 'La date de dévoilement du produit. Doit être au format dd-mm-yyyy (eg: 25-12-2018)'
+        googleReleaseDate:
+          title: 'Date de sortie'
+          help: 'La date de sortie du produit. Doit être au format dd-mm-yyyy (eg: 25-12-2018)'
+        googleSuggestedRetailPrice:
+          title: 'Suggested Retail Date'
+          help: 'The suggested retail price linked of the product.'
+        googleProductName:
+          title: 'Nom du produit'
+          help: 'Le nom du produit, doit être renseigné.'
+        googleProductLine:
+          title: 'Ligne produit'
+          help: 'La ligne du produit, optionnel.'
+        googleProductType:
+          title: 'Type de produit'
+          help: 'Le type du produit, optionnel.'
+        googleItemGroupId:
+          title: 'Groupe Article'
+          help: 'Code du groupe article rattaché au produit.'
+        googleColor:
+          title: 'Couleur'
+          help: 'Couleur du produit, optionnel.'
+        googleAdditionalImageLink:
+          title: 'Lien image additionnel'
+          help: 'Lien absolu renvoyant vers une image additionnel associée au produit, optionnel'
+        googleVideoLink:
+          title: 'Lien vidéo'
+          help: 'Lien absolu renvoyant vers une vidéo associée au produit, optionnel.'
+
+batch_jobs:
+  google_manufacturer_xml_product_export:
+    label: Google Manufacturer - Export des produits au format XML
+    validation.label: Validating file
+    export.label: Google Manufacturer - Export des produits au format XML

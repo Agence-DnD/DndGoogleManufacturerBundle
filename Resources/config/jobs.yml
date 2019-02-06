@@ -1,0 +1,15 @@
+parameters:
+  dnd_google_manufacturer.connector_name: 'Dnd Google Manufacturer'
+  dnd_google_manufacturer.job_name.xml_product_export: 'google_manufacturer_xml_product_export'
+
+services:
+  dnd_google_manufacturer.job.xml_product_export:
+    class: '%pim_connector.job.simple_job.class%'
+    arguments:
+      - '%dnd_google_manufacturer.job_name.xml_product_export%'
+      - '@event_dispatcher'
+      - '@akeneo_batch.job_repository'
+      -
+        - '@dnd_google_manufacturer.step.xml_product.export'
+    tags:
+      - { name: akeneo_batch.job, connector: '%dnd_google_manufacturer.connector_name%', type: '%pim_connector.job.export_type%' }

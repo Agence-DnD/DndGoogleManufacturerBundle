@@ -1,0 +1,10 @@
+services:
+  dnd_google_manufacturer.step.xml_product.export:
+    class: '%pim_connector.step.item_step.class%'
+    arguments:
+      - 'export'
+      - '@event_dispatcher'
+      - '@akeneo_batch.job_repository'
+      - '@pim_connector.reader.database.product'
+      - '@pim_connector.processor.normalization.product'
+      - '@dnd_google_manufacturer.writer.file.xml_product'

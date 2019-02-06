@@ -1,0 +1,4 @@
+dnd_google_manufacturer_attribute_rest_list:
+  path: /list
+  defaults: { _controller: dnd_google_manufacturer.controller.rest.attribute:listAction }
+  methods: [GET]

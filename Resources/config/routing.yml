@@ -1,0 +1,3 @@
+dnd_google_manufacturer_attribute_rest:
+  resource: '@DndGoogleManufacturerBundle/Resources/config/routing/attribute/rest.yml'
+  prefix: /dnd/rest/attribute

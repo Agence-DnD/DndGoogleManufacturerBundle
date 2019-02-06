@@ -1,0 +1,89 @@
+dnd_google_manufacturer:
+  export:
+    product:
+      google:
+        mandatory:
+          title: 'Mandatory Attribute'
+        optional:
+          title: 'Optional Attribute'
+        grouped:
+          title: 'Grouped Attribute'
+          button:
+            product_detail: 'New product detail block'
+            feature_description: 'New feature description block'
+          feature_description:
+            title: 'Add Feature Description'
+            headline: 'Headline'
+            text: 'Text'
+            image_link: 'Image Link'
+          product_detail:
+            title: 'Add Product Detail'
+            section_name: 'Section Name'
+            attribute_name: 'Attribute Name'
+            attribute_value: 'Attribute Value'
+  form:
+    job_instance:
+      tab:
+        google:
+          title: 'Google Manufacturer Configuration'
+        googleProductPageUrl:
+          title: 'Product Page URL'
+          help: 'Absolute URL link referred to the product page URL.'
+        googleId:
+          title: 'Identifier'
+          help: 'A unique identifier send to Google, must be provided.'
+        googleBrand:
+          title: 'Brand'
+          help: 'The related brand of the product, can be null.'
+        googleTitle:
+          title: 'Title'
+          help: 'The related title of the product, can be null.'
+        googleGtin:
+          title: 'GTIN'
+          help: 'The GTIN code of the product, must be provided.'
+        googleMpn:
+          title: 'MPN'
+          help: 'The MPN code of the product, must be provided.'
+        googleDisclosureDate:
+          title: 'Disclosure date'
+          help: 'The disclosure date of the product.'
+        googleReleaseDate:
+          title: 'Release date'
+          help: 'The release date of the product.'
+        googleSuggestedRetailPrice:
+          title: 'Suggested Retail Date'
+          help: 'The suggested retail price linked of the product.'
+        googleProductName:
+          title: 'Product Name'
+          help: 'The label of the product, must be provided.'
+        googleProductLine:
+          title: 'Product Line'
+          help: 'The line of the product, can be null.'
+        googleProductType:
+          title: 'Product Type'
+          help: 'Type of the product, can be null.'
+        googleItemGroupId:
+          title: 'Item Group ID'
+          help: 'The group attached to the product.'
+        googleColor:
+          title: 'Color'
+          help: 'Color of the product, can be null.'
+        googleAdditionalImageLink:
+          title: 'Additional Image Link'
+          help: 'The additional image link of the product.'
+        googleVideoLink:
+          title: 'Video Link'
+          help: 'The absolute URL link of video about the product, can be null.'
+
+pim_enrich:
+  form:
+    job_instance:
+      tab:
+        google-mapping:
+          title: Google Manufacturer Configuration
+
+batch_jobs:
+  google_manufacturer_xml_product_export:
+    label: Google Manufacturer - XML Products Export
+    validation.label: Validating file
+    export.label: XML Products Export

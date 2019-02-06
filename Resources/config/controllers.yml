@@ -1,0 +1,4 @@
+services:
+  dnd_google_manufacturer.controller.rest.attribute:
+    class: Dnd\Bundle\GoogleManufacturerBundle\Controller\Rest\AttributeController
+    parent: pim_enrich.controller.rest.attribute
