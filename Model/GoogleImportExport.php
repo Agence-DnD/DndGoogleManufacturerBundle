@@ -51,8 +51,44 @@ final class GoogleImportExport
     /** @var string ATTR_PRODUCT_DETAILS */
     const ATTR_PRODUCT_DETAILS = 'googleProductDetail';
 
-    /** @var array FILE_ATTRIBUTES */
-    const FILE_ATTRIBUTES = [
-        self::ATTR_ADDITIONAL_IMAGE_LINK
-    ];
+    /** @var string ATTR_PRODUCT_FEATURE_DESCRIPTION_HEADLINE */
+    const ATTR_PRODUCT_FEATURE_DESCRIPTION_HEADLINE = 'googleFeatureDescriptionHeadline';
+    /** @var string ATTR_PRODUCT_FEATURE_DESCRIPTION_TEXT */
+    const ATTR_PRODUCT_FEATURE_DESCRIPTION_TEXT = 'googleFeatureDescriptionText';
+    /** @var string ATTR_PRODUCT_FEATURE_DESCRIPTION_IMAGE_LINK */
+    const ATTR_PRODUCT_FEATURE_DESCRIPTION_IMAGE_LINK = 'googleFeatureDescriptionImageLink';
+    /** @var string ATTR_PRODUCT_DETAILS_SECTION_NAME */
+    const ATTR_PRODUCT_DETAILS_SECTION_NAME = 'googleProductDetailSectionName';
+    /** @var string ATTR_PRODUCT_DETAILS_ATTRIBUTE_NAME */
+    const ATTR_PRODUCT_DETAILS_ATTRIBUTE_NAME = 'googleProductDetailAttributeName';
+    /** @var string ATTR_PRODUCT_DETAILS_ATTRIBUTE_VALUE */
+    const ATTR_PRODUCT_DETAILS_ATTRIBUTE_VALUE = 'googleProductDetailAttributeValue';
+
+    /**
+     * Description getGroupedProductDetails function
+     *
+     * @return string[]
+     */
+    public function getGoogleProductDetail(): array
+    {
+        return [
+            self::ATTR_PRODUCT_DETAILS_SECTION_NAME,
+            self::ATTR_PRODUCT_DETAILS_ATTRIBUTE_NAME,
+            self::ATTR_PRODUCT_DETAILS_ATTRIBUTE_VALUE
+        ];
+    }
+
+    /**
+     * Description getGroupedFeatureDescription function
+     *
+     * @return string[]
+     */
+    public static function getGoogleFeatureDescription(): array
+    {
+        return [
+            self::ATTR_PRODUCT_FEATURE_DESCRIPTION_HEADLINE,
+            self::ATTR_PRODUCT_FEATURE_DESCRIPTION_TEXT,
+            self::ATTR_PRODUCT_FEATURE_DESCRIPTION_IMAGE_LINK
+        ];
+    }
 }

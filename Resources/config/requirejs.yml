@@ -10,6 +10,8 @@ config:
 
   paths:
     # Modules extension
+    dnd/common/add-select: dndgooglemanufacturer/js/product/edit/google/grouped/select
+
     dnd/job/export/product/edit/google:           dndgooglemanufacturer/js/product/edit/google
     dnd/job/export/product/edit/google/field:     dndgooglemanufacturer/js/product/edit/google/field
     dnd/job/export/product/edit/google/mandatory: dndgooglemanufacturer/js/product/edit/google/mandatory

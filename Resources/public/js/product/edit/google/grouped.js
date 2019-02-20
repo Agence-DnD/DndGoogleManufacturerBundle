@@ -16,7 +16,7 @@ define(
         'pim/form',
         'pim/fetcher-registry',
         'pim/common/property',
-        'pim/initselect2',
+        'dnd/common/add-select',
     ],
     function (
         _,
@@ -27,7 +27,7 @@ define(
         BaseForm,
         fetcherRegistry,
         propertyAccessor,
-        initSelect2,
+        BaseAddSelect,
     ) {
         return BaseForm.extend({
             targetFieldDescription: 'feature-description',
@@ -37,7 +37,9 @@ define(
             options: [],
             events: {
                 'click .AknButton': 'addFieldBlock',
-                'click .AknIconButton--ok': 'updateState'
+                'click .AknIconButton--ok': 'updateState',
+                'click .AknIconButton--edit': 'updateState',
+                'click .AknIconButton--remove': 'removeState'
             },
 
             /**
@@ -63,9 +65,47 @@ define(
                     'pim_enrich:form:entity:post_fetch',
                     this.resetValidationErrors.bind(this)
                 );
-                this.listenTo(this.getRoot(), 'pim_enrich:form:entity:post_fetch', this.render.bind(this));
+                this.listenTo(this.getRoot(), 'pim_enrich:form:entity:post_fetch', this.onPostFetch);
 
                 return BaseForm.prototype.configure.apply(this, arguments);
+            },
+
+            /**
+             * Triggered post fetch
+             */
+            onPostFetch: function() {
+                this.render.bind(this);
+            },
+
+            /**
+             * Set the validation errors after validation fail
+             */
+            initializeGroupedAttributes: function() {
+                let config = this.getConfiguration();
+
+                [this.targetFieldDescription, this.targetProductDetail].map(function (attribute) {
+                    let dropZone = $('*[data-drop-zone=grouped-' + attribute +']');
+                    let gAttribute = 'googleProductDetail';
+                    if (true === (attribute === this.targetFieldDescription)) {
+                        gAttribute = 'googleFeatureDescription';
+                    }
+                    let gData = (false === _.has(config, gAttribute) || (true === _.has(config, gAttribute) && true === _.isUndefined(config[gAttribute])))
+                        ? []
+                        : config[gAttribute]
+                    ;
+                    if (gData) {
+                        for (let key in gData) {
+                            if (_.isNull(gData[key])) {
+                                continue;
+                            }
+                            if (true === (attribute === this.targetFieldDescription)) {
+                                this.renderFeatureDescriptionBlock(dropZone, key);
+                            } else {
+                                this.renderProductDetailsBlock(dropZone, key);
+                            }
+                        }
+                    }
+                }, this);
             },
 
             /**
@@ -103,6 +143,8 @@ define(
             render: function () {
                 this.$el.html(this.template({__: __}));
 
+                this.initializeGroupedAttributes();
+
                 return this;
             },
 
@@ -121,9 +163,12 @@ define(
                     return;
                 }
 
+                let blocks = $('.google-grouped-' + target);
+                let blockId = (blocks && blocks.length) ? blocks.length + 1 : 1;
+
                 (true === (target === this.targetFieldDescription))
-                    ? this.renderFeatureDescriptionBlock(dropZone)
-                    : this.renderProductDetailsBlock(dropZone);
+                    ? this.renderFeatureDescriptionBlock(dropZone, blockId).bind(this)
+                    : this.renderProductDetailsBlock(dropZone, blockId).bind(this);
 
                 this.delegateEvents();
             },
@@ -134,37 +179,92 @@ define(
              * @param {Object} event
              */
             updateState: function (event) {
+                let ctx = $(event.target);
+                let ctxBlock = ctx.closest('div.AknFieldContainer');
+                let inputs = ctxBlock.find('input.is-enriched');
 
-                console.log('update'); debugger;
-                this.setScope(event.target.value);
+                let gBlock = ctxBlock.children().first();
+                let gBlockType = gBlock.attr('data-block');
+                let gBlockId = gBlock.attr('data-block-id');
+
+                let options = {};
+
+                inputs.each(function ()  {
+                    let input = $(this);
+                    if (!input) {
+                        return;
+                    }
+                    input = $(input[0]);
+                    let codes = input.attr('data-google-value');
+                    if (!codes) return;
+                    codes = codes.split(',');
+                    let gAttr = input.attr('data-google');
+                    if (!gAttr) return;
+
+                    options[gAttr] = codes;
+                });
+
+                if (Object.keys(options).length >= 1) {
+                    this.setScope(gBlockType, {
+                        [gBlockId]: options
+                    });
+                }
+            },
+
+            /**
+             * Sets new scope on field change.
+             *
+             * @param {Object} event
+             */
+            removeState: function (event) {
+                let ctx = $(event.target);
+                let ctxBlock = ctx.closest('div.AknFieldContainer');
+
+                let gBlock = ctxBlock.children().first();
+                let gBlockType = gBlock.attr('data-block');
+                let gBlockId = gBlock.attr('data-block-id');
+
+                let data = this.getConfiguration();
+
+                if (true === _.has(data, gBlockType) && true === _.has(data[gBlockType], gBlockId)) {
+                    let gData = data[gBlockType];
+                    data[gBlockType] = _.omit(gData, gBlockId);
+
+                    this.setData(data);
+                }
+
+                ctxBlock.remove();
             },
 
             /**
              * Sets specified scope into root model.
              *
-             * @param {String} code
+             * @param {String} gAttrCode
+             * @param {Object} options
              */
-            setScope: function (code) {
+            setScope: function (gAttrCode, options) {
                 var data = this.getConfiguration();
-                var before = data.googleFeatureDescription;
+                if (_.isUndefined(data[gAttrCode]) || _.isNull(data[gAttrCode])) {
+                    data[gAttrCode] = options
+                } else {
+                    $.extend(true,  data[gAttrCode], options)
+                }
 
-                data.googleFeatureDescription = code;
                 this.setData(data);
             },
 
             /**
              * Gets scope from root model.
              *
-             * @returns {String}
+             * @returns Object
              */
             getScope: function () {
                 var configuration = this.getConfiguration();
-
                 if (_.isUndefined(configuration)) {
-                    return null;
+                    return {};
                 }
 
-                return _.isUndefined(configuration.googleFeatureDescription) ? null : configuration.googleFeatureDescription;
+                return configuration;
             },
 
             /**
@@ -177,17 +277,13 @@ define(
             },
 
             /**
-             * Get Description Block
+             * Get config for select
              *
-             * @param dropZone
+             * @return {object}
              */
-            renderFeatureDescriptionBlock: function(dropZone) {
-                this.getAttributes().then(function (attributes) {
-                    let block = new DndGoogleFeatureDescriptionBlock(this.getConfiguration());
-
-                    dropZone.append(block.render(attributes));
-
-                    initSelect2.init(this.$('input.select-field'), {
+            getSelectConfiguration: function () {
+                return {
+                    select2: {
                         placeholder: 'pim_enrich.form.common.tab.attributes.btn.add_attributes',
                         title: 'pim_enrich.form.common.tab.attributes.info.search_attributes',
                         buttonTitle: 'pim_enrich.form.common.tab.attributes.btn.add',
@@ -196,12 +292,34 @@ define(
                         classes: 'pim-add-attributes-multiselect',
                         minimumInputLength: 0,
                         dropdownCssClass: 'add-attribute',
-                        closeOnSelect: false,
-                        query: this.onGetQuery.bind(this),
-                        initSelection: this.initSelect.bind(this)
-                    }).select2('val', attributes);
+                        closeOnSelect: false
+                    },
+                    resultsPerPage: 10,
+                    searchParameters: {options: {exclude_unique: true}},
+                    mainFetcher: 'attribute'
+                };
+            },
 
-                }.bind(this));
+            /**
+             * Get Description Block
+             *
+             * @param dropZone
+             * @param blockId
+             */
+            renderFeatureDescriptionBlock: function(dropZone, blockId) {
+                let block = new DndGoogleFeatureDescriptionBlock(
+                    $.extend(true, {}, this.getConfiguration(), {
+                            blockId: blockId
+                        }
+                    )
+                );
+                dropZone.prepend(block.render());
+
+                let opts = $.extend(true, {}, this.getSelectConfiguration(), this.config);
+                let select = new BaseAddSelect({
+                    config: opts
+                });
+                select.render();
 
                 return this;
             },
@@ -210,52 +328,25 @@ define(
              * Get Product Details Block
              *
              * @param dropZone
+             * @param blockId
              */
-            renderProductDetailsBlock: function(dropZone) {
-                this.getAttributes().then(function (attributes) {
-                    let block = new DndGoogleProductDetailBlock(this.getConfiguration());
+            renderProductDetailsBlock: function(dropZone, blockId) {
+                let block = new DndGoogleProductDetailBlock(
+                    $.extend(true, {}, this.getConfiguration(), {
+                            blockId: blockId
+                        }
+                    )
+                );
+                dropZone.prepend(block.render());
 
-                    dropZone.append(block.render(attributes));
-
-                    initSelect2.init(this.$('input.select-field'), {
-                        placeholder: 'pim_enrich.form.common.tab.attributes.btn.add_attributes',
-                        title: 'pim_enrich.form.common.tab.attributes.info.search_attributes',
-                        buttonTitle: 'pim_enrich.form.common.tab.attributes.btn.add',
-                        countTitle: 'pim_enrich.form.product.tab.attributes.info.attributes_selected',
-                        emptyText: 'pim_enrich.form.common.tab.attributes.info.no_available_attributes',
-                        classes: 'pim-add-attributes-multiselect',
-                        minimumInputLength: 0,
-                        dropdownCssClass: 'add-attribute',
-                        closeOnSelect: false,
-                        query: this.onGetQuery.bind(this),
-                        initSelection: this.initSelect.bind(this)
-                    }).select2('val', attributes);
-                }.bind(this));
+                let opts = $.extend(true, {}, this.getSelectConfiguration(), this.config);
+                let select = new BaseAddSelect({
+                    config: opts
+                });
+                select.render().bind();
 
                 return this;
             },
-
-            initSelect: function(element, callback) {
-                this.getAttributes().then(function (attributes) {
-
-                    callback(attributes);
-                });
-            },
-
-            /**
-             * Get Attributes
-             *
-             * @returns {object}
-             */
-            getAttributes: function() {
-                return fetcherRegistry
-                    .getFetcher('attributes-list')
-                    .fetchAll();
-            },
-
-            onGetQuery: function(options) {
-                return options;
-            }
         });
     }
 );

@@ -12,27 +12,19 @@ define([
         'underscore',
         'oro/translator',
         'dnd/template/export/product/edit/google/grouped/product-detail',
-        'pim/form',
-        'pim/fetcher-registry',
-        'pim/user-context',
-        'pim/initselect2',
-        'pim/i18n'
+        'pim/form'
     ],
     function (
         $,
         _,
         __,
         template,
-        BaseForm,
-        fetcherRegistry,
-        UserContext,
-        initSelect2,
-        i18n
+        BaseForm
     ) {
         return BaseForm.extend({
             config: {},
             data: {},
-            className: 'AknFieldContainer',
+            className: 'AknFieldContainer DndAknFieldContainer',
             template: _.template(template),
 
             /**
@@ -42,7 +34,17 @@ define([
              */
             initialize: function (config) {
                 this.config = config;
-                this.data = (_.isUndefined(config.googleProductDetail)) ? [] : config.googleProductDetail;
+                this.identifier = config.blockId ? config.blockId : 1;
+                this.data =
+                    (
+                        false === _.has(config, 'googleProductDetail') ||
+                        true === _.isUndefined(config.googleProductDetail) ||
+                        false === _.has(config.googleProductDetail, this.identifier) ||
+                        true === _.isUndefined(config.googleProductDetail[this.identifier])
+                    )
+                        ? null
+                        : config.googleProductDetail[this.identifier]
+                ;
 
                 return BaseForm.prototype.initialize.apply(this, arguments);
             },
@@ -52,13 +54,13 @@ define([
              *
              * @return {Object}
              */
-            render: function (attributes) {
+            render: function () {
 
                 return this.$el.html(
                     this.template({
                         __: __,
                         data: this.data,
-                        attributes: attributes
+                        id: this.identifier
                     })
                 );
             },
