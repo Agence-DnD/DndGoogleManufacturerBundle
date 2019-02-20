@@ -208,6 +208,9 @@ define(
                     this.setScope(gBlockType, {
                         [gBlockId]: options
                     });
+                    if (ctx.hasClass('AknIconButton--ok')) {
+                        ctx.removeClass('AknIconButton--ok').addClass('AknIconButton--edit');
+                    }
                 }
             },
 
