@@ -2,7 +2,13 @@
 
 namespace Dnd\Bundle\GoogleManufacturerBundle\ArrayConverter\StandardToFlat\Attribute;
 
+use Dnd\Bundle\GoogleManufacturerBundle\Exception\GoogleManufacturerException;
 use Dnd\Bundle\GoogleManufacturerBundle\Model\GoogleImportExport;
+use Dnd\Bundle\GoogleManufacturerBundle\Renderer\PublicFileRenderer;
+use Pim\Component\Api\Repository\AttributeRepositoryInterface;
+use Pim\Component\Catalog\AttributeTypes;
+use Pim\Component\Catalog\Localization\Localizer\AttributeConverterInterface;
+use Pim\Component\Catalog\Model\AttributeInterface;
 use Pim\Component\Connector\ArrayConverter\ArrayConverterInterface;
 use Pim\Component\Connector\ArrayConverter\StandardToFlat\ProductLocalized as PimProductLocalized;
 
@@ -18,6 +24,28 @@ use Pim\Component\Connector\ArrayConverter\StandardToFlat\ProductLocalized as Pi
  */
 class Google extends PimProductLocalized implements ArrayConverterInterface
 {
+    /** @var PublicFileRenderer $publicFileRenderer */
+    private $publicFileRenderer;
+
+    /**
+     * Google constructor
+     *
+     * @param ArrayConverterInterface     $converter
+     * @param AttributeConverterInterface $localizer
+     * @param PublicFileRenderer          $fileRenderer
+     *
+     * @return void
+     */
+    public function __construct(
+        ArrayConverterInterface $converter,
+        AttributeConverterInterface $localizer,
+        PublicFileRenderer $fileRenderer
+    ) {
+        parent::__construct($converter, $localizer);
+
+        $this->publicFileRenderer = $fileRenderer;
+    }
+
     /** @var string[] GOOGLE_MAPPING_ATTRIBUTES */
     const GOOGLE_MAPPING_ATTRIBUTES = [
         // Mandatory
@@ -59,6 +87,7 @@ class Google extends PimProductLocalized implements ArrayConverterInterface
      * @param array $options
      *
      * @return array
+     * @throws \Exception
      */
     public function convert(array $productStandard, array $options = [])
     {
@@ -69,9 +98,12 @@ class Google extends PimProductLocalized implements ArrayConverterInterface
         if (!$jobParameters) {
             return $convertedItem;
         }
-
-        $this->map($convertedItem, $jobParameters);
-        $this->clean($convertedItem);
+        try {
+            $this->map($convertedItem, $jobParameters, $options);
+            $this->clean($convertedItem);
+        } catch (\Exception $exception) {
+            throw GoogleManufacturerException::convertException($exception->getMessage());
+        }
 
         return $convertedItem;
     }
@@ -81,12 +113,14 @@ class Google extends PimProductLocalized implements ArrayConverterInterface
      *
      * @param array $convertedItem
      * @param array $jobParameters
+     * @param array $options
      *
      * @return void
      */
     private function map(
         array &$convertedItem,
-        array $jobParameters
+        array $jobParameters,
+        array $options
     ): void {
         /**
          * @var string $googleKey
@@ -106,9 +140,75 @@ class Google extends PimProductLocalized implements ArrayConverterInterface
             if (!isset($convertedItem[$pimAttribute])) {
                 continue;
             }
+            /** @var mixed $value */
+            $value = $this->reformatValue($convertedItem[$pimAttribute], $pimAttribute, $options);
 
-            $convertedItem[$googleKey] = $convertedItem[$pimAttribute];
+            $convertedItem[$googleKey] = $value;
         }
+    }
+
+    /**
+     * Clean the attributes not needed in the exported file
+     *
+     * @param array $convertedItem
+     *
+     * @return void
+     */
+    private function clean(
+        array &$convertedItem
+    ): void {
+        /**
+         * @var string $googleKey
+         * @var string $googleAttribute
+         */
+        foreach ($convertedItem as $attributeKey => $attributeValue) {
+            if (true === array_key_exists($attributeKey, self::GOOGLE_MAPPING_ATTRIBUTES)) {
+                continue;
+            }
+            unset($convertedItem[$attributeKey]);
+        }
+    }
+
+    /**
+     * Description reformat function
+     *
+     * @param string  $value
+     * @param string  $attributeCode
+     * @param mixed[] $options
+     *
+     * @return string
+     */
+    private function reformatValue(
+        string $value,
+        string $attributeCode,
+        array $options
+    ): string {
+        if (!isset($options['attributeRepository'])) {
+            return $value;
+        }
+        /** @var AttributeRepositoryInterface $attributeRepository */
+        $attributeRepository = $options['attributeRepository'];
+        /** @var AttributeInterface|null $attribute */
+        $attribute = $attributeRepository->findOneByIdentifier($attributeCode);
+        if (!$attribute || false === $attribute instanceof AttributeInterface) {
+            return $value;
+        }
+        /** @var string $type */
+        $type = $attribute->getType();
+        if (!$value) {
+            return $value;
+        }
+        switch ($type) {
+            case AttributeTypes::IMAGE:
+                /** @var string|null $publicUrl */
+                $publicUrl = $this->publicFileRenderer->getBrowserUrlPath($value);
+                if ($publicUrl && $publicUrl !== '') {
+                    $value = $publicUrl;
+                }
+                break;
+        }
+
+        return $value;
     }
 
     /**
@@ -166,28 +266,6 @@ class Google extends PimProductLocalized implements ArrayConverterInterface
 
                 $convertedItem[$googleKey][$index][$cursor] = implode(',', $values);
             }
-        }
-    }
-
-    /**
-     * Clean the attributes not needed in the exported file
-     *
-     * @param array $convertedItem
-     *
-     * @return void
-     */
-    private function clean(
-        array &$convertedItem
-    ): void {
-        /**
-         * @var string $googleKey
-         * @var string $googleAttribute
-         */
-        foreach ($convertedItem as $attributeKey => $attributeValue) {
-            if (true === array_key_exists($attributeKey, self::GOOGLE_MAPPING_ATTRIBUTES)) {
-                continue;
-            }
-            unset($convertedItem[$attributeKey]);
         }
     }
 }

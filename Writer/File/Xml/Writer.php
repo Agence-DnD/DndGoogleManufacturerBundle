@@ -117,7 +117,8 @@ class Writer extends AbstractFileWriter implements
         foreach ($products as $product) {
             /** @var array $productNormalized */
             $productNormalized = $this->arrayConverter->convert($product, [
-                'jobParameters' => $this->jobParameters
+                'jobParameters' => $this->jobParameters,
+                'attributeRepository' => $this->attributeRepository
             ]);
 
             $this->addXMLFlatItem(

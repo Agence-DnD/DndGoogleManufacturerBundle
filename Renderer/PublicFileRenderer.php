@@ -56,11 +56,11 @@ class PublicFileRenderer
         $file = new \SplFileInfo($filePath);
         /** @var \SplFileInfo $fileInfo */
         $fileInfo = $file->getFileInfo();
-        if (!$fileInfo) {
+        if (!$fileInfo || false === $file instanceof \SplFileInfo) {
             throw new InvalidPropertyException('file_info', 'fileInfo', \SplFileInfo::class);
         }
         /** @var string $filePathKey */
-        $filePathKey = $fileInfo->getKey();
+        $filePathKey = $fileInfo->getPathname();
 
         return $this->cacheManager->getBrowserPath($filePathKey, $this->cacheFilter);
     }

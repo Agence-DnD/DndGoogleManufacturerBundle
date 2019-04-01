@@ -5,3 +5,5 @@ services:
   dnd_manufacturer.array_converter.standard_to_flat.attribute.google:
     class: '%dnd_manufacturer.array_converter.standard_to_flat.attribute.google.class%'
     parent: pim_connector.array_converter.standard_to_flat.product_localized
+    arguments:
+      - '@dnd_google_manufacturer.renderer.public_file'
