@@ -1,6 +1,6 @@
 # Configuration guide:
 
-### How to configure {EXTENSION}:
+### How to configure Google Manufacturer Connector:
 
 First, enable the bundle in the Kernel: 
 ```

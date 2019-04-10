@@ -1,6 +1,6 @@
 # Installation guide:
 
-### How to install DnD Google Manufacture:
+### How to install Google Manufacturer Connector:
 
 If it's not already done, install Akeneo PIM.
 Get composer (with command line):

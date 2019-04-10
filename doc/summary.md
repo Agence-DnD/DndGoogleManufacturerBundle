@@ -17,7 +17,3 @@ III. Features:
 IV. FAQ:
 ------------------
 ##### [Frequently asked questions](faq/faq.md)
-
-V. Roadmap:
-------------------
-##### [Roadmap](roadmap/roadmap.md)

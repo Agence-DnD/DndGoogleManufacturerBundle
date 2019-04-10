@@ -1,18 +1,30 @@
 # Features:
 
-### Feature 1:
+### Create a new Google Manufacturer export type:
 
 *
 *
 *
 
-### Feature 2:
+### Configure and map each mandatory attribute from Google Manufacturer to Akeneo attributes:
 
 *
 *
 *
 
-### Feature 3:
+### Configure and map each optional attribute from Google Manufacturer to Akeneo attributes:
+
+*
+*
+*
+
+### Configure and generate "Product Detail" and "Feature Description" nodes from Akeneo attributes:
+
+*
+*
+*
+
+### Generate XML file for Google Manufacturer:
 
 *
 *
