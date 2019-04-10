@@ -29,7 +29,21 @@ class ProductXmlExport extends PimProductCsvExport
 
         return array_merge(
             $parameters, [
+                // Optional fields
+                GoogleImportExport::ATTR_DISCLOSURE_DATE => null,
+                GoogleImportExport::ATTR_RELEASE_DATE => null,
+                GoogleImportExport::ATTR_SUGGESTED_RETAIL_PRICE => null,
+                GoogleImportExport::ATTR_PRODUCT_NAME => null,
+                GoogleImportExport::ATTR_PRODUCT_LINE => null,
+                GoogleImportExport::ATTR_PRODUCT_TYPE => null,
+                GoogleImportExport::ATTR_ITEM_GROUP_ID => null,
+                GoogleImportExport::ATTR_COLOR => null,
+                GoogleImportExport::ATTR_VIDEO_LINK => null,
+                GoogleImportExport::ATTR_ADDITIONAL_IMAGE_LINK => null,
+
+                // Grouped fields
                 GoogleImportExport::ATTR_FEATURE_DESCRIPTIONS => null,
+                GoogleImportExport::ATTR_PRODUCT_DETAILS => null
             ]
         );
     }

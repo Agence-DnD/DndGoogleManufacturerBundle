@@ -1,0 +1,3 @@
+css:
+  bem:
+    - bundles/dndgooglemanufacturer/less/components/Google.less

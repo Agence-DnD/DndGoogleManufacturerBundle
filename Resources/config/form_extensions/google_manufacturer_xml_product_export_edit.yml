@@ -247,7 +247,6 @@ extensions:
     targetZone: container
     position: 140
     config:
-      attributes: lol
       tabTitle: pim_enrich.form.job_instance.tab.google-mapping.title
       tabCode: pim-job-instance-google-mapping
 
@@ -269,7 +268,6 @@ extensions:
     targetZone: google-grouped-attributes
     position: 100
     config:
-      fieldCode: configuration.googleFeatureDescription
       required: true
       readOnly: false
       label: dnd_google_manufacturer.form.job_instance.tab.googleId.title

@@ -100,7 +100,7 @@ class Writer extends AbstractFileWriter implements
                 ->initExportFile()
                 ->initXMLContent();
         } catch (\Exception $exception) {
-            throw new \Exception('Internal error during the generation of XML export file : %s', $exception->getMessage());
+            throw new \Exception('Internal error during the generation of XML export file. Reason: %s', $exception->getMessage());
         }
     }
 
@@ -254,10 +254,28 @@ class Writer extends AbstractFileWriter implements
         /** @var \DOMElement $xmlItem */
         $xmlItem = $XMLRoot->createElement('item');
         foreach ($convertedItem as $googleAttributeKey => $googleAttributeValue) {
-            if (!$googleAttributeValue || is_array($googleAttributeValue)) {
+            if (!$googleAttributeValue) {
                 continue;
             }
-            dump(sprintf('%s : %s', $googleAttributeKey, $googleAttributeValue));
+            if (is_array($googleAttributeValue)) {
+                /** @var string[] $googleGroupedAttributeValue */
+                foreach ($googleAttributeValue as $googleGroupedAttributeValue) {
+                    /** @var \DOMElement $node */
+                    $node = $XMLRoot->createElement($googleAttributeKey);
+                    /**
+                     * @var string $groupedAttributeKey
+                     * @var string $groupedAttributeValue
+                     */
+                    foreach ($googleGroupedAttributeValue as $groupedAttributeKey => $groupedAttributeValue) {
+                        $subNode = $XMLRoot->createElement($groupedAttributeKey, htmlspecialchars($groupedAttributeValue));
+                        $node->appendChild($subNode);
+                    }
+                    $xmlItem->appendChild($node);
+                }
+
+                continue;
+            }
+
             $node = $XMLRoot->createElement($googleAttributeKey, htmlspecialchars($googleAttributeValue));
             $xmlItem->appendChild($node);
         }

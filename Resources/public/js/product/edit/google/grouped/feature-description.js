@@ -12,27 +12,21 @@ define(
         'underscore',
         'oro/translator',
         'dnd/template/export/product/edit/google/grouped/feature-description',
-        'pim/form',
-        'pim/fetcher-registry',
-        'pim/user-context',
-        'jquery.select2',
-        'pim/i18n'
+        'pim/form'
     ],
     function (
         $,
         _,
         __,
         template,
-        BaseForm,
-        fetcherRegistry,
-        UserContext,
-        select2,
-        i18n
+        BaseForm
     ) {
         return BaseForm.extend({
+            identifier: null,
             config: {},
             data: {},
-            className: 'AknFieldContainer',
+            events: {},
+            className: 'AknFieldContainer DndAknFieldContainer',
             template: _.template(template),
 
             /**
@@ -42,12 +36,19 @@ define(
              */
             initialize: function (config) {
                 this.config = config;
-                this.data = (_.isUndefined(config.googleFeatureDescription)) ? [] : config.googleFeatureDescription;
+                this.identifier = config.blockId ? config.blockId : 1;
+                this.data =
+                    (
+                        false === _.has(config, 'googleFeatureDescription') ||
+                        true === _.isUndefined(config.googleFeatureDescription) ||
+                        false === _.has(config.googleFeatureDescription, this.identifier) ||
+                        true === _.isUndefined(config.googleFeatureDescription[this.identifier])
+                    )
+                    ? null
+                    : config.googleFeatureDescription[this.identifier]
+                ;
 
                 return BaseForm.prototype.initialize.apply(this, arguments);
-            },
-
-            configure: function() {
             },
 
             /**
@@ -55,12 +56,12 @@ define(
              *
              * @return {Object}
              */
-            render: function (attributes) {
+            render: function () {
                 return this.$el.html(
                     this.template({
                         __: __,
                         data: this.data,
-                        attributes: attributes
+                        id: this.identifier
                     })
                 );
             },
