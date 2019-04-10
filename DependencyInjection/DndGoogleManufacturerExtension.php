@@ -39,6 +39,7 @@ class DndGoogleManufacturerExtension extends Extension
         $loader->load('job_providers.yml');
         $loader->load('jobs.yml');
         $loader->load('steps.yml');
+        $loader->load('renderers.yml');
         $loader->load('writers.yml');
     }
 }

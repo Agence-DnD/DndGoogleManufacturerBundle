@@ -28,4 +28,21 @@ class GoogleManufacturerException extends \Exception
             sprintf($message)
         );
     }
+
+    /**
+     * Description convertException function
+     *
+     * @param string $reason
+     *
+     * @return GoogleManufacturerException
+     */
+    public static function convertException(string $reason): GoogleManufacturerException
+    {
+        /** @var string $message */
+        $message = 'Product can not be convert properly. Reason: %s';
+
+        return new static(
+            sprintf($message, $reason)
+        );
+    }
 }
