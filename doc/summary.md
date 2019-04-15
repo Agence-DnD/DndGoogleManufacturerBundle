@@ -1,10 +1,9 @@
-# DnD Google Manufacturer Documentation summary
+# Google Manufacturer Connector Documentation summary
 
 I. Install:
 ------------------
 ##### [Install guide](install/install.md)
 ##### [Compatibility](install/compatibility.md)
-##### [Requirements](install/requirements.md)
 
 II. Configuration:
 ------------------

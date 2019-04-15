@@ -1,10 +1,8 @@
-![Google Manufacturer Connector](doc/{EXTENSION}-logo.png)
+![Google Manufacturer Connector](doc/img/google-manufacturer-logo.png)
 
 # Google Manufacturer Connector:
 
-Google Manufacturer Connector for Akeneo PIM >= 2.0
-
-This connector allows you to export your products into XML format for Google Manufacturer.
+Google Manufacturer Connector allows you to export your products into XML format for Google Manufacturer.
 
 It will create a new "Google Manufacturer - XML Products Export" export type in which you can map your Akeneo attributes to the mandatory attributes needed for Google Manufacturer exports. The connector will generate a XML file with the correct structure for Google Manufacturer integration.
 
@@ -16,7 +14,7 @@ Google Manufacturer Connector complete documentation is available [here](doc/sum
 
 With Google Manufacturer Connector, you can:
 
-* Create a new Google Manufacturer export type
+* Create new Google Manufacturer export profiles
 * Configure and map each mandatory attribute from Google Manufacturer to Akeneo attributes
 * Configure and map each optional attribute from Google Manufacturer to Akeneo attributes
 * Configure and generate "Product Detail" and "Feature Description" nodes from Akeneo attributes
@@ -25,10 +23,6 @@ With Google Manufacturer Connector, you can:
 ### Requirements:
 
 * Akeneo 2.X
-
-### Roadmap:
-
-You can consult our roadmap [here](doc/important_stuff/roadmap.md).
 
 ### About us:
 
