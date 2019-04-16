@@ -3,12 +3,15 @@
 ### How to configure Google Manufacturer Connector:
 
 First, enable the bundle in the Kernel: 
-```
-# > app/AppKernel.php
+```php
+<?php
+// > app/AppKernel.php
+// [...]
+
 $bundles[] = new Dnd\Bundle\CriteoConnectorBundle\DndCriteoConnectorBundle();
 ```
 Then, add the route of the bundle:
-```
+```yml
 # > app/config/routing.yml
 dnd_google_manufacturer:
     resource: "@DndGoogleManufacturerBundle/Resources/config/routing.yml"
