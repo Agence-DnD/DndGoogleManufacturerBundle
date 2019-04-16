@@ -1,19 +1,11 @@
 # Compatibility:
 
-### {EXTENSION} compatibility with {}:
+### Google Manufacturer Connector compatibility with Akeneo:
 
-{EXTENSION} is compatible {}:
+Google Manufacturer Connector is compatible with the following versions of Akeneo:
 
-| {} Version | {} Version |
-|------------|------------|
-| >= X.X.X   | >= X.X.X   |
-
-### {EXTENSION} compatibility with {}:
-
-{EXTENSION} is compatible {}:
-
-| {} Version | {} Version |
-|------------|------------|
-| >= X.X.X   | >= X.X.X   |
+| Akeneo Version | Google Manufacturer Connector Version |
+|----------------|---------------------------------------|
+| \>= 2.X        | \>= 1.0.X                             |
 
 ##### [> Back to summary](../summary.md)

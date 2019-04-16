@@ -1,15 +1,17 @@
 # Installation guide:
 
-### How to install DnD Google Manufacture:
+### How to install Google Manufacturer Connector:
 
-If it's not already done, install Akeneo PIM.
-Get composer (with command line):
+If it is not already done, install Akeneo PIM.
+
+If composer is not installed, get composer (with command line):
 
 ```bash
 $ cd /my/pim/installation/dir
 $ curl -sS https://getcomposer.org/installer | php
 ```
-Then, install DnDGoogleManufacturerConnectorBundle with composer:
+
+Then, you can either require Google Manufacturer Connector using composer:
 ```bash
 $ cd /my/pim/installation/dir
 $ composer require "agencednd/google-manufacturer-connector-bundle"
@@ -22,7 +24,7 @@ Or in your composer.json add the following code dependending on your Akeneo PIM 
     }
 }
 ```
-End the install by running: 
+And finish the install by running: 
 ```bash
 $ cd /my/pim/installation/dir
 $ composer install

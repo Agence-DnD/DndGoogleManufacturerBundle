@@ -1,6 +1,6 @@
 # Configuration guide:
 
-### How to configure {EXTENSION}:
+### How to configure Google Manufacturer Connector:
 
 First, enable the bundle in the Kernel: 
 ```
@@ -13,7 +13,7 @@ Then, add the route of the bundle:
 dnd_google_manufacturer:
     resource: "@DndGoogleManufacturerBundle/Resources/config/routing.yml"
 ``` 
-Change or add the configuration for media caching :
+Change or add the configuration for media caching:
 ```yml
 # > app/config/config.yml
 liip_imagine:
@@ -24,6 +24,6 @@ liip_imagine:
             filters:
                 relative_resize: { scale: 1.0 }
 ```
-You're allowed to change the filter set or change the filter key: **thumbnail_full** but modification must be also change in the linked service: **DndGoogleManufactureBundle/Resources/config/renderers.yml**
+You are allowed to change the filter set or change the filter key **thumbnail_full** but changes must also be applied in the linked service: **DndGoogleManufactureBundle/Resources/config/renderers.yml**
 
 ##### [> Back to summary](../summary.md)
