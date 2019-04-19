@@ -298,7 +298,7 @@ define(
                         closeOnSelect: false
                     },
                     resultsPerPage: 10,
-                    searchParameters: {options: {exclude_unique: true}},
+                    searchParameters: {options: {}},
                     mainFetcher: 'attribute'
                 };
             },
