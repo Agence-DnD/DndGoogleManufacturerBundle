@@ -27,4 +27,11 @@
 
 * After the configuration, save the profile and launch it to generate the XML file for Google Manufacturer
 
+### Generate XML file for Google Manufacturer with command line:
+
+* You can also trigger your Google Manufacturer export profile with Akeneo native command line : 
+```bash
+bin/console akeneo:batch:job google_manufacturer_profile_code
+```
+
 ##### [> Back to summary](../summary.md)
