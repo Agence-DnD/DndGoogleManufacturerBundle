@@ -2,20 +2,33 @@
 
 namespace Dnd\Bundle\GoogleManufacturerBundle\Writer\File\Xml;
 
+use Akeneo\Component\Batch\Event\EventInterface;
+use Akeneo\Component\Batch\Event\InvalidItemEvent;
+use Akeneo\Component\Batch\Item\FileInvalidItem;
 use Akeneo\Component\Batch\Item\FlushableInterface;
 use Akeneo\Component\Batch\Item\InitializableInterface;
+use Akeneo\Component\Batch\Item\InvalidItemInterface;
 use Akeneo\Component\Batch\Job\JobParameters;
+use Akeneo\Component\Batch\Job\JobRepositoryInterface;
+use Akeneo\Component\Batch\Model\StepExecution;
+use Akeneo\Component\Batch\Model\Warning;
 use Akeneo\Component\Buffer\BufferFactory;
 use Dnd\Bundle\GoogleManufacturerBundle\Exception\GoogleManufacturerException;
+use Dnd\Bundle\GoogleManufacturerBundle\Model\GoogleImportExport;
+use Dnd\Bundle\GoogleManufacturerBundle\Validator\Constraints\FieldValidator;
 use Pim\Component\Catalog\Model\ChannelInterface;
 use Pim\Component\Catalog\Repository\AttributeRepositoryInterface;
 use Pim\Component\Catalog\Repository\ChannelRepositoryInterface;
 use Pim\Component\Connector\ArrayConverter\ArrayConverterInterface;
+use Pim\Component\Connector\Exception\InvalidItemFromViolationsException;
 use Pim\Component\Connector\Writer\File\AbstractFileWriter;
 use Pim\Component\Connector\Writer\File\ArchivableWriterInterface;
 use Pim\Component\Connector\Writer\File\FlatItemBuffer;
 use Pim\Component\Connector\Writer\File\FlatItemBufferFlusher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Validator\Validation;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class Writer
@@ -32,6 +45,12 @@ class Writer extends AbstractFileWriter implements
     InitializableInterface,
     FlushableInterface
 {
+    /** @var EventDispatcherInterface $eventDispatcher */
+    private $eventDispatcher;
+    /** @var JobRepositoryInterface $jobRepository */
+    private $jobRepository;
+    /** @var Validation $validator */
+    private $validator;
     /** @var JobParameters $jobParameters */
     private $jobParameters;
     /** @var \DOMDocument $XMLRoot*/
@@ -65,22 +84,29 @@ class Writer extends AbstractFileWriter implements
      * @param FlatItemBufferFlusher        $flusher
      * @param ChannelRepositoryInterface   $channelRepository
      * @param AttributeRepositoryInterface $attributeRepository
+     * @param EventDispatcherInterface     $eventDispatcher
+     * @param JobRepositoryInterface       $jobRepository
      */
     public function __construct(
         ArrayConverterInterface $arrayConverter,
         BufferFactory $bufferFactory,
         FlatItemBufferFlusher $flusher,
         ChannelRepositoryInterface $channelRepository,
-        AttributeRepositoryInterface $attributeRepository
+        AttributeRepositoryInterface $attributeRepository,
+        EventDispatcherInterface $eventDispatcher,
+        JobRepositoryInterface $jobRepository
     ) {
         parent::__construct();
 
-        $this->arrayConverter = $arrayConverter;
-        $this->bufferFactory = $bufferFactory;
-        $this->flusher = $flusher;
-        $this->channelRepository = $channelRepository;
+        $this->eventDispatcher     = $eventDispatcher;
+        $this->jobRepository       = $jobRepository;
+        $this->validator           = Validation::createValidator();
+        $this->arrayConverter      = $arrayConverter;
+        $this->bufferFactory       = $bufferFactory;
+        $this->flusher             = $flusher;
+        $this->channelRepository   = $channelRepository;
         $this->attributeRepository = $attributeRepository;
-        $this->fs = new Filesystem();
+        $this->fs                  = new Filesystem();
     }
 
     /**
@@ -113,22 +139,32 @@ class Writer extends AbstractFileWriter implements
      */
     public function write(array $products)
     {
+        /** @var ValidatorInterface $validator */
+        $validator = Validation::createValidator();
+        /** @var mixed[] $constraints */
+        $constraints = FieldValidator::getConstraints();
         /** @var array $product */
         foreach ($products as $product) {
-            /** @var array $productNormalized */
-            $productNormalized = $this->arrayConverter->convert($product, [
-                'jobParameters' => $this->jobParameters,
-                'attributeRepository' => $this->attributeRepository
-            ]);
-
-            $this->addXMLFlatItem(
-                $productNormalized,
-                $this->XMLRoot,
-                $this->XMLItems
-            );
+            try {
+                /** @var array $productNormalized */
+                $productNormalized = $this->arrayConverter->convert($product, [
+                    'jobParameters' => $this->jobParameters,
+                    'attributeRepository' => $this->attributeRepository,
+                    'validator' => $validator,
+                    'constraints' => $constraints
+                ]);
+                $this->addXMLFlatItem(
+                    $productNormalized,
+                    $this->XMLRoot,
+                    $this->XMLItems
+                );
+                file_put_contents($this->getPath(), $this->XMLRoot->saveXML());
+            } catch (GoogleManufacturerException $googleManufacturerException) {
+                $this->skipItemFromQueue($this->stepExecution, $this, $product, $googleManufacturerException);
+            } catch (\Exception $exception) {
+                throw $exception;
+            }
         }
-
-        file_put_contents($this->getPath(), $this->XMLRoot->saveXML());
     }
 
     /**
@@ -235,7 +271,11 @@ class Writer extends AbstractFileWriter implements
         if (!$channel) {
             return $element;
         }
+        /** @var string $channel */
+        $link = isset($this->jobParameters[GoogleImportExport::ATTR_URL]) ? $this->jobParameters[GoogleImportExport::ATTR_URL] : null;
+
         $element->appendChild($this->XMLRoot->createElement('title', $channel->getCode()));
+        $element->appendChild($this->XMLRoot->createElement('link', $link));
         $element->appendChild($this->XMLRoot->createElement('description', $channel->getLabel()));
 
         return $element;
@@ -282,5 +322,66 @@ class Writer extends AbstractFileWriter implements
         }
 
         $XMLItems->appendChild($xmlItem);
+    }
+
+    /**
+     * Description skipItemFromQueue function
+     *
+     * @param StepExecution               $stepExecution
+     * @param mixed                       $element
+     * @param array                       $item
+     * @param GoogleManufacturerException $exception
+     *
+     * @return void
+     */
+    private function skipItemFromQueue(
+        StepExecution $stepExecution,
+        $element,
+        array $item,
+        GoogleManufacturerException $exception
+    ) {
+        /** @var InvalidItemFromViolationsException $invalidItem */
+        $invalidItem = new InvalidItemFromViolationsException(
+            $exception->getViolations(),
+            new FileInvalidItem($item, ($this->stepExecution->getSummaryInfo('item_position'))),
+            [$exception->getMessage()],
+            0,
+            $exception
+        );
+        /** @var Warning $warning */
+        $warning = new Warning(
+            $stepExecution,
+            $exception->getMessage(),
+            [],
+            $invalidItem->getItem()->getInvalidData()
+        );
+
+        $this->jobRepository->addWarning($warning);
+        $this->dispatchInvalidItemEvent(
+            get_class($element),
+            $invalidItem->getMessage(),
+            $invalidItem->getMessageParameters(),
+            $invalidItem->getItem()
+        );
+    }
+
+    /**
+     * Trigger an invalid item event
+     *
+     * @param string $class
+     * @param string $reason
+     * @param array  $reasonParameters
+     * @param InvalidItemInterface  $item
+     */
+    private function dispatchInvalidItemEvent(
+        string $class,
+        string $reason,
+        array $reasonParameters,
+        InvalidItemInterface $item
+    ): void {
+        /** @var InvalidItemEvent $event */
+        $event = new InvalidItemEvent($item, $class, $reason, $reasonParameters);
+
+        $this->eventDispatcher->dispatch(EventInterface::INVALID_ITEM, $event);
     }
 }

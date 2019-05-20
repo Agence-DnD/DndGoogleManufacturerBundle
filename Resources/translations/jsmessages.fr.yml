@@ -29,39 +29,48 @@ dnd_google_manufacturer:
         googleProductPageUrl:
           title: 'URL de la page produit'
           help: 'Lien absolu renvoyant à l''URL de la page du produit.'
+        googleUrl:
+          title: 'URL'
+          help: 'Lien absolu renvoyant vers l''URL du site cible.'
         googleId:
           title: 'Identifiant'
-          help: 'Un identifiant unique envoyé à Google doit être fourni.'
+          help: 'Longueur maximum est de 50, doit être renseignée.'
         googleBrand:
           title: 'Marque'
-          help: 'Le code marque associé au produit, peut-être nulle.'
+          help: 'Le code marque associé au produit, doit être renseignée.'
         googleTitle:
           title: 'Titre'
-          help: 'Le titre associé au produit, peut-être nulle.'
+          help: 'Plage recommandée entre 80 et 140 caractères, doit être renseignée.'
+        googleDescription:
+          title: 'Description'
+          help: 'La description associée au produit, doit être renseignée.'
         googleGtin:
           title: 'GTIN'
-          help: 'Le code GTIN du produit, doit être renseigné.'
+          help: 'Code à 8, 12, 13 ou 14 chiffres (UPC, EAN, JAN ou ISBN). Obligatoire pour tous les articles'
         googleMpn:
           title: 'MPN'
-          help: 'Le code MPN du produit, doit être renseigné.'
+          help: 'Champ recommandé pour les articles. Facultatif.'
         googleDisclosureDate:
           title: 'Date de dévoilement'
           help: 'La date de dévoilement du produit. Doit être au format dd-mm-yyyy (eg: 25-12-2018)'
         googleReleaseDate:
           title: 'Date de sortie'
           help: 'La date de sortie du produit. Doit être au format dd-mm-yyyy (eg: 25-12-2018)'
+        googleImageLink:
+          title: 'Lien de l''image'
+          help: 'URL de l''image, doit commencer par "http://" ou "https://, doit être renseignée.'
         googleSuggestedRetailPrice:
           title: 'Suggested Retail Date'
           help: 'The suggested retail price linked of the product.'
         googleProductName:
           title: 'Nom du produit'
-          help: 'Le nom du produit, doit être renseigné.'
+          help: 'Plage recommandée entre 80 et 140 caractères, facultatiff.'
         googleProductLine:
           title: 'Ligne produit'
-          help: 'La ligne du produit, optionnel.'
+          help: 'La ligne du produit, recommandé pour les produits. Facutatif.'
         googleProductType:
           title: 'Type de produit'
-          help: 'Le type du produit, optionnel.'
+          help: 'Texte, avec le caractère > pour séparer les hiérarchies. Champ facultatif'
         googleItemGroupId:
           title: 'Groupe Article'
           help: 'Code du groupe article rattaché au produit.'
@@ -86,3 +95,9 @@ batch_jobs:
     label: Google Manufacturer - Export des produits au format XML
     validation.label: Validating file
     export.label: Export des produits au format XML
+
+info:
+  google:
+    grouped:
+      attributes:
+        updated: 'Des modifications n''ont pas encore été sauvegardées.'

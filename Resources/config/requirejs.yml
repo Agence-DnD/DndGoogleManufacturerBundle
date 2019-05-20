@@ -22,6 +22,8 @@ config:
     dnd/job/export/product/edit/google/grouped/product-detail:      dndgooglemanufacturer/js/product/edit/google/grouped/product-detail
 
     # Templates
+    dnd/template/export/common/edit/field/select:       dndgooglemanufacturer/templates/export/common/edit/field/select.html
+
     dnd/template/export/product/edit/google:            dndgooglemanufacturer/templates/export/product/edit/google.html
     dnd/template/export/product/edit/google/mandatory:  dndgooglemanufacturer/templates/export/product/edit/google/mandatory.html
     dnd/template/export/product/edit/google/optional:   dndgooglemanufacturer/templates/export/product/edit/google/optional.html

@@ -2,6 +2,8 @@
 
 namespace Dnd\Bundle\GoogleManufacturerBundle\Exception;
 
+use Symfony\Component\Validator\ConstraintViolationListInterface;
+
 /**
  * Class GoogleManufacturerException
  *
@@ -14,6 +16,9 @@ namespace Dnd\Bundle\GoogleManufacturerBundle\Exception;
  */
 class GoogleManufacturerException extends \Exception
 {
+    /** @var ConstraintViolationListInterface $violations */
+    private $violations;
+
     /**
      * Description missingChannel function
      *
@@ -44,5 +49,29 @@ class GoogleManufacturerException extends \Exception
         return new static(
             sprintf($message, $reason)
         );
+    }
+
+    /**
+     * Description getViolations function
+     *
+     * @return ConstraintViolationListInterface
+     */
+    public function getViolations(): ?ConstraintViolationListInterface
+    {
+        return $this->violations;
+    }
+
+    /**
+     * Description setViolations function
+     *
+     * @param ConstraintViolationListInterface $violations
+     *
+     * @return GoogleManufacturerException
+     */
+    public function setViolations(ConstraintViolationListInterface $violations): GoogleManufacturerException
+    {
+        $this->violations = $violations;
+
+        return $this;
     }
 }

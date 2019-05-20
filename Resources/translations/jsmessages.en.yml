@@ -29,51 +29,60 @@ dnd_google_manufacturer:
         googleProductPageUrl:
           title: 'Product Page URL'
           help: 'Absolute URL link referred to the product page URL.'
+        googleUrl:
+          title: 'URL'
+          help: 'A referred URL link of the target website.'
         googleId:
           title: 'Identifier'
-          help: 'A unique identifier send to Google, must be provided.'
+          help: 'Max length 50, must be provided.'
         googleBrand:
           title: 'Brand'
-          help: 'The related brand of the product, can be null.'
+          help: 'Brand name of a product, must be provided'
         googleTitle:
           title: 'Title'
-          help: 'The related title of the product, can be null.'
+          help: 'Recommended range 80 to 140, can be null.'
+        googleDescription:
+          title: 'Description'
+          help: 'Detailed paragraph description of your product, recommended range 500 to 1 / 500, must be provided.'
         googleGtin:
           title: 'GTIN'
-          help: 'The GTIN code of the product, must be provided.'
+          help: 'Global Trade Item Number (GTIN) of the item, 8-, 12-, 13-, or 14-digit number (UPC, EAN, JAN, or ISBN), must be provided.'
         googleMpn:
           title: 'MPN'
-          help: 'The MPN code of the product, must be provided.'
+          help: 'Manufacturer Part Number (MPN) of the item, recommended for all items.'
+        googleImageLink:
+          title: 'Image Link'
+          help: 'URL of an image of the item, must start with "http://" or "https://, must be provided.'
         googleDisclosureDate:
           title: 'Disclosure date'
-          help: 'The disclosure date of the product.'
+          help: 'Date item is announced publicly. Optional, eg: "2013-12-05"'
         googleReleaseDate:
           title: 'Release date'
-          help: 'The release date of the product.'
+          help: 'Date item is available for purchase. Optional, eg: "2013-12-05"'
         googleSuggestedRetailPrice:
           title: 'Suggested Retail Date'
-          help: 'The suggested retail price linked of the product.'
+          help: 'Manufacturer suggested retail price. Optional, eg: "USD 9.99"'
         googleProductName:
-          title: 'Product Name'
-          help: 'The label of the product, must be provided.'
+          title: 'Canonical name of the product'
+          help: 'Recommended range 80 to 140. Optional.'
         googleProductLine:
           title: 'Product Line'
-          help: 'The line of the product, can be null.'
+          help: 'Name of a related group of products, can be null.'
         googleProductType:
           title: 'Product Type'
-          help: 'Type of the product, can be null.'
+          help: ' Type or category of the product. Optional, value me but separate with ">" eg: Home & Garden > Kitchen, Dining &Table > Appliances > Refrigerator.'
         googleItemGroupId:
           title: 'Item Group ID'
-          help: 'The group attached to the product.'
+          help: ' Identifies variants of a product/style, maximum 50. Optional,'
         googleColor:
           title: 'Color'
-          help: 'Color of the product, can be null.'
+          help: 'Color of the item, maximum 100. Optional.'
         googleAdditionalImageLink:
           title: 'Additional Image Link'
           help: 'The additional image link of the product.'
         googleVideoLink:
           title: 'Video Link'
-          help: 'The absolute URL link of video about the product, can be null.'
+          help: 'URL for a video of the item, optional'
 
 pim_enrich:
   form:
@@ -87,3 +96,9 @@ batch_jobs:
     label: Google Manufacturer - XML Products Export
     validation.label: Validating file
     export.label: XML Products Export
+
+info:
+  google:
+    grouped:
+      attributes:
+        updated: 'There are unsaved changes.'

@@ -1,9 +1,9 @@
 'use strict';
 /**
- * Structure section
+ * Grouped structure
  *
- * @author    Julien Sanchez <julien@akeneo.com>
- * @copyright 2016 Akeneo SAS (http://www.akeneo.com)
+ * @author    Didier Youn <didier.youn@dnd.fr>
+ * @copyright 2019 Agence Dn'D
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 define(
@@ -141,9 +141,14 @@ define(
              * @return {Object}
              */
             render: function () {
+                if (!this.configured) {
+                    return this;
+                }
                 this.$el.html(this.template({__: __}));
 
                 this.initializeGroupedAttributes();
+                this.renderExtensions();
+                this.delegateEvents();
 
                 return this;
             },
@@ -211,6 +216,11 @@ define(
                     if (ctx.hasClass('AknIconButton--ok')) {
                         ctx.removeClass('AknIconButton--ok').addClass('AknIconButton--edit');
                     }
+                }
+                let parent = ctxBlock.parent();
+                let state = parent.find('.AknTitleContainer-state');
+                if (state && state.is(':visible')) {
+                    state.fadeOut(300);
                 }
             },
 

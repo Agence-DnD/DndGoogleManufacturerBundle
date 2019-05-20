@@ -1,10 +1,10 @@
 'use strict';
 
 /**
- * Extension to display breadcrumbItems on every page
+ * Product detail section
  *
- * @author    Pierre Allard <pierre.allard@akeneo.com>
- * @copyright 2017 Akeneo SAS (http://www.akeneo.com)
+ * @author    Didier Youn <didier.youn@dnd.fr>
+ * @copyright 2019 Agence Dn'D
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 define([
