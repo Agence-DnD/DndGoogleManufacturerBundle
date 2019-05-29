@@ -9,6 +9,7 @@ use Pim\Component\Connector\Job\JobParameters\ConstraintCollectionProvider\Produ
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Optional;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -74,28 +75,30 @@ class ProductXmlExport extends PimProductCsvExport
             ])
         ];
         // Mandatory fields
-        $constraintFields[GoogleImportExport::ATTR_IDENTIFIER] = new NotBlank();
-        $constraintFields[GoogleImportExport::ATTR_BRAND] = new NotBlank();
-        $constraintFields[GoogleImportExport::ATTR_TITLE] = new NotBlank();
-        $constraintFields[GoogleImportExport::ATTR_GTIN] = new NotBlank();
-        $constraintFields[GoogleImportExport::ATTR_MPN] = new NotBlank();
-        $constraintFields[GoogleImportExport::ATTR_PRODUCT_PAGE_URL] = new NotBlank();
+        $constraintFields[GoogleImportExport::ATTR_URL]         = new NotBlank();
+        $constraintFields[GoogleImportExport::ATTR_IDENTIFIER]  = new NotBlank();
+        $constraintFields[GoogleImportExport::ATTR_GTIN]        = new NotBlank();
+        $constraintFields[GoogleImportExport::ATTR_TITLE]       = new NotBlank();
+        $constraintFields[GoogleImportExport::ATTR_BRAND]       = new NotBlank();
+        $constraintFields[GoogleImportExport::ATTR_DESCRIPTION] = new NotBlank();
+        $constraintFields[GoogleImportExport::ATTR_MPN]         = new NotBlank();
+        $constraintFields[GoogleImportExport::ATTR_IMAGE_LINK]  = new NotBlank();
 
         // Optional fields
-        $constraintFields[GoogleImportExport::ATTR_DISCLOSURE_DATE] = [];
-        $constraintFields[GoogleImportExport::ATTR_RELEASE_DATE] = [];
-        $constraintFields[GoogleImportExport::ATTR_SUGGESTED_RETAIL_PRICE] = [];
-        $constraintFields[GoogleImportExport::ATTR_PRODUCT_NAME] = [];
-        $constraintFields[GoogleImportExport::ATTR_PRODUCT_LINE] = [];
-        $constraintFields[GoogleImportExport::ATTR_PRODUCT_TYPE] = [];
-        $constraintFields[GoogleImportExport::ATTR_ITEM_GROUP_ID] = [];
-        $constraintFields[GoogleImportExport::ATTR_COLOR] = [];
-        $constraintFields[GoogleImportExport::ATTR_VIDEO_LINK] = [];
-        $constraintFields[GoogleImportExport::ATTR_ADDITIONAL_IMAGE_LINK] = [];
+        $constraintFields[GoogleImportExport::ATTR_MPN]                    = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_PRODUCT_NAME]           = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_PRODUCT_LINE]           = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_PRODUCT_TYPE]           = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_VIDEO_LINK]             = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_PRODUCT_PAGE_URL]       = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_ADDITIONAL_IMAGE_LINK]  = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_DISCLOSURE_DATE]        = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_RELEASE_DATE]           = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_SUGGESTED_RETAIL_PRICE] = new Optional();
 
         // Grouped fields
-        $constraintFields[GoogleImportExport::ATTR_FEATURE_DESCRIPTIONS] = [];
-        $constraintFields[GoogleImportExport::ATTR_PRODUCT_DETAILS] = [];
+        $constraintFields[GoogleImportExport::ATTR_FEATURE_DESCRIPTIONS] = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_PRODUCT_DETAILS]      = new Optional();
 
         return new Collection(['fields' => $constraintFields]);
     }

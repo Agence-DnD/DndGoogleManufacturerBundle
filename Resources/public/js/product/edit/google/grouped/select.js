@@ -1,10 +1,9 @@
 'use strict';
-
 /**
- * Common add select extension view
+ * Override Akeneo Select2
  *
- * @author    Alexandr Jeliuc <alex@jeliuc.com>
- * @copyright 2017 Akeneo SAS (http://www.akeneo.com)
+ * @author    Didier Youn <didier.youn@dnd.fr>
+ * @copyright 2019 Agence Dn'D
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 define(
@@ -47,6 +46,7 @@ define(
             config: {},
             resultsPerPage: null,
             selection: [],
+            previousSelection: null,
             itemViews: [],
             footerViewInstance: null,
             queryTimer: null,
@@ -157,8 +157,8 @@ define(
                 });
 
                 $select.on('select2-selecting', this.onSelecting.bind(this));
-
                 $select.on('select2-open', this.onSelectOpen.bind(this));
+                $select.on('select2-close', this.onSelectClose.bind(this));
 
                 this.footerViewInstance = new this.footerView({
                     buttonTitle: this.config.select2.buttonTitle,
@@ -222,7 +222,7 @@ define(
                     options: {
                         limit: this.resultsPerPage,
                         page: page,
-                        locale: UserContext.get('catalogLocale')
+                        locale: UserContext.get('uiLocale')
                     }
                 });
             },
@@ -347,10 +347,30 @@ define(
             /**
              * Cleans select2 when open
              */
-            onSelectOpen: function () {
+            onSelectOpen: function (event) {
+                let item = $(event.target);
+
                 this.selection = [];
                 this.itemViews = [];
+                this.previousSelection = item.attr('data-google-value') ? item.attr('data-google-value') : '';
+
                 this.updateSelectedCounter();
+            },
+
+            /**
+             * Change state if needed
+             */
+            onSelectClose: function (event) {
+                let item = $(event.target);
+                let selection = item.attr('data-google-value') ? item.attr('data-google-value') : '';
+                if (selection === this.previousSelection) {
+                    return;
+                }
+                let parent = item.parent().parent().parent();
+                let state = parent.find('.AknTitleContainer-state');
+                if (state && state.is(':hidden')) {
+                    state.fadeIn(300);
+                }
             },
 
             /**

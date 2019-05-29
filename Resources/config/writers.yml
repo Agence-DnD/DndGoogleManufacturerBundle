@@ -10,3 +10,5 @@ services:
       - '@pim_connector.writer.file.flat_item_buffer_flusher'
       - '@pim_catalog.repository.channel'
       - '@pim_catalog.repository.attribute'
+      - '@event_dispatcher'
+      - '@akeneo_batch.job_repository'

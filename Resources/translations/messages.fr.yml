@@ -9,6 +9,9 @@ dnd_google_manufacturer:
         googleProductPageUrl:
           title: 'URL de la page produit'
           help: 'Lien absolu renvoyant à l''URL de la page du produit.'
+        googleUrl:
+          title: 'URL'
+          help: 'Lien absolu renvoyant vers l''URL du site cible.'
         googleId:
           title: 'Identifiant'
           help: 'Un identifiant unique envoyé à Google doit être fourni.'
@@ -18,12 +21,18 @@ dnd_google_manufacturer:
         googleTitle:
           title: 'Titre'
           help: 'Le titre associé au produit, peut-être nulle.'
+        googleDescription:
+          title: 'Description'
+          help: 'La description associée au produit, doit être renseignée.'
         googleGtin:
           title: 'GTIN'
           help: 'Le code GTIN du produit, doit être renseigné.'
         googleMpn:
           title: 'MPN'
           help: 'Le code MPN du produit, doit être renseigné.'
+        googleImageLink:
+          title: 'Lien de l''image'
+          help: 'URL de l''image, doit commencer par "http://" ou "https://, doit être renseignée.'
         googleDisclosureDate:
           title: 'Date de dévoilement'
           help: 'La date de dévoilement du produit. Doit être au format dd-mm-yyyy (eg: 25-12-2018)'

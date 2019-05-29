@@ -7,12 +7,12 @@ use Akeneo\Component\StorageUtils\Remover\RemoverInterface;
 use Akeneo\Component\StorageUtils\Repository\SearchableRepositoryInterface;
 use Akeneo\Component\StorageUtils\Saver\SaverInterface;
 use Akeneo\Component\StorageUtils\Updater\ObjectUpdaterInterface;
-use Dnd\Bundle\GoogleManufacturerBundle\Job\JobParameters\ConstraintCollectionProvider\ProductXmlExport;
 use Pim\Bundle\CatalogBundle\Doctrine\ORM\Query\AttributeIsAFamilyVariantAxis;
 use Pim\Bundle\CatalogBundle\Filter\ObjectFilterInterface;
 use Pim\Bundle\EnrichBundle\Controller\Rest\AttributeController as PimAttributeController;
 use Pim\Bundle\UserBundle\Context\UserContext;
 use Pim\Component\Catalog\Factory\AttributeFactory;
+use Pim\Component\Catalog\Model\AttributeInterface;
 use Pim\Component\Catalog\Repository\AttributeRepositoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,6 +37,8 @@ class AttributeController extends PimAttributeController
     private $translator;
     /** @var UserContext $userContext */
     private $userContext;
+    /** @var NormalizerInterface $lightAttributeNormalizer */
+    private $lightAttributeNormalizer;
 
     /**
      * AttributeController constructor
@@ -92,31 +94,34 @@ class AttributeController extends PimAttributeController
             $attributeIsAFamilyVariantAxisQuery
         );
 
-
         $this->translator = $translator;
         $this->userContext = $userContext;
+        $this->lightAttributeNormalizer = $lightAttributeNormalizer;
     }
 
     /**
      * Description listAction function
      *
+     * @param Request $request
+     *
      * @return JsonResponse
      */
-    public function listAction(): JsonResponse
+    public function listAction(Request $request): JsonResponse
     {
-        /** @var string $locale */
-        $locale = $this->userContext->getUiLocaleCode() ?? $this->userContext->getCurrentLocaleCode();
-        $this->translator->setLocale($locale);
-        /** @var string[] $attributes */
-        $attributes = [];
-        /** @var array $attribute */
-        foreach ($this->attributeRepository->getAttributesAsArray(true, $locale) as $attribute) {
-            if (!isset($attribute['code'], $attribute['label'])) {
-                continue;
-            }
-            $attributes[$attribute['code']] = $attribute['label'];
-        }
+        /** @var AttributeInterface[] $attributes */
+        $attributes = $this->attributeSearchRepository->findBySearch(
+            $request->request->get('search'),
+            []
+        );
+        /** @var mixed[] $normalizedAttributes */
+        $normalizedAttributes = array_map(function ($attribute) {
+            return $this->lightAttributeNormalizer->normalize(
+                $attribute,
+                'internal_api',
+                ['locale' => $this->userContext->getUiLocale()->getCode()]
+            );
+        }, $attributes);
 
-        return new JsonResponse($attributes);
+        return new JsonResponse($normalizedAttributes);
     }
 }
