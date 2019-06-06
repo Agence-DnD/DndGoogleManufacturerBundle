@@ -9,6 +9,12 @@ dnd_google_manufacturer:
         googleProductPageUrl:
           title: 'Product Page URL'
           help: 'Absolute URL link referred to the product page URL.'
+        googleAcceptance:
+          title: 'Level of acceptance'
+          help: 'Define the level of acceptance which will trigger the validation process, default: medium.'
+          low: 'Low'
+          medium: 'Medium (recommended)'
+          high: 'High'
         googleUrl:
           title: 'URL'
           help: 'A referred URL link of the target website.'
@@ -23,7 +29,7 @@ dnd_google_manufacturer:
           help: 'The related title of the product, can be null.'
         googleDescription:
           title: 'Description'
-          help: 'The description of the product, must be provided.'
+          help: 'Detailed paragraph description of your product, recommended range 500 to 1500, must be provided.'
         googleGtin:
           title: 'GTIN'
           help: 'The GTIN code of the product, must be provided.'
@@ -43,26 +49,26 @@ dnd_google_manufacturer:
           title: 'Suggested Retail Date'
           help: 'The suggested retail price linked of the product.'
         googleProductName:
-          title: 'Product Name'
-          help: 'The label of the product, must be provided.'
+          title: 'Canonical name of the product'
+          help: 'Recommended range 80 to 140. Optional.'
         googleProductLine:
           title: 'Product Line'
-          help: 'The line of the product, can be null.'
+          help: 'Name of a related group of products, can be null.'
         googleProductType:
           title: 'Product Type'
-          help: 'Type of the product, can be null.'
+          help: ' Type or category of the product. Optional, value me but separate with ">" eg: Home & Garden > Kitchen, Dining &Table > Appliances > Refrigerator.'
         googleItemGroupId:
           title: 'Item Group ID'
-          help: 'The group attached to the product.'
+          help: ' Identifies variants of a product/style, maximum 50. Optional,'
         googleColor:
           title: 'Color'
-          help: 'Color of the product, can be null.'
+          help: 'Color of the item, maximum 100. Optional.'
         googleAdditionalImageLink:
           title: 'Additional Image Link'
           help: 'The additional image link of the product.'
         googleVideoLink:
           title: 'Video Link'
-          help: 'The absolute URL link of video about the product, can be null.'
+          help: 'URL for a video of the item, optional'
 
 batch_jobs:
   google_manufacturer_xml_product_export:

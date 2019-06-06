@@ -2,11 +2,14 @@ dnd_google_manufacturer:
   export:
     product:
       google:
+        general_configurations:
+          title: 'General'
         mandatory:
           title: 'Mandatory Attribute'
         optional:
           title: 'Optional Attribute'
         grouped:
+          error: 'The value must be filled.'
           title: 'Grouped Attribute'
           button:
             product_detail: 'New product detail block'
@@ -29,6 +32,9 @@ dnd_google_manufacturer:
         googleProductPageUrl:
           title: 'Product Page URL'
           help: 'Absolute URL link referred to the product page URL.'
+        googleAcceptance:
+          title: 'Level of acceptance'
+          help: 'Define the level of acceptance which will trigger the validation process, default: medium.'
         googleUrl:
           title: 'URL'
           help: 'A referred URL link of the target website.'

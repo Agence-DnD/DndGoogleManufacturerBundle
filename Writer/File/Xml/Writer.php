@@ -27,6 +27,8 @@ use Pim\Component\Connector\Writer\File\FlatItemBuffer;
 use Pim\Component\Connector\Writer\File\FlatItemBufferFlusher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Validator\Constraints\Collection;
+use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -141,8 +143,8 @@ class Writer extends AbstractFileWriter implements
     {
         /** @var ValidatorInterface $validator */
         $validator = Validation::createValidator();
-        /** @var mixed[] $constraints */
-        $constraints = FieldValidator::getConstraints();
+        /** @var Collection $constraints */
+        $constraints = $this->getConstraintValidation();
         /** @var array $product */
         foreach ($products as $product) {
             try {
@@ -195,6 +197,28 @@ class Writer extends AbstractFileWriter implements
         $this->jobParameters = $this->stepExecution->getJobParameters()->all();
 
         return $this;
+    }
+
+    /**
+     * Description getConstraintValidation function
+     *
+     * @return bool|Collection
+     */
+    private function getConstraintValidation()
+    {
+        if (!isset($this->jobParameters[GoogleImportExport::ATTR_ACCEPTANCE])) {
+            return FieldValidator::getConstraints();
+        }
+        /** @var string $acceptance */
+        $acceptance = $this->jobParameters[GoogleImportExport::ATTR_ACCEPTANCE];
+        if (GoogleImportExport::ACCEPTANCE_LOW === $acceptance) {
+            return false;
+        }
+        if (GoogleImportExport::ACCEPTANCE_HIGH === $acceptance) {
+            return FieldValidator::getHighConstraints();
+        }
+
+        return FieldValidator::getConstraints();
     }
 
     /**
@@ -342,7 +366,7 @@ class Writer extends AbstractFileWriter implements
     ) {
         /** @var InvalidItemFromViolationsException $invalidItem */
         $invalidItem = new InvalidItemFromViolationsException(
-            $exception->getViolations(),
+            $exception->getViolations() ?? new ConstraintViolationList(),
             new FileInvalidItem($item, ($this->stepExecution->getSummaryInfo('item_position'))),
             [$exception->getMessage()],
             0,

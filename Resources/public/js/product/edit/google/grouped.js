@@ -209,19 +209,7 @@ define(
                     options[gAttr] = codes;
                 });
 
-                if (Object.keys(options).length >= 1) {
-                    this.setScope(gBlockType, {
-                        [gBlockId]: options
-                    });
-                    if (ctx.hasClass('AknIconButton--ok')) {
-                        ctx.removeClass('AknIconButton--ok').addClass('AknIconButton--edit');
-                    }
-                }
-                let parent = ctxBlock.parent();
-                let state = parent.find('.AknTitleContainer-state');
-                if (state && state.is(':visible')) {
-                    state.fadeOut(300);
-                }
+                this.afterUpdate(gBlockType, options, ctx);
             },
 
             /**
@@ -308,7 +296,7 @@ define(
                         closeOnSelect: false
                     },
                     resultsPerPage: 10,
-                    searchParameters: {options: {}},
+                    searchParameters: {options: {exclude_unique: true}},
                     mainFetcher: 'attribute'
                 };
             },
@@ -360,6 +348,83 @@ define(
 
                 return this;
             },
+
+            /**
+             * Check if the grouped attributes is filled by mandatory attributes
+             *
+             * @param type
+             * @param options
+             * @param elem
+             */
+            afterUpdate: function(type, options, elem) {
+                let errors = [];
+                let ctxBlock = elem.closest('div.AknFieldContainer');
+                let inputs = ctxBlock.find('input');
+
+                let gBlock = ctxBlock.children().first();
+                let gBlockType = gBlock.attr('data-block');
+                let gBlockId = gBlock.attr('data-block-id');
+
+                return fetcherRegistry.getFetcher('google-grouped-attribute').fetch(type)
+                    .then((requirements) => {
+                        if (_.isEmpty(requirements)) {
+                            return;
+                        }
+                        requirements.forEach(function (requirement) {
+                            if (!options.hasOwnProperty(requirement)) {
+                                errors.push(requirement);
+                            }
+                        });
+                        if (errors.length >= 1 || !_.isEmpty(errors)) {
+                            // Clean previous errors
+                            let oldErrors = ctxBlock.find('.AknFieldContainer-footer > .below-input-elements-container');
+                            if (oldErrors) {
+                                oldErrors.each(function (error) {
+                                    $(this).html();
+                                });
+                            }
+                            for (let error in errors) {
+                                let input = ctxBlock.find(`[data-google='${errors[error]}']`);
+                                if (input) {
+                                    let parent = input.closest('.AknFieldContainer');
+                                    let footer = parent.find('.AknFieldContainer-footer');
+                                    if (footer) {
+                                        let errorsBlock = footer.find('.below-input-elements-container');
+                                        errorsBlock.empty().append(this.addError())
+                                    }
+                                }
+                            }
+                        } else {
+                            if (Object.keys(options).length >= 1) {
+                                this.setScope(gBlockType, {
+                                    [gBlockId]: options
+                                });
+                                if (elem.hasClass('AknIconButton--ok')) {
+                                    elem.removeClass('AknIconButton--ok').addClass('AknIconButton--edit');
+                                }
+                            }
+                            let parent = ctxBlock.parent();
+                            let state = parent.find('.AknTitleContainer-state');
+                            if (state && state.is(':visible')) {
+                                state.fadeOut(300);
+                            }
+                        }
+                    });
+            },
+
+            addError: function () {
+                let msg = __('dnd_google_manufacturer.export.product.google.grouped.error');
+
+                return `
+                    <span class="validation-container">
+                        <span class="AknFieldContainer-validationErrors validation-errors">
+                            <span class="AknFieldContainer-validationError">
+                                <i class="icon-warning-sign"></i> <span class="error-message">${msg}</span>
+                            </span>
+                        </span>
+                    </span>
+                `;
+            }
         });
     }
 );

@@ -114,7 +114,9 @@ class Google extends PimProductLocalized implements ArrayConverterInterface
         try {
             $this->map($convertedItem, $jobParameters, $options);
             $this->clean($convertedItem);
-            $this->validate($convertedItem, $options);
+            if (isset($options['constraints']) && $options['constraints'] !== false) {
+                $this->validate($convertedItem, $options);
+            }
         } catch (ValidatorException $validatorException) {
             throw (new GoogleManufacturerException(
                 sprintf('Product [%s] does not respect Google Standard. Reason: %s',

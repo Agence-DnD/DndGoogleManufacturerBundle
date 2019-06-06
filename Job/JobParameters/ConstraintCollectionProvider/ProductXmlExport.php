@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Optional;
 use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\Url;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
@@ -74,8 +75,11 @@ class ProductXmlExport extends PimProductCsvExport
                 'message' => 'The extension file must be a valid file'
             ])
         ];
+        // General fields
+        $constraintFields[GoogleImportExport::ATTR_URL]         = new Url();
+        $constraintFields[GoogleImportExport::ATTR_ACCEPTANCE]  = new NotBlank();
+
         // Mandatory fields
-        $constraintFields[GoogleImportExport::ATTR_URL]         = new NotBlank();
         $constraintFields[GoogleImportExport::ATTR_IDENTIFIER]  = new NotBlank();
         $constraintFields[GoogleImportExport::ATTR_GTIN]        = new NotBlank();
         $constraintFields[GoogleImportExport::ATTR_TITLE]       = new NotBlank();

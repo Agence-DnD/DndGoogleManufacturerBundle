@@ -394,7 +394,18 @@ define(
                 input.attr('data-google-value', this.selection.join());
                 input.addClass('is-enriched');
 
+                this.removeError(input);
                 this.refreshLabel(input);
+            },
+
+            removeError: function(input) {
+                let itemContainer = input.closest('.AknFieldContainer');
+                let error = itemContainer.find('.AknFieldContainer-footer > .below-input-elements-container');
+                if (error) {
+                    error.each(function () {
+                        $(this).empty();
+                    });
+                }
             },
 
             refreshLabel: function(input) {

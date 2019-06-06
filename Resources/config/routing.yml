@@ -1,3 +1,11 @@
 dnd_google_manufacturer_attribute_rest:
   resource: '@DndGoogleManufacturerBundle/Resources/config/routing/attribute/rest.yml'
   prefix: /dnd/rest/attribute
+
+dnd_google_manufacturer_google_rest:
+  resource: '@DndGoogleManufacturerBundle/Resources/config/routing/google/rest.yml'
+  prefix: /dnd/rest/google
+
+dnd_google_manufacturer_google_grouped_attribute_rest:
+  resource: '@DndGoogleManufacturerBundle/Resources/config/routing/google_grouped_attribute/rest.yml'
+  prefix: /dnd/rest/google-grouped-attribute
