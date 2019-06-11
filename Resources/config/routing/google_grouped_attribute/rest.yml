@@ -1,0 +1,4 @@
+dnd_google_manufacturer_google_grouped_attribute_rest_requirements:
+  path: /requirements
+  defaults: { _controller: dnd_google_manufacturer.controller.rest.google_grouped_attribute:getRequirements }
+  methods: [GET]

@@ -29,6 +29,9 @@ class ProductXmlExport extends PimProductCsvExport
 
         return array_merge(
             $parameters, [
+                // General fields
+                GoogleImportExport::ATTR_ACCEPTANCE             => GoogleImportExport::ACCEPTANCE_MEDIUM,
+
                 // Optional fields
                 GoogleImportExport::ATTR_MPN                    => null,
                 GoogleImportExport::ATTR_PRODUCT_NAME           => null,

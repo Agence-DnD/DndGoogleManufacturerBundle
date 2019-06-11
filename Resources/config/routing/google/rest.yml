@@ -1,0 +1,4 @@
+dnd_google_manufacturer_google_rest_acceptance:
+  path: /acceptance
+  defaults: { _controller: dnd_google_manufacturer.controller.rest.google:getAcceptances }
+  methods: [GET]

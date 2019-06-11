@@ -9,6 +9,12 @@ dnd_google_manufacturer:
         googleProductPageUrl:
           title: 'URL de la page produit'
           help: 'Lien absolu renvoyant à l''URL de la page du produit.'
+        googleAcceptance:
+          title: 'Niveau d''acceptation'
+          help: 'Définissez le niveau d''acceptation qui déclenchera le processus de validation (par défaut: modérée).'
+          low: 'Faible'
+          medium: 'Modérée (recommandée)'
+          high: 'Haute'
         googleUrl:
           title: 'URL'
           help: 'Lien absolu renvoyant vers l''URL du site cible.'
@@ -44,7 +50,7 @@ dnd_google_manufacturer:
           help: 'The suggested retail price linked of the product.'
         googleProductName:
           title: 'Nom du produit'
-          help: 'Le nom du produit, doit être renseigné.'
+          help: 'Plage recommandée entre 80 et 140 caractères, facultatif.'
         googleProductLine:
           title: 'Ligne produit'
           help: 'La ligne du produit, optionnel.'

@@ -250,6 +250,12 @@ extensions:
       tabTitle: pim_enrich.form.job_instance.tab.google-mapping.title
       tabCode: pim-job-instance-google-mapping
 
+  google-manufacturer-xml-product-export-edit-google-mapping-general:
+    module: dnd/job/export/product/edit/google/general
+    parent: google-manufacturer-xml-product-export-edit-google-mapping
+    targetZone: google-general-configurations
+    position: 100
+
   google-manufacturer-xml-product-export-edit-google-mapping-mandatory:
     module: dnd/job/export/product/edit/google/mandatory
     parent: google-manufacturer-xml-product-export-edit-google-mapping
@@ -273,12 +279,12 @@ extensions:
       label: dnd_google_manufacturer.form.job_instance.tab.googleId.title
       tooltip: dnd_google_manufacturer.form.job_instance.tab.googleId.help
 
-  # <--- Mandatory ---
+  # <--- General ---
   google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleUrl:
     module: pim/job/common/edit/field/text
-    parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
-    position: 5
-    targetZone: mandatory-attributes
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-general
+    position: 10
+    targetZone: general-configurations
     config:
       fieldCode: configuration.googleUrl
       required: true
@@ -286,6 +292,19 @@ extensions:
       label: dnd_google_manufacturer.form.job_instance.tab.googleUrl.title
       tooltip: dnd_google_manufacturer.form.job_instance.tab.googleUrl.help
 
+  google-manufacturer-xml-product-export-edit-google-mapping-general-properties-googleAcceptance:
+    module: dnd/job/common/edit/field/google-acceptance
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-general
+    targetZone: general-configurations
+    position: 20
+    config:
+      fieldCode: configuration.googleAcceptance
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleAcceptance.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleAcceptance.help
+  # ---- General --->
+
+  # <--- Mandatory ---
   google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleId:
     module: dnd/job/export/product/edit/google/field
     parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
@@ -356,7 +375,7 @@ extensions:
       readOnly: false
       label: dnd_google_manufacturer.form.job_instance.tab.googleImageLink.title
       tooltip: dnd_google_manufacturer.form.job_instance.tab.googleImageLink.help
-
+  #  ---- Mandatory --->
   # <--- Optional ---
   google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleMpn:
     module: dnd/job/export/product/edit/google/field

@@ -7,6 +7,16 @@ config:
           options:
             urls:
               list: dnd_google_manufacturer_attribute_rest_list
+        google-grouped-attribute:
+          module: pim/base-fetcher
+          options:
+            urls:
+              get: dnd_google_manufacturer_google_grouped_attribute_rest_requirements
+        google-acceptance:
+          module: pim/base-fetcher
+          options:
+            urls:
+              list: dnd_google_manufacturer_google_rest_acceptance
 
   paths:
     # Modules extension
@@ -14,9 +24,12 @@ config:
 
     dnd/job/export/product/edit/google:           dndgooglemanufacturer/js/product/edit/google
     dnd/job/export/product/edit/google/field:     dndgooglemanufacturer/js/product/edit/google/field
+    dnd/job/export/product/edit/google/general:   dndgooglemanufacturer/js/product/edit/google/general
     dnd/job/export/product/edit/google/mandatory: dndgooglemanufacturer/js/product/edit/google/mandatory
     dnd/job/export/product/edit/google/optional:  dndgooglemanufacturer/js/product/edit/google/optional
     dnd/job/export/product/edit/google/grouped:   dndgooglemanufacturer/js/product/edit/google/grouped
+
+    dnd/job/common/edit/field/google-acceptance:  dndgooglemanufacturer/js/job/common/edit/field/google-acceptance
 
     dnd/job/export/product/edit/google/grouped/feature-description: dndgooglemanufacturer/js/product/edit/google/grouped/feature-description
     dnd/job/export/product/edit/google/grouped/product-detail:      dndgooglemanufacturer/js/product/edit/google/grouped/product-detail
@@ -25,6 +38,7 @@ config:
     dnd/template/export/common/edit/field/select:       dndgooglemanufacturer/templates/export/common/edit/field/select.html
 
     dnd/template/export/product/edit/google:            dndgooglemanufacturer/templates/export/product/edit/google.html
+    dnd/template/export/product/edit/google/general:    dndgooglemanufacturer/templates/export/product/edit/google/general.html
     dnd/template/export/product/edit/google/mandatory:  dndgooglemanufacturer/templates/export/product/edit/google/mandatory.html
     dnd/template/export/product/edit/google/optional:   dndgooglemanufacturer/templates/export/product/edit/google/optional.html
     dnd/template/export/product/edit/google/grouped:    dndgooglemanufacturer/templates/export/product/edit/google/grouped.html

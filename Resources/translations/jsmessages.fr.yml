@@ -2,11 +2,14 @@ dnd_google_manufacturer:
   export:
     product:
       google:
+        general_configurations:
+          title: 'Général'
         mandatory:
           title: 'Attribut Obligatoire'
         optional:
           title: 'Attribut Optionnel'
         grouped:
+          error: 'Une valeur doit être renseignée.'
           title: 'Groupe d''attributs'
           button:
             product_detail: 'Nouveau bloc Product Detail'
@@ -32,6 +35,9 @@ dnd_google_manufacturer:
         googleUrl:
           title: 'URL'
           help: 'Lien absolu renvoyant vers l''URL du site cible.'
+        googleAcceptance:
+          title: 'Niveau d''acceptation'
+          help: 'Définissez le niveau d''acceptation qui déclenchera le processus de validation (par défaut: modérée).'
         googleId:
           title: 'Identifiant'
           help: 'Longueur maximum est de 50, doit être renseignée.'
@@ -43,7 +49,7 @@ dnd_google_manufacturer:
           help: 'Plage recommandée entre 80 et 140 caractères, doit être renseignée.'
         googleDescription:
           title: 'Description'
-          help: 'La description associée au produit, doit être renseignée.'
+          help: 'Une description détaillée du paragraphe de votre produit, plage recommandée de 500 à 1500, doit être renseignée.'
         googleGtin:
           title: 'GTIN'
           help: 'Code à 8, 12, 13 ou 14 chiffres (UPC, EAN, JAN ou ISBN). Obligatoire pour tous les articles'
@@ -64,7 +70,7 @@ dnd_google_manufacturer:
           help: 'The suggested retail price linked of the product.'
         googleProductName:
           title: 'Nom du produit'
-          help: 'Plage recommandée entre 80 et 140 caractères, facultatiff.'
+          help: 'Plage recommandée entre 80 et 140 caractères, facultatif.'
         googleProductLine:
           title: 'Ligne produit'
           help: 'La ligne du produit, recommandé pour les produits. Facutatif.'

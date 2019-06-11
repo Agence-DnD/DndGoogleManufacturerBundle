@@ -14,6 +14,13 @@ namespace Dnd\Bundle\GoogleManufacturerBundle\Model;
  */
 final class GoogleImportExport
 {
+    /** @var string ACCEPTANCE_LOW */
+    const ACCEPTANCE_LOW = 'low';
+    /** @var string ACCEPTANCE_MEDIUM */
+    const ACCEPTANCE_MEDIUM = 'medium';
+    /** @var string ACCEPTANCE_HIGH */
+    const ACCEPTANCE_HIGH = 'high';
+
     /** @var string GOOGLE_ATTR_ID */
     const GOOGLE_ATTR_ID = 'g:id';
     /** @var string GOOGLE_ATTR_BRAND */
@@ -67,6 +74,8 @@ final class GoogleImportExport
 
     /** @var string ATTR_URL */
     const ATTR_URL = 'googleUrl';
+    /** @var string ATTR_ACCEPTANCE */
+    const ATTR_ACCEPTANCE = 'googleAcceptance';
     /** @var string ATTR_IDENTIFIER */
     const ATTR_IDENTIFIER = 'googleId';
     /** @var string ATTR_BRAND */

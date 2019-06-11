@@ -17,6 +17,10 @@
                    data-google-value="<% if (data) {%><%- data.googleProductDetailSectionName %><% } %>"
             />
         </div>
+        <div class="AknFieldContainer-footer">
+            <span class="below-input-elements-container">
+            </span>
+        </div>
     </div>
     <div class="AknFieldContainer" data-code="type">
         <div class="AknFieldContainer-header">
@@ -32,6 +36,10 @@
                    data-google="googleProductDetailAttributeName"
                    data-google-value="<% if (data) {%><%- data.googleProductDetailAttributeName %><% } %>"
             />
+        </div>
+        <div class="AknFieldContainer-footer">
+            <span class="below-input-elements-container">
+            </span>
         </div>
     </div>
     <div class="AknFieldContainer" data-code="type">
@@ -49,9 +57,13 @@
                    data-google-value="<% if (data) {%><%- data.googleProductDetailAttributeValue %><% } %>"
             />
         </div>
+        <div class="AknFieldContainer-footer">
+            <span class="below-input-elements-container">
+            </span>
+        </div>
     </div>
-    <div class="AknTitleContainer-state" style="display: none; float: left;">
-        <div class="updated-status">
+    <div class="AknTitleContainer-state" style="display: none;">
+        <div class="updated-status" style="text-align: center;">
             <span class="AknState"><%- __('info.google.grouped.attributes.updated') %></span>
         </div>
     </div>
