@@ -12,6 +12,9 @@ dnd_google_manufacturer:
         googleAcceptance:
           title: 'Level of acceptance'
           help: 'Define the level of acceptance which will trigger the validation process (default: medium).'
+          low: 'Low'
+          medium: 'Medium (recommended)'
+          high: 'High'
           detail:
             low: 'The lowest level disable all the custom validation process and only use the native ones.'
             medium: 'The medium level will check the requirements of product data depends of the Google Manufacturer.'

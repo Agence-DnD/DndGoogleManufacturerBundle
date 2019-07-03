@@ -12,6 +12,9 @@ dnd_google_manufacturer:
         googleAcceptance:
           title: 'Niveau d''acceptation'
           help: 'Définissez le niveau d''acceptation qui déclenchera le processus de validation (par défaut: modérée).'
+          low: 'Faible'
+          medium: 'Modérée (recommandée)'
+          high: 'Haute'
           detail:
             low: 'Le niveau "faible" désactive les validations customisées et n''utilise que celles natives d''Akeneo.'
             medium: 'Le niveau "modéré" vérifie l''intégrité des champs requis par Google Manufacturer.'
