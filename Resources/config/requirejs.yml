@@ -29,13 +29,15 @@ config:
     dnd/job/export/product/edit/google/optional:  dndgooglemanufacturer/js/product/edit/google/optional
     dnd/job/export/product/edit/google/grouped:   dndgooglemanufacturer/js/product/edit/google/grouped
 
-    dnd/job/common/edit/field/google-acceptance:  dndgooglemanufacturer/js/job/common/edit/field/google-acceptance
+    dnd/job/common/edit/field/google-acceptance:        dndgooglemanufacturer/js/job/common/edit/field/google-acceptance
+    dnd/job/common/edit/field/google-acceptance-select: dndgooglemanufacturer/js/job/common/edit/field/google-acceptance-select
 
     dnd/job/export/product/edit/google/grouped/feature-description: dndgooglemanufacturer/js/product/edit/google/grouped/feature-description
     dnd/job/export/product/edit/google/grouped/product-detail:      dndgooglemanufacturer/js/product/edit/google/grouped/product-detail
 
     # Templates
-    dnd/template/export/common/edit/field/select:       dndgooglemanufacturer/templates/export/common/edit/field/select.html
+    dnd/template/export/common/edit/field/select:                   dndgooglemanufacturer/templates/export/common/edit/field/select.html
+    dnd/template/export/common/edit/field/google-acceptance-select: dndgooglemanufacturer/templates/export/common/edit/field/google-acceptance-select.html
 
     dnd/template/export/product/edit/google:            dndgooglemanufacturer/templates/export/product/edit/google.html
     dnd/template/export/product/edit/google/general:    dndgooglemanufacturer/templates/export/product/edit/google/general.html
@@ -45,4 +47,3 @@ config:
 
     dnd/template/export/product/edit/google/grouped/feature-description:  dndgooglemanufacturer/templates/export/product/edit/google/grouped/feature-description.html
     dnd/template/export/product/edit/google/grouped/product-detail:       dndgooglemanufacturer/templates/export/product/edit/google/grouped/product-detail.html
-

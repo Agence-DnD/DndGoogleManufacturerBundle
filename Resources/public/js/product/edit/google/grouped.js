@@ -172,8 +172,8 @@ define(
                 let blockId = (blocks && blocks.length) ? blocks.length + 1 : 1;
 
                 (true === (target === this.targetFieldDescription))
-                    ? this.renderFeatureDescriptionBlock(dropZone, blockId).bind(this)
-                    : this.renderProductDetailsBlock(dropZone, blockId).bind(this);
+                    ? this.renderFeatureDescriptionBlock(dropZone, blockId)
+                    : this.renderProductDetailsBlock(dropZone, blockId);
 
                 this.delegateEvents();
             },
@@ -309,14 +309,14 @@ define(
              */
             renderFeatureDescriptionBlock: function(dropZone, blockId) {
                 let block = new DndGoogleFeatureDescriptionBlock(
-                    $.extend(true, {}, this.getConfiguration(), {
+                    $.extend(true, { events: {}}, this.getConfiguration(), {
                             blockId: blockId
                         }
                     )
                 );
                 dropZone.prepend(block.render());
 
-                let opts = $.extend(true, {}, this.getSelectConfiguration(), this.config);
+                let opts = $.extend(true, { events: {}}, this.getSelectConfiguration(), this.config);
                 let select = new BaseAddSelect({
                     config: opts
                 });

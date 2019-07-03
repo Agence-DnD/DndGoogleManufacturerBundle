@@ -1,11 +1,18 @@
 'use strict';
 
+/**
+ * Scope structure filter
+ *
+ * @author    Didier Youn <didier.youn@dnd.fr>
+ * @copyright 2019 Agence Dn'D
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
 define([
     'jquery',
     'underscore',
     'oro/translator',
     'pim/fetcher-registry',
-    'pim/job/common/edit/field/select'
+    'dnd/job/common/edit/field/google-acceptance-select'
 ], function (
     $,
     _,

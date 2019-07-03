@@ -24,6 +24,7 @@ define([
         return BaseForm.extend({
             config: {},
             data: {},
+            events: {},
             className: 'AknFieldContainer DndAknFieldContainer',
             template: _.template(template),
 
@@ -34,6 +35,7 @@ define([
              */
             initialize: function (config) {
                 this.config = config;
+                this.events = {};
                 this.identifier = config.blockId ? config.blockId : 1;
                 this.data =
                     (

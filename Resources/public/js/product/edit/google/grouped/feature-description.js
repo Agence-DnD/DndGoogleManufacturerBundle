@@ -36,6 +36,7 @@ define(
              */
             initialize: function (config) {
                 this.config = config;
+                this.events = {};
                 this.identifier = config.blockId ? config.blockId : 1;
                 this.data =
                     (
