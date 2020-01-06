@@ -1,0 +1,14 @@
+services:
+  dnd_google_manufacturer.controller.rest.attribute:
+    class: Dnd\Google\Manufacturer\Bundle\Controller\Rest\AttributeController
+    parent: pim_enrich.controller.rest.attribute
+
+  dnd_google_manufacturer.controller.rest.google_grouped_attribute:
+    class: Dnd\Google\Manufacturer\Bundle\Controller\Rest\GoogleGroupedAttributeController
+
+  dnd_google_manufacturer.controller.rest.google:
+    class: Dnd\Google\Manufacturer\Bundle\Controller\Rest\GoogleController
+    arguments:
+      - '@translator'
+      - '@pim_user.context.user'
+      - '%kernel.default_locale%'

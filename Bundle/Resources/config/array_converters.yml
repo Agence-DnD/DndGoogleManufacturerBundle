@@ -1,0 +1,6 @@
+services:
+  dnd_manufacturer.array_converter.standard_to_flat.attribute.google:
+    class: Dnd\Google\Manufacturer\Component\ArrayConverter\StandardToFlat\Attribute\Google
+    parent: pim_connector.array_converter.standard_to_flat.product_localized
+    arguments:
+      $fileRenderer: '@dnd_google_manufacturer.renderer.public_file'

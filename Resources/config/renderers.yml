@@ -1,6 +1,0 @@
-services:
-  dnd_google_manufacturer.renderer.public_file:
-    class: Dnd\Bundle\GoogleManufacturerBundle\Renderer\PublicFileRenderer
-    arguments:
-      - '@liip_imagine.cache.manager'
-      - 'thumbnail_full'

@@ -1,0 +1,72 @@
+<div class="google-grouped-feature-description <% if (data !== null) {%><%- 'is-enriched' %><% } %>" data-block="googleFeatureDescription" data-block-id="<%- id %>" >
+    <h3><%- __('dnd_google_manufacturer.export.product.google.grouped.feature_description.title') %></h3>
+    <div class="AknFieldContainer" data-code="type">
+        <div class="AknFieldContainer-header">
+            <label for="googleFeatureDescriptionHeadline_<%- id %>" class="AknFieldContainer-label control-label required">
+                <%- __('dnd_google_manufacturer.export.product.google.grouped.feature_description.headline') %>
+            </label>
+        </div>
+        <div class="AknFieldContainer-inputContainer">
+            <input type="hidden"
+                   name="googleFeatureDescriptionHeadline_<%- id %>"
+                   id="googleFeatureDescriptionHeadline_<%- id %>"
+                   class="select-field on-initialize"
+                   data-google="googleFeatureDescriptionHeadline"
+                   data-google-value="<% if (data) {%><%- data.googleFeatureDescriptionHeadline %><% } %>"
+            />
+        </div>
+        <div class="AknFieldContainer-footer">
+            <span class="below-input-elements-container">
+            </span>
+        </div>
+    </div>
+    <div class="AknFieldContainer" data-code="type">
+        <div class="AknFieldContainer-header">
+            <label for="googleFeatureDescriptionText_<%= id %>" class="AknFieldContainer-label control-label required">
+                <%- __('dnd_google_manufacturer.export.product.google.grouped.feature_description.text') %>
+            </label>
+        </div>
+        <div class="AknFieldContainer-inputContainer">
+            <input type="hidden"
+                   name="googleFeatureDescriptionText_<%= id %>"
+                   id="googleFeatureDescriptionText_<%= id %>"
+                   class="select-field on-initialize"
+                   data-google="googleFeatureDescriptionText"
+                   data-google-value="<% if (data) {%><%- data.googleFeatureDescriptionText %><% } %>"
+            />
+        </div>
+        <div class="AknFieldContainer-footer">
+            <span class="below-input-elements-container">
+            </span>
+        </div>
+    </div>
+    <div class="AknFieldContainer" data-code="type">
+        <div class="AknFieldContainer-header">
+            <label for="googleFeatureDescriptionImageLink_<%= id %>" class="AknFieldContainer-label control-label required">
+                <%- __('dnd_google_manufacturer.export.product.google.grouped.feature_description.image_link') %>
+            </label>
+        </div>
+        <div class="AknFieldContainer-inputContainer">
+            <input type="hidden"
+                   name="googleFeatureDescriptionImageLink_<%= id %>"
+                   id="googleFeatureDescriptionImageLink_<%= id %>"
+                   class="select-field on-initialize"
+                   data-google="googleFeatureDescriptionImageLink"
+                   data-google-value="<% if (data) {%><%- data.googleFeatureDescriptionImageLink %><% } %>"
+            />
+        </div>
+        <div class="AknFieldContainer-footer">
+            <span class="below-input-elements-container">
+            </span>
+        </div>
+    </div>
+    <div class="AknTitleContainer-state" style="display: none;">
+        <div class="updated-status" style="text-align: center;">
+            <span class="AknState"><%- __('info.google.grouped.attributes.updated') %></span>
+        </div>
+    </div>
+    <div class="AknButtonList AknButtonList--right">
+        <span class="<%- data === null ? ' AknIconButton--ok' : ' AknIconButton--editWhite' %> AknButtonList-item AknIconButton AknIconButton--round AknIconButton--apply update-row"></span>
+        <span class="AknButtonList-item AknIconButton AknIconButton--round AknIconButton--important AknIconButton--removeWhite show-row"></span>
+    </div>
+</div>
