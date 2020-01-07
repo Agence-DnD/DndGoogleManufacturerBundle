@@ -7,7 +7,7 @@ extensions:
         parent: google-manufacturer-xml-product-export-show
         targetZone: main-image
         config:
-            path: bundles/pimui/images/illustrations/ExportCSV.svg
+            path: bundles/dndgooglemanufacturer/images/illustrations/ExportXML.svg
 
     google-manufacturer-xml-product-export-show-user-navigation:
         module: pim/menu/user-navigation
