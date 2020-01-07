@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Dnd\\Google\\Manufacturer\\Bundle\\DndGoogleManufacturerBundle\\": ""
+            "Dnd\\Bundle\\GoogleManufacturerBundle\\": ""
         }
     },
     "config": {

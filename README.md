@@ -1,4 +1,4 @@
-![Google Manufacturer Connector](Bundle/Resources/doc/img/google-manufacturer-logo.png)
+![Google Manufacturer Connector](doc/img/google-manufacturer-logo.png)
 
 # Google Manufacturer Connector:
 
@@ -8,7 +8,7 @@ It will create a new "Google Manufacturer - XML Products Export" export type in 
 
 ### Documentation:
 
-Google Manufacturer Connector complete documentation is available [here](Bundle/Resources/doc/summary.md).
+Google Manufacturer Connector complete documentation is available [here](doc/summary.md).
 
 ### How it works:
 
