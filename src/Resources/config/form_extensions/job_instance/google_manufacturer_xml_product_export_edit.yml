@@ -1,0 +1,491 @@
+extensions:
+  google-manufacturer-xml-product-export-edit:
+    module: pim/form/common/edit-form
+
+  google-manufacturer-xml-product-export-edit-main-image:
+    module: pim/form/common/main-image
+    parent: google-manufacturer-xml-product-export-edit
+    targetZone: main-image
+    config:
+      path: bundles/dndgooglemanufacturer/images/illustrations/ExportXML.svg
+
+  google-manufacturer-xml-product-export-edit-user-navigation:
+    module: pim/menu/user-navigation
+    parent: google-manufacturer-xml-product-export-edit
+    targetZone: user-menu
+    config:
+      userAccount: pim_menu.user.user_account
+      logout: pim_menu.user.logout
+
+  google-manufacturer-xml-product-export-edit-breadcrumbs:
+    module: pim/common/breadcrumbs
+    parent: google-manufacturer-xml-product-export-edit
+    targetZone: breadcrumbs
+    config:
+      tab: pim-menu-exports
+
+  google-manufacturer-xml-product-export-edit-cache-invalidator:
+    module: pim/cache-invalidator
+    parent: google-manufacturer-xml-product-export-edit
+    position: 1000
+
+  google-manufacturer-xml-product-export-edit-tabs:
+    module: pim/form/common/form-tabs
+    parent: google-manufacturer-xml-product-export-edit
+    targetZone: content
+    position: 100
+
+  google-manufacturer-xml-product-export-edit-properties:
+    module: pim/job/common/edit/properties
+    parent: google-manufacturer-xml-product-export-edit-tabs
+    aclResourceId: pim_importexport_export_profile_property_edit
+    targetZone: container
+    position: 100
+    config:
+      tabTitle: pim_common.properties
+      tabCode: pim-job-instance-properties
+
+  google-manufacturer-xml-product-export-edit-global:
+    module: pim/job/common/edit/properties
+    parent: google-manufacturer-xml-product-export-edit-tabs
+    aclResourceId: pim_importexport_export_profile_property_edit
+    targetZone: container
+    position: 120
+    config:
+      tabTitle: pim_enrich.export.product.global_settings.title
+      tabCode: pim-job-instance-global
+
+  google-manufacturer-xml-product-export-edit-content:
+    module: pim/job/product/edit/content
+    parent: google-manufacturer-xml-product-export-edit-tabs
+    aclResourceId: pim_importexport_export_profile_content_edit
+    targetZone: container
+    position: 130
+    config:
+      tabTitle: pim_import_export.form.job_instance.tab.content.title
+      tabCode: pim-job-instance-content
+
+  google-manufacturer-xml-product-export-edit-history:
+    module: pim/common/tab/history
+    parent: google-manufacturer-xml-product-export-edit-tabs
+    targetZone: container
+    aclResourceId: pim_importexport_export_profile_history
+    position: 150
+    config:
+      class: Akeneo\Tool\Component\Batch\Model\JobInstance
+      title: pim_common.history
+      tabCode: pim-job-instance-history
+
+  google-manufacturer-xml-product-export-edit-properties-code:
+    module: pim/job/common/edit/field/text
+    parent: google-manufacturer-xml-product-export-edit-properties
+    position: 100
+    targetZone: properties
+    config:
+      fieldCode: code
+      label: pim_common.code
+      readOnly: true
+
+  google-manufacturer-xml-product-export-edit-properties-label:
+    module: pim/job/common/edit/field/text
+    parent: google-manufacturer-xml-product-export-edit-properties
+    position: 110
+    targetZone: properties
+    config:
+      fieldCode: label
+      label: pim_common.label
+      readOnly: false
+
+  google-manufacturer-xml-product-export-edit-properties-file-path:
+    module: pim/job/common/edit/field/text
+    parent: google-manufacturer-xml-product-export-edit-global
+    position: 120
+    targetZone: properties
+    config:
+      fieldCode: configuration.filePath
+      readOnly: false
+      label: pim_import_export.form.job_instance.tab.properties.file_path.title
+      tooltip: pim_import_export.form.job_instance.tab.properties.file_path.help
+
+  google-manufacturer-xml-product-export-edit-properties-date-format:
+    module: pim/job/product/edit/field/date-format
+    parent: google-manufacturer-xml-product-export-edit-global
+    position: 140
+    targetZone: properties
+    config:
+      fieldCode: configuration.dateFormat
+      readOnly: false
+      label: pim_import_export.form.job_instance.tab.properties.date_format.title
+      tooltip: pim_import_export.form.job_instance.tab.properties.date_format.help
+
+  google-manufacturer-xml-product-export-edit-content-structure:
+    module: pim/job/product/edit/content/structure
+    parent: google-manufacturer-xml-product-export-edit-content
+    targetZone: structure-filters
+    position: 100
+
+  google-manufacturer-xml-product-export-edit-label:
+    module: pim/job/common/edit/label
+    parent: google-manufacturer-xml-product-export-edit
+    targetZone: title
+    position: 100
+
+  google-manufacturer-xml-product-export-edit-meta:
+    module: pim/job/common/edit/meta
+    parent: google-manufacturer-xml-product-export-edit
+    targetZone: meta
+    position: 100
+
+  google-manufacturer-xml-product-export-edit-secondary-actions:
+    module: pim/form/common/secondary-actions
+    parent: google-manufacturer-xml-product-export-edit
+    targetZone: buttons
+    position: 50
+
+  google-manufacturer-xml-product-export-edit-delete:
+    module: pim/job/export/edit/delete
+    parent: google-manufacturer-xml-product-export-edit-secondary-actions
+    targetZone: secondary-actions
+    aclResourceId: pim_importexport_export_profile_remove
+    position: 100
+    config:
+      trans:
+        title: confirmation.remove.export_profile
+        subTitle: pim_menu.item.export_profile
+        content: pim_common.confirm_deletion
+        success: pim_import_export.entity.job_instance.flash.delete.success
+        failed: error.removing.job_instance
+      redirect: pim_importexport_export_profile_index
+
+  google-manufacturer-xml-product-export-edit-save-buttons:
+    module: pim/form/common/save-buttons
+    parent: google-manufacturer-xml-product-export-edit
+    targetZone: buttons
+    position: 120
+
+  google-manufacturer-xml-product-export-edit-save:
+    module: pim/job-instance-export-edit-form/save
+    parent: google-manufacturer-xml-product-export-edit
+    targetZone: buttons
+    position: 0
+    config:
+      redirectPath: pim_importexport_export_profile_show
+
+  google-manufacturer-xml-product-export-edit-state:
+    module: pim/form/common/state
+    parent: google-manufacturer-xml-product-export-edit
+    targetZone: state
+    position: 900
+    config:
+      entity: pim_import_export.entity.job_instance.label
+
+  google-manufacturer-xml-product-export-edit-content-structure-scope:
+    module: pim/job/product/edit/content/structure/scope
+    parent: google-manufacturer-xml-product-export-edit-content-structure
+    targetZone: filters
+    position: 90
+
+  google-manufacturer-xml-product-export-edit-content-structure-locales:
+    module: pim/job/product/edit/content/structure/locales
+    parent: google-manufacturer-xml-product-export-edit-content-structure
+    targetZone: filters
+    position: 100
+
+  google-manufacturer-xml-product-export-edit-content-structure-attributes:
+    module: pim/job/product/edit/content/structure/attributes
+    parent: google-manufacturer-xml-product-export-edit-content-structure
+    targetZone: filters
+    position: 110
+
+  google-manufacturer-xml-product-export-edit-content-data:
+    module: pim/job/product/edit/content/data
+    parent: google-manufacturer-xml-product-export-edit-content
+    targetZone: data-filters
+    config:
+      filters:
+        -
+          field: family
+          view: akeneo-product-family-filter
+        -
+          field: enabled
+          view: akeneo-product-enabled-filter
+        -
+          field: completeness
+          view: akeneo-product-completeness-filter
+        -
+          field: updated
+          view: akeneo-product-updated-filter
+        -
+          field: categories
+          view: akeneo-product-category-filter
+
+  google-manufacturer-xml-product-export-edit-content-default-attribute-filters:
+    module: pim/job/product/edit/content/data/default-attribute-filters
+    parent: google-manufacturer-xml-product-export-edit-content-data
+    config:
+      types: [pim_catalog_identifier]
+
+  google-manufacturer-xml-product-export-edit-content-data-help:
+    module: pim/job/common/edit/content/data/help
+    parent: google-manufacturer-xml-product-export-edit-content-data
+
+  google-manufacturer-xml-product-export-edit-validation:
+    module: pim/job/common/edit/validation
+    parent: google-manufacturer-xml-product-export-edit
+
+  google-manufacturer-xml-product-export-edit-content-data-add-filter:
+    module: pim/job/product/edit/content/data/add-select/attribute
+    parent: google-manufacturer-xml-product-export-edit-content-data
+    targetZone: headings
+    position: 90
+
+  ### > Google Attributes ###
+  google-manufacturer-xml-product-export-edit-google-mapping:
+    module: dnd/job/export/product/edit/google
+    parent: google-manufacturer-xml-product-export-edit-tabs
+    targetZone: container
+    position: 140
+    config:
+      tabTitle: pim_enrich.form.job_instance.tab.google-mapping.title
+      tabCode: pim-job-instance-google-mapping
+
+  google-manufacturer-xml-product-export-edit-google-mapping-general:
+    module: dnd/job/export/product/edit/google/general
+    parent: google-manufacturer-xml-product-export-edit-google-mapping
+    targetZone: google-general-configurations
+    position: 100
+
+  google-manufacturer-xml-product-export-edit-google-mapping-mandatory:
+    module: dnd/job/export/product/edit/google/mandatory
+    parent: google-manufacturer-xml-product-export-edit-google-mapping
+    targetZone: google-mandatory-attributes
+    position: 100
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional:
+    module: dnd/job/export/product/edit/google/optional
+    parent: google-manufacturer-xml-product-export-edit-google-mapping
+    targetZone: google-optional-attributes
+    position: 100
+
+  google-manufacturer-xml-product-export-edit-google-mapping-grouped:
+    module: dnd/job/export/product/edit/google/grouped
+    parent: google-manufacturer-xml-product-export-edit-google-mapping
+    targetZone: google-grouped-attributes
+    position: 100
+    config:
+      required: true
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleId.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleId.help
+
+  # <--- General ---
+  google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleUrl:
+    module: pim/job/common/edit/field/text
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-general
+    position: 10
+    targetZone: general-configurations
+    config:
+      fieldCode: configuration.googleUrl
+      required: true
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleUrl.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleUrl.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-general-properties-googleAcceptance:
+    module: dnd/job/common/edit/field/google-acceptance
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-general
+    targetZone: general-configurations
+    position: 20
+    config:
+      fieldCode: configuration.googleAcceptance
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleAcceptance.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleAcceptance.help
+  # ---- General --->
+
+  # <--- Mandatory ---
+  google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleId:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
+    position: 10
+    targetZone: mandatory-attributes
+    config:
+      fieldCode: configuration.googleId
+      required: true
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleId.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleId.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleGtin:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
+    position: 20
+    targetZone: mandatory-attributes
+    config:
+      required: true
+      fieldCode: configuration.googleGtin
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleGtin.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleGtin.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleTitle:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
+    position: 30
+    targetZone: mandatory-attributes
+    config:
+      required: true
+      fieldCode: configuration.googleTitle
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleTitle.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleTitle.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleBrand:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
+    position: 40
+    targetZone: mandatory-attributes
+    config:
+      required: true
+      fieldCode: configuration.googleBrand
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleBrand.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleBrand.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleDescription:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
+    position: 50
+    targetZone: mandatory-attributes
+    config:
+      required: true
+      fieldCode: configuration.googleDescription
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleDescription.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleDescription.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleImageLink:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
+    position: 60
+    targetZone: mandatory-attributes
+    config:
+      fieldCode: configuration.googleImageLink
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleImageLink.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleImageLink.help
+  #  ---- Mandatory --->
+  # <--- Optional ---
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleMpn:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 10
+    targetZone: optional-attributes
+    config:
+      required: true
+      fieldCode: configuration.googleMpn
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleMpn.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleMpn.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleProductName:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 20
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleProductName
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleProductName.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleProductName.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleProductLine:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 30
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleProductLine
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleProductLine.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleProductLine.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleProductType:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 40
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleProductType
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleProductType.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleProductType.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleAdditionalImageLink:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 50
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleAdditionalImageLink
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleAdditionalImageLink.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleAdditionalImageLink.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleVideoLink:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 60
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleVideoLink
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleVideoLink.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleVideoLink.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleProductPageUrl:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 70
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleProductPageUrl
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleProductPageUrl.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleProductPageUrl.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleDisclosureDate:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 80
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleDisclosureDate
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleDisclosureDate.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleDisclosureDate.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleReleaseDate:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 90
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleReleaseDate
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleReleaseDate.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleReleaseDate.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleSuggestedRetailPrice:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 100
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleSuggestedRetailPrice
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleSuggestedRetailPrice.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleSuggestedRetailPrice.help
+  #  ---- Optional --->
+
+  ### < Google Attributes ###

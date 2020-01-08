@@ -1,0 +1,8 @@
+services:
+  dnd_google_manufacturer_enrich.provider.form.job_instance:
+    class: Akeneo\Platform\Bundle\ImportExportBundle\Provider\Form\JobInstanceFormProvider
+    arguments:
+      -
+        google_manufacturer_xml_product_export: google-manufacturer-xml-product-export
+    tags:
+      - { name: pim_enrich.provider.form, priority: 100 }

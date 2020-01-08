@@ -6,6 +6,6 @@ Google Manufacturer Connector is compatible with the following versions of Akene
 
 | Akeneo Version | Google Manufacturer Connector Version |
 |----------------|---------------------------------------|
-| \>= 2.X        | \>= 1.0.X                             |
+| \>= 3.X        | \>= 2.0.X                             |
 
 ##### [> Back to summary](../summary.md)
