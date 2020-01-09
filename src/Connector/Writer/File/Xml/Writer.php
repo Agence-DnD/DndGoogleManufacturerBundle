@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dnd\Bundle\GoogleManufacturerBundle\Connector\Writer\File\Xml;
+namespace Dnd\GoogleManufacturerBundle\Connector\Writer\File\Xml;
 
 use Akeneo\Channel\Component\Model\ChannelInterface;
 use Akeneo\Channel\Component\Repository\ChannelRepositoryInterface;
@@ -24,9 +24,9 @@ use Akeneo\Tool\Component\Connector\Writer\File\AbstractFileWriter;
 use Akeneo\Tool\Component\Connector\Writer\File\ArchivableWriterInterface;
 use Akeneo\Tool\Component\Connector\Writer\File\FlatItemBuffer;
 use Akeneo\Tool\Component\Connector\Writer\File\FlatItemBufferFlusher;
-use Dnd\Bundle\GoogleManufacturerBundle\Exception\GoogleManufacturerException;
-use Dnd\Bundle\GoogleManufacturerBundle\Model\GoogleImportExport;
-use Dnd\Bundle\GoogleManufacturerBundle\Validator\Constraints\FieldValidator;
+use Dnd\GoogleManufacturerBundle\Exception\GoogleManufacturerException;
+use Dnd\GoogleManufacturerBundle\Model\GoogleImportExport;
+use Dnd\GoogleManufacturerBundle\Validator\Constraints\FieldValidator;
 use DOMDocument;
 use DOMElement;
 use DOMNode;
@@ -41,7 +41,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 /**
  * Class Writer
  *
- * @package   Dnd\Bundle\GoogleManufacturerBundle\Connector\Writer\File\Xml
+ * @package   Dnd\GoogleManufacturerBundle\Connector\Writer\File\Xml
  * @author    Agence Dn'D <contact@dnd.fr>
  * @copyright 2020 Agence Dn'D
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)

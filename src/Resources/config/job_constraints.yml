@@ -1,6 +1,6 @@
 services:
   dnd_google_manufacturer.job.job_parameters.constraint_collection_provider.product_xml_export:
-    class: Dnd\Bundle\GoogleManufacturerBundle\Connector\Job\JobParameters\ConstraintCollectionProvider\ProductXmlExport
+    class: Dnd\GoogleManufacturerBundle\Connector\Job\JobParameters\ConstraintCollectionProvider\ProductXmlExport
     arguments:
       - '@akeneo_pim_enrichment.job.job_parameters.constraint_collection_provider.simple_csv_export'
       -

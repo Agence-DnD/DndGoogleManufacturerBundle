@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dnd\Bundle\GoogleManufacturerBundle\Renderer;
+namespace Dnd\GoogleManufacturerBundle\Renderer;
 
 use Akeneo\Tool\Component\StorageUtils\Exception\InvalidPropertyException;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;

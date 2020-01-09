@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Dnd\Bundle\GoogleManufacturerBundle\Connector\Job\JobParameters\ConstraintCollectionProvider;
+namespace Dnd\GoogleManufacturerBundle\Connector\Job\JobParameters\ConstraintCollectionProvider;
 
 use Akeneo\Tool\Component\Batch\Job\JobParameters\ConstraintCollectionProviderInterface;
 use Akeneo\Pim\Enrichment\Component\Product\Validator\Constraints\WritableDirectory;
 use Akeneo\Pim\Enrichment\Component\Product\Connector\Job\JobParameters\ConstraintCollectionProvider\ProductCsvExport as PimProductCsvExport;
-use Dnd\Bundle\GoogleManufacturerBundle\Model\GoogleImportExport;
+use Dnd\GoogleManufacturerBundle\Model\GoogleImportExport;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints\Url;
 /**
  * Class ProductXmlExport
  *
- * @package   Dnd\Bundle\GoogleManufacturerBundle\Connector\Job\JobParameters\ConstraintCollectionProvider
+ * @package   Dnd\GoogleManufacturerBundle\Connector\Job\JobParameters\ConstraintCollectionProvider
  * @author    Agence Dn'D <contact@dnd.fr>
  * @copyright 2020 Agence Dn'D
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)

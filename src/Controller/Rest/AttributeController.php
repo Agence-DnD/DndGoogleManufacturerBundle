@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dnd\Bundle\GoogleManufacturerBundle\Controller\Rest;
+namespace Dnd\GoogleManufacturerBundle\Controller\Rest;
 
 use Akeneo\Pim\Enrichment\Bundle\Doctrine\ORM\Query\AttributeIsAFamilyVariantAxis;
 use Akeneo\Pim\Enrichment\Bundle\Filter\ObjectFilterInterface;
@@ -26,7 +26,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 /**
  * Class AttributeController
  *
- * @package   Dnd\Bundle\GoogleManufacturerBundle\Controller\Rest
+ * @package   Dnd\GoogleManufacturerBundle\Controller\Rest
  * @author    Agence Dn'D <contact@dnd.fr>
  * @copyright 2020 Agence Dn'D
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)

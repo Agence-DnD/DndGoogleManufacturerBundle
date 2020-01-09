@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Dnd\Bundle\GoogleManufacturerBundle\Controller\Rest;
+namespace Dnd\GoogleManufacturerBundle\Controller\Rest;
 
-use Dnd\Bundle\GoogleManufacturerBundle\ArrayConverter\StandardToFlat\Attribute\Google;
-use Dnd\Bundle\GoogleManufacturerBundle\Model\GoogleImportExport;
-use Dnd\Bundle\GoogleManufacturerBundle\Validator\Constraints\FieldValidator;
+use Dnd\GoogleManufacturerBundle\ArrayConverter\StandardToFlat\Attribute\Google;
+use Dnd\GoogleManufacturerBundle\Model\GoogleImportExport;
+use Dnd\GoogleManufacturerBundle\Validator\Constraints\FieldValidator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraint;
@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints\Required;
 /**
  * Class GoogleGroupedAttributeController
  *
- * @package   Dnd\Bundle\GoogleManufacturerBundle\Controller\Rest
+ * @package   Dnd\GoogleManufacturerBundle\Controller\Rest
  * @author    Agence Dn'D <contact@dnd.fr>
  * @copyright 2020 Agence Dn'D
  * @license   https://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)

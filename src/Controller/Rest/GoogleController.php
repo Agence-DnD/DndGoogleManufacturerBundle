@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dnd\Bundle\GoogleManufacturerBundle\Controller\Rest;
+namespace Dnd\GoogleManufacturerBundle\Controller\Rest;
 
 use Akeneo\UserManagement\Bundle\Context\UserContext;
-use Dnd\Bundle\GoogleManufacturerBundle\Model\GoogleImportExport;
+use Dnd\GoogleManufacturerBundle\Model\GoogleImportExport;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -13,7 +13,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * Class GoogleController
  *
- * @package   Dnd\Bundle\GoogleManufacturerBundle\Controller\Rest
+ * @package   Dnd\GoogleManufacturerBundle\Controller\Rest
  * @author    Agence Dn'D <contact@dnd.fr>
  * @copyright 2020 Agence Dn'D
  * @license   https://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)

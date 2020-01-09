@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Dnd\Bundle\GoogleManufacturerBundle\Exception;
+namespace Dnd\GoogleManufacturerBundle\Exception;
 
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
  * Class GoogleManufacturerException
  *
- * @package   Dnd\Bundle\GoogleManufacturerBundle\Exception
+ * @package   Dnd\GoogleManufacturerBundle\Exception
  * @author    Agence Dn'D <contact@dnd.fr>
  * @copyright 2020 Agence Dn'D
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
