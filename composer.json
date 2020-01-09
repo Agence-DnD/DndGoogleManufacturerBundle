@@ -24,7 +24,7 @@
         }
     ],
     "require": {
-        "akeneo/pim-community-dev": "2.*"
+        "akeneo/pim-community-dev": "3.*"
     },
     "autoload": {
         "psr-4": {
