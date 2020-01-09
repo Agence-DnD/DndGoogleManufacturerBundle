@@ -22,7 +22,7 @@ With Google Manufacturer Connector, you can:
 
 ### Requirements:
 
-* Akeneo 2.X
+* Akeneo 3.X
 
 ### About us:
 
