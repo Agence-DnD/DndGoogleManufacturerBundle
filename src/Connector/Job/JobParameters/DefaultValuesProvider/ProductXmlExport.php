@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Dnd\Bundle\GoogleManufacturerBundle\Connector\Job\JobParameters\DefaultValuesProvider;
+namespace Dnd\GoogleManufacturerBundle\Connector\Job\JobParameters\DefaultValuesProvider;
 
-use Dnd\Bundle\GoogleManufacturerBundle\Model\GoogleImportExport;
+use Dnd\GoogleManufacturerBundle\Model\GoogleImportExport;
 use Akeneo\Pim\Enrichment\Component\Product\Connector\Job\JobParameters\DefaultValueProvider\ProductCsvExport as PimProductCsvExport;
 
 /**
  * Class ProductXmlExport
  *
- * @package   Dnd\Bundle\GoogleManufacturerBundle\Connector\Job\JobParameters\DefaultValuesProvider
+ * @package   Dnd\GoogleManufacturerBundle\Connector\Job\JobParameters\DefaultValuesProvider
  * @author    Agence Dn'D <contact@dnd.fr>
  * @copyright 2020 Agence Dn'D
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)

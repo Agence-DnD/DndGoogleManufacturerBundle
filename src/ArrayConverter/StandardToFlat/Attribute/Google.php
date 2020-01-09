@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dnd\Bundle\GoogleManufacturerBundle\ArrayConverter\StandardToFlat\Attribute;
+namespace Dnd\GoogleManufacturerBundle\ArrayConverter\StandardToFlat\Attribute;
 
 use Akeneo\Pim\Enrichment\Component\Product\Connector\ArrayConverter\StandardToFlat\ProductLocalized as PimProductLocalized;
 use Akeneo\Pim\Enrichment\Component\Product\Localization\Localizer\AttributeConverterInterface;
@@ -10,10 +10,10 @@ use Akeneo\Pim\Structure\Component\AttributeTypes;
 use Akeneo\Pim\Structure\Component\Model\AttributeInterface;
 use Akeneo\Pim\Structure\Component\Repository\AttributeRepositoryInterface;
 use Akeneo\Tool\Component\Connector\ArrayConverter\ArrayConverterInterface;
-use Dnd\Bundle\GoogleManufacturerBundle\Exception\GoogleManufacturerException;
-use Dnd\Bundle\GoogleManufacturerBundle\Model\GoogleImportExport;
-use Dnd\Bundle\GoogleManufacturerBundle\Renderer\PublicFileRenderer;
-use Dnd\Bundle\GoogleManufacturerBundle\Validator\Constraints\FieldValidator;
+use Dnd\GoogleManufacturerBundle\Exception\GoogleManufacturerException;
+use Dnd\GoogleManufacturerBundle\Model\GoogleImportExport;
+use Dnd\GoogleManufacturerBundle\Renderer\PublicFileRenderer;
+use Dnd\GoogleManufacturerBundle\Validator\Constraints\FieldValidator;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Exception\ValidatorException;
@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 /**
  * Class Google
  *
- * @package   Dnd\Bundle\GoogleManufacturerBundle\ArrayConverter\StandardToFlat\Attribute
+ * @package   Dnd\GoogleManufacturerBundle\ArrayConverter\StandardToFlat\Attribute
  * @author    Agence Dn'D <contact@dnd.fr>
  * @copyright 2020 Agence Dn'D
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)

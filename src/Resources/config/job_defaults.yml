@@ -1,6 +1,6 @@
 services:
   dnd_google_manufacturer.job.job_parameters.default_values_provider.product_xml_export:
-    class: Dnd\Bundle\GoogleManufacturerBundle\Connector\Job\JobParameters\DefaultValuesProvider\ProductXmlExport
+    class: Dnd\GoogleManufacturerBundle\Connector\Job\JobParameters\DefaultValuesProvider\ProductXmlExport
     arguments:
       - '@akeneo_pim_enrichment.job.job_parameters.default_values_provider.simple_csv_export'
       - '@pim_catalog.repository.channel'

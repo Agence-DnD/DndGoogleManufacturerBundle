@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dnd\Bundle\GoogleManufacturerBundle\Validator\Constraints;
+namespace Dnd\GoogleManufacturerBundle\Validator\Constraints;
 
-use Dnd\Bundle\GoogleManufacturerBundle\Model\GoogleImportExport;
+use Dnd\GoogleManufacturerBundle\Model\GoogleImportExport;
 use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\Collection;
@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 /**
  * Class FieldValidator
  *
- * @package   Dnd\Bundle\GoogleManufacturerBundle\Validator\Constraints
+ * @package   Dnd\GoogleManufacturerBundle\Validator\Constraints
  * @author    Agence Dn'D <contact@dnd.fr>
  * @copyright 2020 Agence Dn'D
  * @license   https://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)

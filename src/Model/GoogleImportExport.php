@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Dnd\Bundle\GoogleManufacturerBundle\Model;
+namespace Dnd\GoogleManufacturerBundle\Model;
 
 /**
  * Class GoogleImportExport
  *
- * @package   Dnd\Bundle\GoogleManufacturerBundle\Model
+ * @package   Dnd\GoogleManufacturerBundle\Model
  * @author    Agence Dn'D <contact@dnd.fr>
  * @copyright 2020 Agence Dn'D
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)

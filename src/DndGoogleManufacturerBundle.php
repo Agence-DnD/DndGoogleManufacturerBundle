@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Dnd\Bundle\GoogleManufacturerBundle;
+namespace Dnd\GoogleManufacturerBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * Class DndGoogleManufacturerBundle
  *
- * @package   Dnd\Bundle\GoogleManufacturerBundle
+ * @package   Dnd\GoogleManufacturerBundle
  * @author    Agence Dn'D <contact@dnd.fr>
  * @copyright 2020 Agence Dn'D
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
