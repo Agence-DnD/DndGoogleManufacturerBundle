@@ -29,4 +29,10 @@ liip_imagine:
 ```
 You are allowed to change the filter set or change the filter key **thumbnail_full** but changes must also be applied in the linked service: **DndGoogleManufactureBundle/Resources/config/renderers.yml**
 
+Then refresh the assets:
+```bash
+php bin/console cache:clear --env=prod
+php bin/console pim:installer:assets --env=prod
+yarn run webpack
+```
 ##### [> Back to summary](../summary.md)
