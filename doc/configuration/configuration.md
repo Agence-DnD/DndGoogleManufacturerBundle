@@ -8,7 +8,7 @@ First, enable the bundle in the Kernel:
 // > app/AppKernel.php
 // [...]
 
-$bundles[] = new Dnd\Bundle\CriteoConnectorBundle\DndCriteoConnectorBundle();
+$bundles[] = new Dnd\GoogleManufacturerBundle\DndGoogleManufacturerBundle();
 ```
 Then, add the route of the bundle:
 ```yml
