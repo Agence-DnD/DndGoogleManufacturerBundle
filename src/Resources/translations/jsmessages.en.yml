@@ -5,12 +5,12 @@ dnd_google_manufacturer:
         general_configurations:
           title: 'General'
         mandatory:
-          title: 'Mandatory Attribute'
+          title: 'Mandatory Attributes'
         optional:
-          title: 'Optional Attribute'
+          title: 'Optional Attributes'
         grouped:
           error: 'The value must be filled.'
-          title: 'Grouped Attribute'
+          title: 'Grouped Attributes'
           button:
             product_detail: 'New product detail block'
             feature_description: 'New feature description block'

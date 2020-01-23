@@ -5,9 +5,9 @@ dnd_google_manufacturer:
         general_configurations:
           title: 'Général'
         mandatory:
-          title: 'Attribut Obligatoire'
+          title: 'Attributs Obligatoires'
         optional:
-          title: 'Attribut Optionnel'
+          title: 'Attributs Optionnels'
         grouped:
           error: 'Une valeur doit être renseignée.'
           title: 'Groupe d''attributs'
@@ -37,9 +37,9 @@ dnd_google_manufacturer:
           help: 'Lien absolu renvoyant vers l''URL du site cible.'
         googleAcceptance:
           title: 'Niveau d''acceptation'
-          help: 'Définissez le niveau d''acceptation qui déclenchera le processus de validation (par défaut: modérée).'
+          help: 'Définissez le niveau d''acceptation qui déclenchera le processus de validation (par défaut: modéré).'
           detail:
-            low: 'Le niveau "faible" désactive les validations customisées et n''utilise que celles natives d''Akeneo.'
+            low: 'Le niveau "faible" désactive les validations personnalisées et n''utilise que celles natives d''Akeneo.'
             medium: 'Le niveau "modéré" vérifie l''intégrité des champs requis par Google Manufacturer.'
             high: 'Le niveau "haut" vérifie à la fois l''intégrité des champs requis par Google Manufacturer mais aussi le respect des règles de validations au niveau des données des attributs produit comme la taille du champ, le contenu etc...'
         googleId:
