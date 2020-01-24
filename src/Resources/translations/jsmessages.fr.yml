@@ -1,4 +1,25 @@
+batch_jobs:
+  google_manufacturer_xml_product_export:
+    label: 'Google Manufacturer - Export des produits au format XML'
+    validation.label: 'Validating file'
+    export.label: 'Google Manufacturer - Export des produits au format XML'
+
+pim_enrich:
+  form:
+    job_instance:
+      tab:
+        google-mapping:
+          title: 'Configuration Google Manufacturer'
+
+info:
+  google:
+    grouped:
+      attributes:
+        updated: 'Des modifications n''ont pas encore été sauvegardées.'
+
 dnd_google_manufacturer:
+  list:
+    default: 'Sélectionner une option'
   export:
     product:
       google:
@@ -29,85 +50,112 @@ dnd_google_manufacturer:
       tab:
         google:
           title: 'Configuration Google Manufacturer'
-        googleProductPageUrl:
-          title: 'URL de la page produit'
-          help: 'Lien absolu renvoyant à l''URL de la page du produit.'
-        googleUrl:
-          title: 'Lien du website'
-          help: 'Lien absolu renvoyant vers l''URL du site cible.'
         googleAcceptance:
           title: 'Niveau d''acceptation'
           help: 'Définissez le niveau d''acceptation qui déclenchera le processus de validation (par défaut: modérée).'
+          low: 'Faible'
+          medium: 'Modérée (recommandée)'
+          high: 'Haute'
           detail:
             low: 'Le niveau "faible" désactive les validations customisées et n''utilise que celles natives d''Akeneo.'
             medium: 'Le niveau "modéré" vérifie l''intégrité des champs requis par Google Manufacturer.'
             high: 'Le niveau "haut" vérifie à la fois l''intégrité des champs requis par Google Manufacturer mais aussi le respect des règles de validations au niveau des données du produit. Comme la taille du champ, la typo etc...'
+        googleUrl:
+          title: 'Lien du website'
+          help: 'Lien absolu renvoyant vers l''URL du site cible. Exemple: http://demo.akeneo.com/'
         googleId:
           title: 'Identifiant'
-          help: 'Longueur maximum est de 50, doit être renseignée.'
+          help: 'Identifie chaque produit de manière unique. Les utilisateurs ne le verront pas. Vous pouvez toutefois l''utiliser pour rechercher votre produit dans votre compte.'
         googleBrand:
           title: 'Marque'
-          help: 'Le code marque associé au produit, doit être renseignée.'
+          help: ' Indique la marque du produit. Cette dernière sert à identifier le produit et sera vue par les utilisateurs qui consultent votre annonce.'
         googleTitle:
           title: 'Titre'
-          help: 'Plage recommandée entre 80 et 140 caractères, doit être renseignée.'
+          help: 'Identification claire du produit. En fournissant un titre précis, vous nous aidez à montrer votre produit aux utilisateurs pertinents.'
         googleDescription:
           title: 'Description'
-          help: 'Une description détaillée du paragraphe de votre produit, plage recommandée de 500 à 1500, doit être renseignée.'
+          help: 'Décrire le aux utilisateurs. Indiquez les caractéristiques, les spécifications techniques et les aspects visuels de l''article'
         googleGtin:
           title: 'GTIN'
-          help: 'Code à 8, 12, 13 ou 14 chiffres (UPC, EAN, JAN ou ISBN). Obligatoire pour tous les articles'
-        googleMpn:
-          title: 'MPN'
-          help: 'Champ recommandé pour les articles. Facultatif.'
-        googleDisclosureDate:
-          title: 'Date de dévoilement'
-          help: 'La date de dévoilement du produit. Doit être au format dd-mm-yyyy (eg: 25-12-2018)'
-        googleReleaseDate:
-          title: 'Date de sortie'
-          help: 'La date de sortie du produit. Doit être au format dd-mm-yyyy (eg: 25-12-2018)'
+          help: 'Indique les codes d''article internationaux GTIN (Global Trade Item Number). Un code GTIN identifie de manière unique le produit.'
         googleImageLink:
           title: 'Lien de l''image'
-          help: 'URL de l''image, doit commencer par "http://" ou "https://, doit être renseignée.'
-        googleSuggestedRetailPrice:
-          title: 'Suggested Retail Date'
-          help: 'The suggested retail price linked of the product.'
-        googleProductName:
-          title: 'Nom du produit'
-          help: 'Plage recommandée entre 80 et 140 caractères, facultatif.'
-        googleProductLine:
-          title: 'Ligne produit'
-          help: 'La ligne du produit, recommandé pour les produits. Facutatif.'
-        googleProductType:
-          title: 'Type de produit'
-          help: 'Texte, avec le caractère > pour séparer les hiérarchies. Champ facultatif'
-        googleItemGroupId:
-          title: 'Groupe Article'
-          help: 'Code du groupe article rattaché au produit.'
-        googleColor:
-          title: 'Couleur'
-          help: 'Couleur du produit, optionnel.'
+          help: 'URL de l''image du produit principale. Vos clients potentiels pourront voir cette image dans les annonces relatives au produit.'
         googleAdditionalImageLink:
           title: 'Lien image additionnel'
           help: 'Lien absolu renvoyant vers une image additionnel associée au produit, optionnel'
+        googleAgeGroup:
+          title: 'Tranche d''âge'
+          help: 'Indiquer à quelle tranche d''âge le produit est destiné. Les valeurs autorisées sont: nourrissons, bébés, tout-petits, enfants ou adultes.'
+        googleCapacity:
+          title: 'Capacité'
+          help: 'Définit la capacité d''un produit permettant de stocker des fichiers et des contenus numériques. La valeur attendue doit être du type: Entier + Unité de mesure (eg: 16 Go)'
+        googleColor:
+          title: 'Couleur'
+          help: 'Décrit la couleur du produit. Cette information permet de créer des filtres précis que les utilisateurs peuvent utiliser pour affiner leurs résultats de recherche.'
+        googleCount:
+          title: 'Nombre'
+          help: 'Le nombre d''unités de produit contenues dans un lot pouvant être acheté comme un seul article et doté d''un code GTIN unique.'
+        googleDisclosureDate:
+          title: 'Date de dévoilement'
+          help: 'Indique à Google quand un produit doit s''afficher dans les annonces Shopping. Doit être au format yyyy-mm-dd (eg: 2018-01-25)'
+        googleFlavor:
+          title: 'Saveur'
+          help: 'La saveur du produit dont l''arôme varie. Plage recommandée entre 0 et 1000 caractères.'
+        googleFormat:
+          title: 'Format'
+          help: 'Le format du support d''un produit. Il sert à distinguer les livres, les titres musicaux, les films, les logiciels et les jeux vidéo qui sont publiés ou distribués dans différents formats ou versions.'
+        googleGender:
+          title: 'Sexe'
+          help: 'Le sexe auquel est destiné le produit. Cette information permet aux clients potentiels de filtrer avec précision les produits par sexe et ainsi affiner leur recherche.'
+        googleItemGroupId:
+          title: 'Groupe Article'
+          help: 'Regroupe les variantes de produits dans vos données produit.'
+        googleMaterial:
+          title: 'Matériel'
+          help: 'Décrit le tissu ou la matière principale du produit. Par exemple, des escarpins peuvent être en cuir, en jean ou en daim.'
+        googleMpn:
+          title: 'MPN'
+          help: 'La référence fabricant du produit.'
+        googlePattern:
+          title: 'Motif'
+          help: 'Précise le motif ou l''imprimé du produit. Par exemple, si un T-shirt présente le logo d''une équipe de football américain, vous pouvez indiquer "Bears" ou "Tigers" comme motif.'
+        googleProductLine:
+          title: 'Ligne produit'
+          help: 'Indiquer la catégorie à laquelle appartient le produit dans la classification de votre marque.'
+        googleProductName:
+          title: 'Nom du produit'
+          help: 'Spécifier le produit parent pour un groupe de variantes. C''est le nom que les clients utilisent habituellement pour faire référence à votre produit. Plage recommandée entre 0 et 1000 caractères.'
+        googleProductType:
+          title: 'Type de produit'
+          help: 'Ajoute un système propre de catégorisation de produits aux données produit. Plage recommandée entre 0 et 1000 caractères.'
+        googleProductPageUrl:
+          title: 'URL de la page produit'
+          help: 'Redirige l''utilisateur vers une page d''informations les plus détaillées et précises possibles sur la variante du produit concernée. Plage recommandée entre 0 et 2000 caractères.'
+        googleReleaseDate:
+          title: 'Date de sortie'
+          help: 'Indique la date à laquelle l''article a été mis en vente au public. Doit être au format yyyy-mm-dd (eg: 2020-01-25)'
+        googleScent:
+          title: 'Parfum'
+          help: 'Le parfum du produit qui varie selon l''arôme ou l''odeur. Plage recommandée entre 0 et 1000 caractères.'
+        googleSize:
+          title: 'Taille'
+          help: 'La taille standard du produit. Lorsque les marchands proposent vos produits accompagnés de cet attribut, vos annonces peuvent apparaître dans les résultats filtrés par taille. Plage recommandée entre 0 et 1000 caractères.'
+        googleSizeSystem:
+          title: 'Système de tailles'
+          help: 'Le système de tailles du produit. Cette information permet de créer des filtres précis dont les utilisateurs peuvent se servir pour affiner leurs résultats de recherche. Les valeurs autorisées: AU, BR, CN (China), DE, EU, FR, IT, JP, MEX, UK, US'
+        googleSizeType:
+          title: 'Type de coupe'
+          help: 'La coupe du  produit. Cette information permet de créer des filtres précis dont les utilisateurs peuvent se servir pour affiner leurs résultats de recherche. Les valeurs autorisées: standard [regular], petite taille femme [petite], grande taille [oversize] ou maternité [maternity].'
+        googleSuggestedRetailPrice:
+          title: 'Date du prix suggéré'
+          help: 'Indique à Google le prix auquel vous conseillez aux marchands de vendre votre produit. Plage recommandée entre 0 et 50 caractères.'
+        googleTheme:
+          title: 'Thème'
+          help: 'Le thème du produit orné d''une image ou d''un style associés à un personnage ou à un concept connus. Plage recommandée entre 0 et 1000 caractères.'
         googleVideoLink:
           title: 'Lien vidéo'
-          help: 'Lien absolu renvoyant vers une vidéo associée au produit, optionnel.'
-pim_enrich:
-  form:
-    job_instance:
-      tab:
-        google-mapping:
-          title: Configuration Google Manufacturer
-
-batch_jobs:
-  google_manufacturer_xml_product_export:
-    label: Google Manufacturer - Export des produits au format XML
-    validation.label: Validating file
-    export.label: Export des produits au format XML
-
-info:
-  google:
-    grouped:
-      attributes:
-        updated: 'Des modifications n''ont pas encore été sauvegardées.'
+          help: 'Fpurni d''avantage d''images de votre produit, en plus des attributs d''image. Plage recommandée entre 0 et 2000 caractères'
+        googleRichProductContent:
+          title: 'Contenu Enrichi sur le Produit'
+          help: 'Fournir des descriptions détaillées des produits et indiquer les contenus multimédias permettant de mettre en avant des fonctionnalités spéciales des produits. Limite de 20Ko'

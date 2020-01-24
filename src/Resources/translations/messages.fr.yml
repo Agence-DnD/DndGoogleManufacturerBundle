@@ -1,14 +1,56 @@
+batch_jobs:
+  google_manufacturer_xml_product_export:
+    label: 'Google Manufacturer - Export des produits au format XML'
+    validation.label: 'Validating file'
+    export.label: 'Google Manufacturer - Export des produits au format XML'
+
+pim_enrich:
+  form:
+    job_instance:
+      tab:
+        google-mapping:
+          title: 'Configuration Google Manufacturer'
+
+info:
+  google:
+    grouped:
+      attributes:
+        updated: 'Des modifications n''ont pas encore été sauvegardées.'
+
+
 dnd_google_manufacturer:
   list:
     default: 'Sélectionner une option'
+  export:
+    product:
+      google:
+        general_configurations:
+          title: 'Général'
+        mandatory:
+          title: 'Attribut Obligatoire'
+        optional:
+          title: 'Attribut Optionnel'
+        grouped:
+          error: 'Une valeur doit être renseignée.'
+          title: 'Groupe d''attributs'
+          button:
+            product_detail: 'Nouveau bloc Product Detail'
+            feature_description: 'Nouveau bloc Feature Description'
+          feature_description:
+            title: 'Ajouter un bloc de description'
+            headline: 'Titre majeur'
+            text: 'Texte'
+            image_link: 'Lien image'
+          product_detail:
+            title: 'Ajouter un bloc de détail'
+            section_name: 'Nom de la section'
+            attribute_name: 'Nom de l''attribut'
+            attribute_value: 'Valeur de l''attribut'
   form:
     job_instance:
       tab:
         google:
           title: 'Configuration Google Manufacturer'
-        googleProductPageUrl:
-          title: 'URL de la page produit'
-          help: 'Lien absolu renvoyant à l''URL de la page du produit.'
         googleAcceptance:
           title: 'Niveau d''acceptation'
           help: 'Définissez le niveau d''acceptation qui déclenchera le processus de validation (par défaut: modérée).'
@@ -19,9 +61,9 @@ dnd_google_manufacturer:
             low: 'Le niveau "faible" désactive les validations customisées et n''utilise que celles natives d''Akeneo.'
             medium: 'Le niveau "modéré" vérifie l''intégrité des champs requis par Google Manufacturer.'
             high: 'Le niveau "haut" vérifie à la fois l''intégrité des champs requis par Google Manufacturer mais aussi le respect des règles de validations au niveau des données du produit. Comme la taille du champ, la typo etc...'
-        googleUrl:
-          title: 'Lien du website'
-          help: 'Lien absolu renvoyant vers l''URL du site cible.'
+      googleUrl:
+        title: 'Lien du website'
+        help: 'Lien absolu renvoyant vers l''URL du site cible. Exemple: http://demo.akeneo.com/'
         googleId:
           title: 'Identifiant'
           help: 'Un identifiant unique envoyé à Google doit être fourni.'
@@ -37,45 +79,84 @@ dnd_google_manufacturer:
         googleGtin:
           title: 'GTIN'
           help: 'Le code GTIN du produit, doit être renseigné.'
-        googleMpn:
-          title: 'MPN'
-          help: 'Le code MPN du produit, doit être renseigné.'
         googleImageLink:
           title: 'Lien de l''image'
           help: 'URL de l''image, doit commencer par "http://" ou "https://, doit être renseignée.'
-        googleDisclosureDate:
-          title: 'Date de dévoilement'
-          help: 'La date de dévoilement du produit. Doit être au format dd-mm-yyyy (eg: 25-12-2018)'
-        googleReleaseDate:
-          title: 'Date de sortie'
-          help: 'La date de sortie du produit. Doit être au format dd-mm-yyyy (eg: 25-12-2018)'
-        googleSuggestedRetailPrice:
-          title: 'Suggested Retail Date'
-          help: 'The suggested retail price linked of the product.'
-        googleProductName:
-          title: 'Nom du produit'
-          help: 'Plage recommandée entre 80 et 140 caractères, facultatif.'
-        googleProductLine:
-          title: 'Ligne produit'
-          help: 'La ligne du produit, optionnel.'
-        googleProductType:
-          title: 'Type de produit'
-          help: 'Le type du produit, optionnel.'
-        googleItemGroupId:
-          title: 'Groupe Article'
-          help: 'Code du groupe article rattaché au produit.'
-        googleColor:
-          title: 'Couleur'
-          help: 'Couleur du produit, optionnel.'
         googleAdditionalImageLink:
           title: 'Lien image additionnel'
           help: 'Lien absolu renvoyant vers une image additionnel associée au produit, optionnel'
+        googleAgeGroup:
+          title: 'Tranche d''âge'
+          help: 'Indiquer à quelle tranche d''âge le produit est destiné. Les valeurs autorisées sont: nourrissons, bébés, tout-petits, enfants ou adultes.'
+        googleCapacity:
+          title: 'Capacité'
+          help: 'Définit la capacité d''un produit permettant de stocker des fichiers et des contenus numériques. La valeur attendue doit être du type: Entier + Unité de mesure (eg: 16 Go)'
+        googleColor:
+          title: 'Couleur'
+          help: 'Couleur du produit, optionnel.'
+        googleCount:
+          title: 'Nombre'
+          help: 'Le nombre d''unités de produit contenues dans un lot pouvant être acheté comme un seul article et doté d''un code GTIN unique.'
+        googleDisclosureDate:
+          title: 'Date de dévoilement'
+          help: 'La date de dévoilement du produit. Doit être au format dd-mm-yyyy (eg: 25-12-2018)'
+        googleFlavor:
+          title: 'Saveur'
+          help: 'La saveur du produit dont l''arôme varie. Optionnel'
+        googleFormat:
+          title: 'Format'
+          help: 'Le format du support d''un produit. Il sert à distinguer les livres, les titres musicaux, les films, les logiciels et les jeux vidéo qui sont publiés ou distribués dans différents formats ou versions.'
+        googleGender:
+          title: 'Sexe'
+          help: 'Le sexe auquel est destiné le produit. Cette information permet aux clients potentiels de filtrer avec précision les produits par sexe et ainsi affiner leur recherche.'
+        googleItemGroupId:
+          title: 'Groupe Article'
+          help: 'Code du groupe article rattaché au produit.'
+        googleMaterial:
+          title: 'Matériel'
+          help: 'Décrit le tissu ou la matière principale du produit. Par exemple, des escarpins peuvent être en cuir, en jean ou en daim.'
+        googleMpn:
+          title: 'MPN'
+          help: 'La référence fabricant du produit.'
+        googlePattern:
+          title: 'Motif'
+          help: 'Précise le motif ou l''imprimé du produit. Par exemple, si un T-shirt présente le logo d''une équipe de football américain, vous pouvez indiquer "Bears" ou "Tigers" comme motif.'
+        googleProductLine:
+          title: 'Ligne produit'
+          help: 'La ligne du produit, optionnel.'
+        googleProductName:
+          title: 'Nom du produit'
+          help: 'Plage recommandée entre 80 et 140 caractères, facultatif.'
+        googleProductType:
+          title: 'Type de produit'
+          help: 'Le type du produit, optionnel.'
+        googleProductPageUrl:
+          title: 'URL de la page produit'
+          help: 'Lien absolu renvoyant à l''URL de la page du produit.'
+        googleReleaseDate:
+          title: 'Date de sortie'
+          help: 'La date de sortie du produit. Doit être au format dd-mm-yyyy (eg: 25-12-2018)'
+        googleScent:
+          title: 'Parfum'
+          help: 'Le parfum du produit qui varie selon l''arôme ou l''odeur.'
+        googleSize:
+          title: 'Taille'
+          help: 'La taille standard du produit. Lorsque les marchands proposent vos produits accompagnés de cet attribut, vos annonces peuvent apparaître dans les résultats filtrés par taille.'
+        googleSizeSystem:
+          title: 'Système de tailles'
+          help: 'Le système de tailles du produit. Cette information permet de créer des filtres précis dont les utilisateurs peuvent se servir pour affiner leurs résultats de recherche'
+        googleSizeType:
+          title: 'Type de coupe'
+          help: 'La coupe du  produit. Cette information permet de créer des filtres précis dont les utilisateurs peuvent se servir pour affiner leurs résultats de recherche.'
+        googleSuggestedRetailPrice:
+          title: 'Date du prix suggéré'
+          help: 'La date du prix suggéré lié au produit.'
+        googleTheme:
+          title: 'Thème'
+          help: 'Le thème du produit orné d''une image ou d''un style associés à un personnage ou à un concept connus.'
         googleVideoLink:
           title: 'Lien vidéo'
           help: 'Lien absolu renvoyant vers une vidéo associée au produit, optionnel.'
-
-batch_jobs:
-  google_manufacturer_xml_product_export:
-    label: Google Manufacturer - Export des produits au format XML
-    validation.label: Validating file
-    export.label: Google Manufacturer - Export des produits au format XML
+        googleRichProductContent:
+          title: 'Contenu Enrichi sur le Produit'
+          help: 'Fournir des descriptions détaillées des produits et indiquer les contenus multimédias permettant de mettre en avant des fonctionnalités spéciales des produits.'

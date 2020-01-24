@@ -78,25 +78,40 @@ class ProductXmlExport extends PimProductCsvExport
         $constraintFields[GoogleImportExport::ATTR_ACCEPTANCE]  = new NotBlank();
 
         // Mandatory fields
-        $constraintFields[GoogleImportExport::ATTR_IDENTIFIER]  = new NotBlank();
-        $constraintFields[GoogleImportExport::ATTR_GTIN]        = new NotBlank();
-        $constraintFields[GoogleImportExport::ATTR_TITLE]       = new NotBlank();
         $constraintFields[GoogleImportExport::ATTR_BRAND]       = new NotBlank();
         $constraintFields[GoogleImportExport::ATTR_DESCRIPTION] = new NotBlank();
-        $constraintFields[GoogleImportExport::ATTR_MPN]         = new NotBlank();
+        $constraintFields[GoogleImportExport::ATTR_GTIN]        = new NotBlank();
+        $constraintFields[GoogleImportExport::ATTR_IDENTIFIER]  = new NotBlank();
+        $constraintFields[GoogleImportExport::ATTR_TITLE]       = new NotBlank();
         $constraintFields[GoogleImportExport::ATTR_IMAGE_LINK]  = new NotBlank();
 
         // Optional fields
-        $constraintFields[GoogleImportExport::ATTR_MPN]                    = new Optional();
-        $constraintFields[GoogleImportExport::ATTR_PRODUCT_NAME]           = new Optional();
-        $constraintFields[GoogleImportExport::ATTR_PRODUCT_LINE]           = new Optional();
-        $constraintFields[GoogleImportExport::ATTR_PRODUCT_TYPE]           = new Optional();
-        $constraintFields[GoogleImportExport::ATTR_VIDEO_LINK]             = new Optional();
-        $constraintFields[GoogleImportExport::ATTR_PRODUCT_PAGE_URL]       = new Optional();
         $constraintFields[GoogleImportExport::ATTR_ADDITIONAL_IMAGE_LINK]  = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_AGE_GROUP]              = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_CAPACITY]               = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_COLOR]                  = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_COUNT]                  = new Optional();
         $constraintFields[GoogleImportExport::ATTR_DISCLOSURE_DATE]        = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_FLAVOR]                 = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_FORMAT]                 = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_GENDER]                 = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_ITEM_GROUP_ID]          = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_MATERIAL]               = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_MPN]                    = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_PATTERN]                = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_PRODUCT_LINE]           = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_PRODUCT_NAME]           = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_PRODUCT_PAGE_URL]       = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_PRODUCT_TYPE]           = new Optional();
         $constraintFields[GoogleImportExport::ATTR_RELEASE_DATE]           = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_SCENT]                  = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_SIZE]                   = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_SIZE_SYSTEM]     = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_SIZE_TYPE]       = new Optional();
         $constraintFields[GoogleImportExport::ATTR_SUGGESTED_RETAIL_PRICE] = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_THEME]                  = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_VIDEO_LINK]             = new Optional();
+        $constraintFields[GoogleImportExport::ATTR_RICH_PRODUCT_CONTENT]   = new Optional();
 
         // Grouped fields
         $constraintFields[GoogleImportExport::ATTR_FEATURE_DESCRIPTIONS] = new Optional();

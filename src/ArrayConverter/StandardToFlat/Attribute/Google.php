@@ -72,29 +72,42 @@ class Google extends PimProductLocalized implements ArrayConverterInterface
     /** @var string[] GOOGLE_MAPPING_ATTRIBUTES */
     const GOOGLE_MAPPING_ATTRIBUTES = [
         // Mandatory
+        GoogleImportExport::GOOGLE_ATTR_BRAND                   => GoogleImportExport::ATTR_BRAND,
+        GoogleImportExport::GOOGLE_ATTR_DESCRIPTION             => GoogleImportExport::ATTR_DESCRIPTION,
         GoogleImportExport::GOOGLE_ATTR_ID                      => GoogleImportExport::ATTR_IDENTIFIER,
         GoogleImportExport::GOOGLE_ATTR_GTIN                    => GoogleImportExport::ATTR_GTIN,
         GoogleImportExport::GOOGLE_ATTR_TITLE                   => GoogleImportExport::ATTR_TITLE,
-        GoogleImportExport::GOOGLE_ATTR_BRAND                   => GoogleImportExport::ATTR_BRAND,
-        GoogleImportExport::GOOGLE_ATTR_DESCRIPTION             => GoogleImportExport::ATTR_DESCRIPTION,
         GoogleImportExport::GOOGLE_ATTR_IMAGE_LINK              => GoogleImportExport::ATTR_IMAGE_LINK,
         // Optional
-        GoogleImportExport::GOOGLE_ATTR_MPN                     => GoogleImportExport::ATTR_MPN,
-        GoogleImportExport::GOOGLE_ATTR_PRODUCT_NAME            => GoogleImportExport::ATTR_PRODUCT_NAME,
-        GoogleImportExport::GOOGLE_ATTR_PRODUCT_LINE            => GoogleImportExport::ATTR_PRODUCT_LINE,
-        GoogleImportExport::GOOGLE_ATTR_PRODUCT_TYPE            => GoogleImportExport::ATTR_PRODUCT_TYPE,
         GoogleImportExport::GOOGLE_ATTR_ADDITIONAL_IMAGE_LINK   => GoogleImportExport::ATTR_ADDITIONAL_IMAGE_LINK,
-        GoogleImportExport::GOOGLE_ATTR_VIDEO_LINK              => GoogleImportExport::ATTR_VIDEO_LINK,
-        GoogleImportExport::GOOGLE_ATTR_PAGE_URL                => GoogleImportExport::ATTR_PRODUCT_PAGE_URL,
+        GoogleImportExport::GOOGLE_ATTR_AGE_GROUP               => GoogleImportExport::ATTR_AGE_GROUP,
+        GoogleImportExport::GOOGLE_ATTR_CAPACITY                => GoogleImportExport::ATTR_CAPACITY,
+        GoogleImportExport::GOOGLE_ATTR_COLOR                   => GoogleImportExport::ATTR_COLOR,
+        GoogleImportExport::GOOGLE_ATTR_COUNT                   => GoogleImportExport::ATTR_COUNT,
         GoogleImportExport::GOOGLE_ATTR_DISCLOSURE_DATE         => GoogleImportExport::ATTR_DISCLOSURE_DATE,
+        GoogleImportExport::GOOGLE_ATTR_FLAVOR                  => GoogleImportExport::ATTR_FLAVOR,
+        GoogleImportExport::GOOGLE_ATTR_FORMAT                  => GoogleImportExport::ATTR_FORMAT,
+        GoogleImportExport::GOOGLE_ATTR_GENDER                  => GoogleImportExport::ATTR_GENDER,
+        GoogleImportExport::GOOGLE_ATTR_ITEM_GROUP_ID           => GoogleImportExport::ATTR_ITEM_GROUP_ID,
+        GoogleImportExport::GOOGLE_ATTR_MATERIAL                => GoogleImportExport::ATTR_MATERIAL,
+        GoogleImportExport::GOOGLE_ATTR_MPN                     => GoogleImportExport::ATTR_MPN,
+        GoogleImportExport::GOOGLE_ATTR_PATTERN                 => GoogleImportExport::ATTR_PATTERN,
+        GoogleImportExport::GOOGLE_ATTR_PRODUCT_LINE            => GoogleImportExport::ATTR_PRODUCT_LINE,
+        GoogleImportExport::GOOGLE_ATTR_PRODUCT_NAME            => GoogleImportExport::ATTR_PRODUCT_NAME,
+        GoogleImportExport::GOOGLE_ATTR_PRODUCT_PAGE_URL        => GoogleImportExport::ATTR_PRODUCT_PAGE_URL,
+        GoogleImportExport::GOOGLE_ATTR_PRODUCT_TYPE            => GoogleImportExport::ATTR_PRODUCT_TYPE,
         GoogleImportExport::GOOGLE_ATTR_RELEASE_DATE            => GoogleImportExport::ATTR_RELEASE_DATE,
+        GoogleImportExport::GOOGLE_ATTR_SCENT                   => GoogleImportExport::ATTR_SCENT,
+        GoogleImportExport::GOOGLE_ATTR_SIZE                    => GoogleImportExport::ATTR_SIZE,
+        GoogleImportExport::GOOGLE_ATTR_SIZE_SYSTEM             => GoogleImportExport::ATTR_SIZE_SYSTEM,
+        GoogleImportExport::GOOGLE_ATTR_SIZE_TYPE               => GoogleImportExport::ATTR_SIZE_TYPE,
         GoogleImportExport::GOOGLE_ATTR_SUGGESTED_RETAIL_PRICE  => GoogleImportExport::ATTR_SUGGESTED_RETAIL_PRICE,
+        GoogleImportExport::GOOGLE_ATTR_THEME                   => GoogleImportExport::ATTR_THEME,
+        GoogleImportExport::GOOGLE_ATTR_VIDEO_LINK              => GoogleImportExport::ATTR_VIDEO_LINK,
+        GoogleImportExport::GOOGLE_ATTR_RICH_PRODUCT_CONTENT    => GoogleImportExport::ATTR_RICH_PRODUCT_CONTENT,
         // Grouped
         GoogleImportExport::GOOGLE_ATTR_PRODUCT_DETAIL          => GoogleImportExport::ATTR_PRODUCT_DETAILS,
         GoogleImportExport::GOOGLE_ATTR_FEATURE_DESCRIPTION     => GoogleImportExport::ATTR_FEATURE_DESCRIPTIONS,
-        // Variant
-        GoogleImportExport::GOOGLE_ATTR_ITEM_GROUP_ID           => GoogleImportExport::ATTR_ITEM_GROUP_ID,
-        GoogleImportExport::GOOGLE_ATTR_COLOR                   => GoogleImportExport::ATTR_COLOR,
     ];
     /** @var string[] GOOGLE_MAPPING_GROUPED_ATTRIBUTES  */
     const GOOGLE_MAPPING_GROUPED_ATTRIBUTES = [
@@ -237,10 +250,10 @@ class Google extends PimProductLocalized implements ArrayConverterInterface
         /** @var ConstraintViolationInterface $violation */
         foreach ($this->violations as $violation) {
             $message .= sprintf(
-                '- %s %s Value: %s %s',
+                '- %s %s Current value: %s %s',
                 $violation->getPropertyPath(),
                 $violation->getMessage(),
-                $violation->getInvalidValue(),
+                $violation->getInvalidValue() !== '' ? $violation->getInvalidValue() : 'NULL' ,
                 PHP_EOL
             );
         }
