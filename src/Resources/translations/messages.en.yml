@@ -148,8 +148,8 @@ dnd_google_manufacturer:
           title: 'Size Type'
           help: 'This information creates precise filters that users can use to refine their search results. The authorized values: standard [regular], small size woman [small], large size [oversize] or maternity [maternity].'
         googleSuggestedRetailPrice:
-          title: 'Suggested price date'
-          help: 'Manufacturer suggested retail price. Optional, eg: "USD 9.99"'
+          title: 'Suggested Retail Price'
+          help: 'The suggested retail price linked of the product.'
         googleTheme:
           title: 'Theme'
           help: 'The product theme adorned with an image or style associated with a known character or concept. Recommended range between 0 and 1000 characters.'
