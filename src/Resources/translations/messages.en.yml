@@ -1,15 +1,15 @@
+batch_jobs:
+  google_manufacturer_xml_product_export:
+    label: 'Google Manufacturer - XML Products Export'
+    validation.label: 'Validating file'
+    export.label: 'Google Manufacturer - XML Products Export'
+
 pim_enrich:
   form:
     job_instance:
       tab:
         google-mapping:
           title: 'Google Manufacturer Configuration'
-
-batch_jobs:
-  google_manufacturer_xml_product_export:
-    label: 'Google Manufacturer - XML Products Export'
-    validation.label: 'Validating file'
-    export.label: 'XML Products Export'
 
 info:
   google:
@@ -20,17 +20,39 @@ info:
 dnd_google_manufacturer:
   list:
     default: 'Select an option'
+  export:
+    product:
+      google:
+        general_configurations:
+          title: 'General'
+        mandatory:
+          title: 'Mandatory Attribute'
+        optional:
+          title: 'Optional Attribute'
+        grouped:
+          error: 'The value must be filled.'
+          title: 'Grouped Attribute'
+          button:
+            product_detail: 'New product detail block'
+            feature_description: 'New feature description block'
+          feature_description:
+            title: 'Add Feature Description'
+            headline: 'Headline'
+            text: 'Text'
+            image_link: 'Image Link'
+          product_detail:
+            title: 'Add Product Detail'
+            section_name: 'Section Name'
+            attribute_name: 'Attribute Name'
+            attribute_value: 'Attribute Value'
   form:
     job_instance:
       tab:
         google:
           title: 'Google Manufacturer Configuration'
-        googleProductPageUrl:
-          title: 'Product Page URL'
-          help: 'Absolute URL link referred to the product page URL.'
         googleAcceptance:
           title: 'Level of acceptance'
-          help: 'Define the level of acceptance which will trigger the validation process (default: medium).'
+          help: 'Define the level of acceptance which will trigger the validation process, default: medium.'
           low: 'Low'
           medium: 'Medium (recommended)'
           high: 'High'
@@ -43,34 +65,61 @@ dnd_google_manufacturer:
           help: 'A referred URL link of the target website. Example: http://demo.akeneo.com/'
         googleId:
           title: 'Identifier'
-          help: 'A unique identifier send to Google, must be provided.'
+          help: 'Max length 50, must be provided.'
         googleBrand:
           title: 'Brand'
-          help: 'The related brand of the product, can be null.'
+          help: 'Brand name of a product, must be provided'
         googleTitle:
           title: 'Title'
-          help: 'The related title of the product, can be null.'
+          help: 'Recommended range 80 to 140, can be null.'
         googleDescription:
           title: 'Description'
-          help: 'Detailed paragraph description of your product, recommended range 500 to 1500, must be provided.'
+          help: 'Detailed paragraph description of your product, recommended range 500 to 1 / 500, must be provided.'
         googleGtin:
           title: 'GTIN'
-          help: 'The GTIN code of the product, must be provided.'
-        googleMpn:
-          title: 'MPN'
-          help: 'The MPN code of the product, must be provided.'
+          help: 'Global Trade Item Number (GTIN) of the item, 8-, 12-, 13-, or 14-digit number (UPC, EAN, JAN, or ISBN), must be provided.'
         googleImageLink:
           title: 'Image Link'
           help: 'URL of an image of the item, must start with "http://" or "https://, must be provided.'
+        googleAdditionalImageLink:
+          title: 'Additional Image Link'
+          help: 'The additional image link of the product.'
+        googleAgeGroup:
+          title: 'Age Group'
+          help: 'Indicate for which age group the product is intended. The authorized values are: infants, babies, toddlers, children or adults.'
+        googleCapacity:
+          title: 'Capacity'
+          help: 'Defines the capacity of a product to store files and digital content. The expected value must be of the type: Integer + Unit of measure (eg: 16 GB)'
+        googleColor:
+          title: 'Color'
+          help: 'Color of the item, maximum 100. Optional.'
+        googleCount:
+          title: 'Count'
+          help: 'The number of product units in a batch that can be purchased as a single item and has a unique GTIN code.'
         googleDisclosureDate:
           title: 'Disclosure date'
-          help: 'The disclosure date of the product.'
-        googleReleaseDate:
-          title: 'Release date'
-          help: 'The release date of the product.'
-        googleSuggestedRetailPrice:
-          title: 'Suggested Retail Date'
-          help: 'The suggested retail price linked of the product.'
+          help: 'Date item is announced publicly. Optional, eg: "2013-12-05"'
+        googleFlavor:
+          title: 'Flavor'
+          help: 'The flavor of the product whose aroma varies. Recommended range between 0 and 1000 characters.'
+        googleFormat:
+          title: 'Format'
+          help: 'The format of the support of a product. It is used to distinguish books, music titles, films, software and video games that are published or distributed in different formats or versions.'
+        googleGender:
+          title: 'Gender'
+          help: 'The gender for which the product is intended. This information allows potential customers to precisely filter products by gender and refine their search. '
+        googleItemGroupId:
+          title: 'Item Group ID'
+          help: ' Identifies variants of a product/style, maximum 50. Optional,'
+        googleMaterial:
+          title: 'Material'
+          help: 'Describes the main fabric or material of the product. For example, pumps can be made of leather, jeans or suede.'
+        googleMpn:
+          title: 'MPN'
+          help: 'Manufacturer Part Number (MPN) of the item, recommended for all items.'
+        googlePattern:
+          title: 'Pattern'
+          help: 'Specifies the pattern or print of the product. For example, if a T-shirt has the logo of an American football team, you can indicate "Bears" or "Tigers" as the pattern.'
         googleProductName:
           title: 'Canonical name of the product'
           help: 'Recommended range 80 to 140. Optional.'
@@ -80,15 +129,33 @@ dnd_google_manufacturer:
         googleProductType:
           title: 'Product Type'
           help: ' Type or category of the product. Optional, value me but separate with ">" eg: Home & Garden > Kitchen, Dining &Table > Appliances > Refrigerator.'
-        googleItemGroupId:
-          title: 'Item Group ID'
-          help: ' Identifies variants of a product/style, maximum 50. Optional,'
-        googleColor:
-          title: 'Color'
-          help: 'Color of the item, maximum 100. Optional.'
-        googleAdditionalImageLink:
-          title: 'Additional Image Link'
-          help: 'The additional image link of the product.'
+        googleProductPageUrl:
+          title: 'Product Page URL'
+          help: 'Absolute URL link referred to the product page URL.'
+        googleReleaseDate:
+          title: 'Release date'
+          help: 'Date item is available for purchase. Optional, eg: "2013-12-05"'
+        googleScent:
+          title: 'Scent'
+          help: 'The scent of the product which varies according to the aroma or the odor. Recommended range between 0 and 1000 characters.'
+        googleSize:
+          title: 'Size'
+          help: 'The standard size of the product. When merchants offer your products with this attribute, your ads may appear in the results filtered by size. Recommended range between 0 and 1000 characters.'
+        googleSizeSystem:
+          title: 'Size System'
+          help: 'The product size system. This information creates precise filters that users can use to refine their search results. Authorized values: AU, BR, CN (China), DE, EU, FR, IT, JP, MEX, UK, US.'
+        googleSizeType:
+          title: 'Size Type'
+          help: 'This information creates precise filters that users can use to refine their search results. The authorized values: standard [regular], small size woman [small], large size [oversize] or maternity [maternity].'
+        googleSuggestedRetailPrice:
+          title: 'Suggested price date'
+          help: 'Manufacturer suggested retail price. Optional, eg: "USD 9.99"'
+        googleTheme:
+          title: 'Theme'
+          help: 'The product theme adorned with an image or style associated with a known character or concept. Recommended range between 0 and 1000 characters.'
         googleVideoLink:
           title: 'Video Link'
           help: 'URL for a video of the item, optional'
+        googleRichProductContent:
+          title: 'Enriched Product Content'
+          help: 'Provide detailed product descriptions and indicate multimedia content to highlight special product features. 20K limit'
