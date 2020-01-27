@@ -18,7 +18,7 @@ dnd_google_manufacturer:
           detail:
             low: 'Le niveau "faible" désactive les validations customisées et n''utilise que celles natives d''Akeneo.'
             medium: 'Le niveau "modéré" vérifie l''intégrité des champs requis par Google Manufacturer.'
-            high: 'Le niveau "haut" vérifie à la fois l''intégrité des champs requis par Google Manufacturer mais aussi le respect des règles de validations au niveau des données du produit. Comme la taille du champ, la typo etc...'
+            high: 'Le niveau "haut" vérifie à la fois l''intégrité des champs requis par Google Manufacturer mais aussi le respect des règles de validations au niveau des données des attributs produit comme la taille du champ, le contenu etc...'
         googleUrl:
           title: 'Lien du website'
           help: 'Lien absolu renvoyant vers l''URL du site cible.'

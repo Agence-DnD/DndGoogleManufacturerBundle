@@ -5,12 +5,12 @@ dnd_google_manufacturer:
         general_configurations:
           title: 'General'
         mandatory:
-          title: 'Mandatory Attribute'
+          title: 'Mandatory Attributes'
         optional:
-          title: 'Optional Attribute'
+          title: 'Optional Attributes'
         grouped:
           error: 'The value must be filled.'
-          title: 'Grouped Attribute'
+          title: 'Grouped Attributes'
           button:
             product_detail: 'New product detail block'
             feature_description: 'New feature description block'
@@ -36,8 +36,8 @@ dnd_google_manufacturer:
           title: 'Level of acceptance'
           help: 'Define the level of acceptance which will trigger the validation process, default: medium.'
           detail:
-            low: 'The lowest level disable all the custom validation process and only use the native ones.'
-            medium: 'The medium level will check the requirements of product data depends of the Google Manufacturer.'
+            low: 'The lowest level will disable all the Google Manufacturer custom validation process and only use the Akeneo native ones.'
+            medium: 'The medium level will check the requirements of product data depending on Google Manufacturer requirements.'
             high: 'The highest level will check the requirements of Google Manufacturer but also some extra-validations such as length, size, typo etc...'
         googleUrl:
           title: 'Website Link'

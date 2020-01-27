@@ -20,6 +20,8 @@ With Google Manufacturer Connector, you can:
 * Configure and generate "Product Detail" and "Feature Description" nodes from Akeneo attributes
 * Generate XML file for Google Manufacturer
 
+You can also watch the video demonstration dedicated to the connector [here](https://youtu.be/).
+
 ### Requirements:
 
 * Akeneo 3.X
