@@ -304,46 +304,10 @@ extensions:
   # ---- General --->
 
   # <--- Mandatory ---
-  google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleId:
-    module: dnd/job/export/product/edit/google/field
-    parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
-    position: 10
-    targetZone: mandatory-attributes
-    config:
-      fieldCode: configuration.googleId
-      required: true
-      readOnly: false
-      label: dnd_google_manufacturer.form.job_instance.tab.googleId.title
-      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleId.help
-
-  google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleGtin:
-    module: dnd/job/export/product/edit/google/field
-    parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
-    position: 20
-    targetZone: mandatory-attributes
-    config:
-      required: true
-      fieldCode: configuration.googleGtin
-      readOnly: false
-      label: dnd_google_manufacturer.form.job_instance.tab.googleGtin.title
-      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleGtin.help
-
-  google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleTitle:
-    module: dnd/job/export/product/edit/google/field
-    parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
-    position: 30
-    targetZone: mandatory-attributes
-    config:
-      required: true
-      fieldCode: configuration.googleTitle
-      readOnly: false
-      label: dnd_google_manufacturer.form.job_instance.tab.googleTitle.title
-      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleTitle.help
-
   google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleBrand:
     module: dnd/job/export/product/edit/google/field
     parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
-    position: 40
+    position: 10
     targetZone: mandatory-attributes
     config:
       required: true
@@ -355,7 +319,7 @@ extensions:
   google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleDescription:
     module: dnd/job/export/product/edit/google/field
     parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
-    position: 50
+    position: 20
     targetZone: mandatory-attributes
     config:
       required: true
@@ -363,6 +327,42 @@ extensions:
       readOnly: false
       label: dnd_google_manufacturer.form.job_instance.tab.googleDescription.title
       tooltip: dnd_google_manufacturer.form.job_instance.tab.googleDescription.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleGtin:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
+    position: 30
+    targetZone: mandatory-attributes
+    config:
+      required: true
+      fieldCode: configuration.googleGtin
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleGtin.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleGtin.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleId:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
+    position: 40
+    targetZone: mandatory-attributes
+    config:
+      fieldCode: configuration.googleId
+      required: true
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleId.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleId.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleTitle:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-mandatory
+    position: 50
+    targetZone: mandatory-attributes
+    config:
+      required: true
+      fieldCode: configuration.googleTitle
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleTitle.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleTitle.help
 
   google-manufacturer-xml-product-export-edit-google-mapping-mandatory-properties-googleImageLink:
     module: dnd/job/export/product/edit/google/field
@@ -376,55 +376,10 @@ extensions:
       tooltip: dnd_google_manufacturer.form.job_instance.tab.googleImageLink.help
   #  ---- Mandatory --->
   # <--- Optional ---
-  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleMpn:
-    module: dnd/job/export/product/edit/google/field
-    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
-    position: 10
-    targetZone: optional-attributes
-    config:
-      required: true
-      fieldCode: configuration.googleMpn
-      readOnly: false
-      label: dnd_google_manufacturer.form.job_instance.tab.googleMpn.title
-      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleMpn.help
-
-  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleProductName:
-    module: dnd/job/export/product/edit/google/field
-    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
-    position: 20
-    targetZone: optional-attributes
-    config:
-      fieldCode: configuration.googleProductName
-      readOnly: false
-      label: dnd_google_manufacturer.form.job_instance.tab.googleProductName.title
-      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleProductName.help
-
-  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleProductLine:
-    module: dnd/job/export/product/edit/google/field
-    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
-    position: 30
-    targetZone: optional-attributes
-    config:
-      fieldCode: configuration.googleProductLine
-      readOnly: false
-      label: dnd_google_manufacturer.form.job_instance.tab.googleProductLine.title
-      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleProductLine.help
-
-  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleProductType:
-    module: dnd/job/export/product/edit/google/field
-    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
-    position: 40
-    targetZone: optional-attributes
-    config:
-      fieldCode: configuration.googleProductType
-      readOnly: false
-      label: dnd_google_manufacturer.form.job_instance.tab.googleProductType.title
-      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleProductType.help
-
   google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleAdditionalImageLink:
     module: dnd/job/export/product/edit/google/field
     parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
-    position: 50
+    position: 10
     targetZone: optional-attributes
     config:
       fieldCode: configuration.googleAdditionalImageLink
@@ -432,32 +387,54 @@ extensions:
       label: dnd_google_manufacturer.form.job_instance.tab.googleAdditionalImageLink.title
       tooltip: dnd_google_manufacturer.form.job_instance.tab.googleAdditionalImageLink.help
 
-  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleVideoLink:
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleAgeGroup:
     module: dnd/job/export/product/edit/google/field
     parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
-    position: 60
+    position: 20
     targetZone: optional-attributes
     config:
-      fieldCode: configuration.googleVideoLink
+      fieldCode: configuration.googleAgeGroup
       readOnly: false
-      label: dnd_google_manufacturer.form.job_instance.tab.googleVideoLink.title
-      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleVideoLink.help
+      label: dnd_google_manufacturer.form.job_instance.tab.googleAgeGroup.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleAgeGroup.help
 
-  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleProductPageUrl:
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleCapacity:
     module: dnd/job/export/product/edit/google/field
     parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
-    position: 70
+    position: 30
     targetZone: optional-attributes
     config:
-      fieldCode: configuration.googleProductPageUrl
+      fieldCode: configuration.googleCapacity
       readOnly: false
-      label: dnd_google_manufacturer.form.job_instance.tab.googleProductPageUrl.title
-      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleProductPageUrl.help
+      label: dnd_google_manufacturer.form.job_instance.tab.googleCapacity.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleCapacity.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleColor:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 40
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleColor
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleColor.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleColor.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleCount:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 50
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleCount
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleCount.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleCount.help
 
   google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleDisclosureDate:
     module: dnd/job/export/product/edit/google/field
     parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
-    position: 80
+    position: 60
     targetZone: optional-attributes
     config:
       fieldCode: configuration.googleDisclosureDate
@@ -465,10 +442,131 @@ extensions:
       label: dnd_google_manufacturer.form.job_instance.tab.googleDisclosureDate.title
       tooltip: dnd_google_manufacturer.form.job_instance.tab.googleDisclosureDate.help
 
-  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleReleaseDate:
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleFlavor:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 70
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleFlavor
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleFlavor.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleFlavor.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleFormat:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 80
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleFormat
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleFormat.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleFormat.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleGender:
     module: dnd/job/export/product/edit/google/field
     parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
     position: 90
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleGender
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleGender.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleGender.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleItemGroupId:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 100
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleItemGroupId
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleItemGroupId.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleItemGroupId.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleMaterial:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 110
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleMaterial
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleMaterial.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleMaterial.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleMpn:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 120
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleMpn
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleMpn.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleMpn.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googlePattern:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 130
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googlePattern
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googlePattern.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googlePattern.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleProductLine:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 140
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleProductLine
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleProductLine.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleProductLine.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleProductName:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 150
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleProductName
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleProductName.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleProductName.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleProductPageUrl:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 160
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleProductPageUrl
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleProductPageUrl.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleProductPageUrl.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleProductType:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 170
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleProductType
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleProductType.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleProductType.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleReleaseDate:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 180
     targetZone: optional-attributes
     config:
       fieldCode: configuration.googleReleaseDate
@@ -476,16 +574,93 @@ extensions:
       label: dnd_google_manufacturer.form.job_instance.tab.googleReleaseDate.title
       tooltip: dnd_google_manufacturer.form.job_instance.tab.googleReleaseDate.help
 
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleScent:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 190
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleScent
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleScent.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleScent.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleSize:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 200
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleSize
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleSize.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleSize.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleSizeSystem:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 210
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleSizeSystem
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleSizeSystem.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleSizeSystem.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleSizeType:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 220
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleSizeType
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleSizeType.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleSizeType.help
+
   google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleSuggestedRetailPrice:
     module: dnd/job/export/product/edit/google/field
     parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
-    position: 100
+    position: 230
     targetZone: optional-attributes
     config:
       fieldCode: configuration.googleSuggestedRetailPrice
       readOnly: false
       label: dnd_google_manufacturer.form.job_instance.tab.googleSuggestedRetailPrice.title
       tooltip: dnd_google_manufacturer.form.job_instance.tab.googleSuggestedRetailPrice.help
-  #  ---- Optional --->
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleTheme:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 240
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleTheme
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleTheme.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleTheme.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleVideoLink:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 250
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleVideoLink
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleVideoLink.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleVideoLink.help
+
+  google-manufacturer-xml-product-export-edit-google-mapping-optional-properties-googleRichProductContent:
+    module: dnd/job/export/product/edit/google/field
+    parent: google-manufacturer-xml-product-export-edit-google-mapping-optional
+    position: 260
+    targetZone: optional-attributes
+    config:
+      fieldCode: configuration.googleRichProductContent
+      readOnly: false
+      label: dnd_google_manufacturer.form.job_instance.tab.googleRichProductContent.title
+      tooltip: dnd_google_manufacturer.form.job_instance.tab.googleRichProductContent.help
+ #  ---- Optional --->
 
   ### < Google Attributes ###

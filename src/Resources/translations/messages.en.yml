@@ -1,3 +1,22 @@
+pim_enrich:
+  form:
+    job_instance:
+      tab:
+        google-mapping:
+          title: 'Google Manufacturer Configuration'
+
+batch_jobs:
+  google_manufacturer_xml_product_export:
+    label: 'Google Manufacturer - XML Products Export'
+    validation.label: 'Validating file'
+    export.label: 'XML Products Export'
+
+info:
+  google:
+    grouped:
+      attributes:
+        updated: 'There are unsaved changes.'
+
 dnd_google_manufacturer:
   list:
     default: 'Select an option'
@@ -21,7 +40,7 @@ dnd_google_manufacturer:
             high: 'The highest level will check the requirements of Google Manufacturer but also some extra-validations such as length, size, typo etc...'
         googleUrl:
           title: 'Website Link'
-          help: 'A referred URL link of the target website.'
+          help: 'A referred URL link of the target website. Example: http://demo.akeneo.com/'
         googleId:
           title: 'Identifier'
           help: 'A unique identifier send to Google, must be provided.'
@@ -73,9 +92,3 @@ dnd_google_manufacturer:
         googleVideoLink:
           title: 'Video Link'
           help: 'URL for a video of the item, optional'
-
-batch_jobs:
-  google_manufacturer_xml_product_export:
-    label: Google Manufacturer - XML Products Export
-    validation.label: Validating file
-    export.label: Google Manufacturer - XML Products Export
