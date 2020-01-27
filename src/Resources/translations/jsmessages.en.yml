@@ -89,7 +89,7 @@ dnd_google_manufacturer:
           title: 'Release date'
           help: 'Date item is available for purchase. Optional, eg: "2013-12-05"'
         googleSuggestedRetailPrice:
-          title: 'Suggested Retail Date'
+          title: 'Suggested Retail Price'
           help: 'Manufacturer suggested retail price. Optional, eg: "USD 9.99"'
         googleProductName:
           title: 'Canonical name of the product'

@@ -149,8 +149,8 @@ dnd_google_manufacturer:
           title: 'Type de coupe'
           help: 'La coupe du  produit. Cette information permet de créer des filtres précis dont les utilisateurs peuvent se servir pour affiner leurs résultats de recherche.'
         googleSuggestedRetailPrice:
-          title: 'Date du prix suggéré'
-          help: 'La date du prix suggéré lié au produit.'
+          title: 'Prix de vente suggéré'
+          help: 'Prix de vente suggéré lié au produit.'
         googleTheme:
           title: 'Thème'
           help: 'Le thème du produit orné d''une image ou d''un style associés à un personnage ou à un concept connus.'

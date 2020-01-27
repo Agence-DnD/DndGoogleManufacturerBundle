@@ -148,7 +148,7 @@ dnd_google_manufacturer:
           title: 'Type de coupe'
           help: 'La coupe du  produit. Cette information permet de créer des filtres précis dont les utilisateurs peuvent se servir pour affiner leurs résultats de recherche. Les valeurs autorisées: standard [regular], petite taille femme [petite], grande taille [oversize] ou maternité [maternity].'
         googleSuggestedRetailPrice:
-          title: 'Date du prix suggéré'
+          title: 'Prix de vente suggéré'
           help: 'Indique à Google le prix auquel vous conseillez aux marchands de vendre votre produit. Plage recommandée entre 0 et 50 caractères.'
         googleTheme:
           title: 'Thème'

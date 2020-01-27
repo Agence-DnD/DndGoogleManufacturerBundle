@@ -69,7 +69,7 @@ dnd_google_manufacturer:
           title: 'Release date'
           help: 'The release date of the product.'
         googleSuggestedRetailPrice:
-          title: 'Suggested Retail Date'
+          title: 'Suggested Retail Price'
           help: 'The suggested retail price linked of the product.'
         googleProductName:
           title: 'Canonical name of the product'
