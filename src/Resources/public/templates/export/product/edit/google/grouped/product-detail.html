@@ -9,10 +9,11 @@
             </label>
         </div>
         <div class="AknFieldContainer-inputContainer">
-            <input type="hidden"
+            <input type="text"
+                   class="AknTextField DndAknTextField"
                    name="googleProductDetailSectionName_<%- id %>"
                    id="googleProductDetailSectionName_<%- id %>"
-                   class="select-field on-initialize"
+                   value="<% if (data) {%><%- data.googleProductDetailSectionName %><% } %>"
                    data-google="googleProductDetailSectionName"
                    data-google-value="<% if (data) {%><%- data.googleProductDetailSectionName %><% } %>"
             />
@@ -32,7 +33,7 @@
             <input type="hidden"
                    name="googleProductDetailAttributeName_<%- id %>"
                    id="googleProductDetailAttributeName_<%- id %>"
-                   class="select-field on-initialize"
+                   class="select-field select-single-field on-initialize"
                    data-google="googleProductDetailAttributeName"
                    data-google-value="<% if (data) {%><%- data.googleProductDetailAttributeName %><% } %>"
             />
@@ -52,7 +53,7 @@
             <input type="hidden"
                    name="googleProductDetailAttributeValue_<%- id %>"
                    id="googleProductDetailAttributeValue_<%- id %>"
-                   class="select-field on-initialize"
+                   class="select-field select-multi-field on-initialize"
                    data-google="googleProductDetailAttributeValue"
                    data-google-value="<% if (data) {%><%- data.googleProductDetailAttributeValue %><% } %>"
             />
