@@ -111,6 +111,9 @@ define(
              * @param {Array} codes
              */
             setLocales: function (codes) {
+                if (typeof codes === 'string') {
+                    codes = [codes];
+                }
                 var data = this.getFilters();
                 var before = data.structure.locales;
 

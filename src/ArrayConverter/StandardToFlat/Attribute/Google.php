@@ -345,6 +345,28 @@ class Google extends PimProductLocalized implements ArrayConverterInterface
                 if (!$cursor || !isset($mappedAttribute[$groupedAttributeCode])) {
                     continue;
                 }
+                if ($groupedAttributeCode === GoogleImportExport::ATTR_PRODUCT_DETAILS_SECTION_NAME) {
+                    $convertedItem[$googleKey][$index][$cursor] = $mappedAttribute[$groupedAttributeCode][0] ?? '';
+
+                    continue;
+                }
+                if ($groupedAttributeCode === GoogleImportExport::ATTR_PRODUCT_DETAILS_ATTRIBUTE_NAME && isset($options['attributeRepository'])) {
+                    /** @var AttributeRepositoryInterface $attributeRepository */
+                    $attributeRepository = $options['attributeRepository'];
+                    /** @var AttributeInterface $attribute */
+                    $attribute = $attributeRepository->findOneByIdentifier($mappedAttribute[$groupedAttributeCode][0]);
+                    if (!$attribute) {
+                        continue;
+                    }
+                    /** @var string[] $locale */
+                    $locale = $options['jobParameters']['filters']['structure']['locales'][0];
+                    if (is_array($locale)) {
+                        $locale = reset($locale);
+                    }
+                    $convertedItem[$googleKey][$index][$cursor] = $attribute->setLocale($locale)->getLabel() ?? $mappedAttribute[$groupedAttributeCode][0];
+
+                    continue;
+                }
                 /** @var string[] $values */
                 $values = [];
                 foreach ($mappedAttribute[$groupedAttributeCode] as $mappedAttributeCode) {
