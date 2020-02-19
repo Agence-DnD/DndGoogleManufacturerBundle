@@ -39,7 +39,9 @@ define(
                 'click .AknButton': 'addFieldBlock',
                 'click .AknIconButton--ok': 'updateState',
                 'click .AknIconButton--editWhite': 'updateState',
-                'click .AknIconButton--removeWhite': 'removeState'
+                'click .AknIconButton--removeWhite': 'removeState',
+
+                'change .DndAknTextField': 'updateTextField'
             },
 
             /**
@@ -185,8 +187,9 @@ define(
              */
             updateState: function (event) {
                 let ctx = $(event.target);
+
                 let ctxBlock = ctx.closest('div.AknFieldContainer');
-                let inputs = ctxBlock.find('input.is-enriched');
+                let inputs = ctxBlock.find('input.is-enriched, input[type=text]');
 
                 let gBlock = ctxBlock.children().first();
                 let gBlockType = gBlock.attr('data-block');
@@ -200,7 +203,13 @@ define(
                         return;
                     }
                     input = $(input[0]);
-                    let codes = input.attr('data-google-value');
+                    let type = input.attr('type');
+                    let codes = '';
+                    if (type === 'text') {
+                        codes = input.val();
+                    } else if (type === 'hidden') {
+                        codes = input.attr('data-google-value');
+                    }
                     if (!codes) return;
                     codes = codes.split(',');
                     let gAttr = input.attr('data-google');
@@ -210,6 +219,34 @@ define(
                 });
 
                 this.afterUpdate(gBlockType, options, ctx);
+            },
+
+            updateTextField: function(event) {
+                let data = this.getConfiguration();
+                let item = $(event.target);
+                let container =  item.closest('.google-grouped-product-detail');
+                if (!container.attr('data-block') || container.attr('data-block') !== 'googleProductDetail') {
+                    return;
+                }
+                let containerId = container.attr('data-block-id');
+                let oldData = false;
+                if (false === _.isUndefined(data.googleProductDetail[containerId])) {
+                    oldData = data.googleProductDetail[containerId].googleProductDetailSectionName[0];
+                }
+                let itemContainer = item.closest('.AknFieldContainer');
+                let error = itemContainer.find('.AknFieldContainer-footer > .below-input-elements-container');
+                if (error) {
+                    error.each(function () {
+                        $(this).empty();
+                    });
+                }
+                if (oldData && oldData !== item.val()) {
+                    let parent = item.parent().parent().parent();
+                    let state = parent.find('.AknTitleContainer-state');
+                    if (state && state.is(':hidden')) {
+                        state.fadeIn(300);
+                    }
+                }
             },
 
             /**

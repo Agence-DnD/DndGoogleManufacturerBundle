@@ -22,6 +22,8 @@ config:
     # Modules extension
     dnd/common/add-select: dndgooglemanufacturer/js/product/edit/google/grouped/select
 
+    dnd/job/product/edit/content/structure/locales: dndgooglemanufacturer/js/job/product/edit/content/structure/locales
+
     dnd/job/export/product/edit/google:           dndgooglemanufacturer/js/product/edit/google
     dnd/job/export/product/edit/google/field:     dndgooglemanufacturer/js/product/edit/google/field
     dnd/job/export/product/edit/google/general:   dndgooglemanufacturer/js/product/edit/google/general
@@ -38,6 +40,8 @@ config:
     # Templates
     dnd/template/export/common/edit/field/select:                   dndgooglemanufacturer/templates/export/common/edit/field/select.html
     dnd/template/export/common/edit/field/google-acceptance-select: dndgooglemanufacturer/templates/export/common/edit/field/google-acceptance-select.html
+
+    dnd/template/export/product/edit/content/structure/locales:      dndgooglemanufacturer/templates/export/product/edit/content/structure/locales.html
 
     dnd/template/export/product/edit/google:            dndgooglemanufacturer/templates/export/product/edit/google.html
     dnd/template/export/product/edit/google/general:    dndgooglemanufacturer/templates/export/product/edit/google/general.html

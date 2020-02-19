@@ -186,7 +186,7 @@ extensions:
     position: 90
 
   google-manufacturer-xml-product-export-edit-content-structure-locales:
-    module: pim/job/product/edit/content/structure/locales
+    module: dnd/job/product/edit/content/structure/locales
     parent: google-manufacturer-xml-product-export-edit-content-structure
     targetZone: filters
     position: 100

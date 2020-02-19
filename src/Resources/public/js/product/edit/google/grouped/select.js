@@ -19,7 +19,9 @@ define(
         'pim/fetcher-registry',
         'pim/formatter/choices/base',
         'oro/mediator',
-        'pim/initselect2'
+        'pim/initselect2',
+        'pim/i18n',
+        'routing'
     ],
     function (
         $,
@@ -33,7 +35,9 @@ define(
         FetcherRegistry,
         ChoicesFormatter,
         mediator,
-        initSelect2
+        initSelect2,
+        i18n,
+        Routing
     ) {
         return BaseForm.extend({
             tagName: 'div',
@@ -57,13 +61,6 @@ define(
             defaultConfig: {
                 select2: {
                     placeholder: 'pim_enrich.form.common.base-add-select.btn.add',
-                    title: '',
-                    buttonTitle: '',
-                    emptyText: '',
-                    classes: '',
-                    minimumInputLength: 0,
-                    dropdownCssClass: '',
-                    closeOnSelect: false,
                     countTitle: 'pim_enrich.form.common.base-add-select.label.select_count'
                 },
                 resultsPerPage: 10,
@@ -139,26 +136,27 @@ define(
              * Initialize select2 and format elements.
              */
             initializeSelectWidget: function () {
-                var $select = $('input[type="hidden"].select-field.on-initialize');
+                var $multiSelect = $('input[type="hidden"].select-field.select-multi-field.on-initialize');
+                var $singleSelect = $('input[type="hidden"].select-field.select-single-field.on-initialize');
 
-                var opts = {
-                    dropdownCssClass: 'select2--bigDrop select2--annotedLabels ' + this.config.select2.dropdownCssClass,
-                    formatResult: this.onGetResult.bind(this),
-                    query: this.onGetQuery.bind(this)
-                };
-
-                opts = $.extend(true, {}, this.config.select2, opts);
-
-                $select = initSelect2.init($select, opts);
+                $multiSelect = initSelect2.init($multiSelect, this.getMultiSelectConfig());
+                $singleSelect = initSelect2.init($singleSelect, this.getSingleSelectConfig());
 
                 mediator.once('hash_navigation_request:start', function () {
-                    $select.select2('close');
-                    $select.select2('destroy');
+                    $multiSelect.select2('close');
+                    $multiSelect.select2('destroy');
+
+                    $singleSelect.select2('close');
+                    $singleSelect.select2('destroy');
                 });
 
-                $select.on('select2-selecting', this.onSelecting.bind(this));
-                $select.on('select2-open', this.onSelectOpen.bind(this));
-                $select.on('select2-close', this.onSelectClose.bind(this));
+                $multiSelect.on('select2-selecting', this.onSelecting.bind(this));
+                $multiSelect.on('select2-open', this.onSelectOpen.bind(this));
+                $multiSelect.on('select2-close', this.onSelectClose.bind(this));
+
+                $singleSelect.on('select2-selecting', this.onSelecting.bind(this));
+                $singleSelect.on('select2-open', this.onSelectOpen.bind(this));
+                $singleSelect.on('select2-close', this.onSelectClose.bind(this));
 
                 this.footerViewInstance = new this.footerView({
                     buttonTitle: this.config.select2.buttonTitle,
@@ -167,17 +165,17 @@ define(
                 });
 
                 this.footerViewInstance.on(this.addEvent, function () {
-                    $select.select2('close');
+                    $multiSelect.select2('close');
                     if (0 < this.selection.length) {
                         this.addItems();
                     }
                 }.bind(this));
 
                 var $menu = this.$('.select2-drop');
-
                 $menu.append(this.footerViewInstance.render().$el);
 
-                this.initializeLabel($select);
+                this.initializeLabel($multiSelect);
+                this.initializeLabel($singleSelect);
             },
 
             /**
@@ -197,6 +195,7 @@ define(
                         if (gValues && !_.isUndefined(gValues) && gValues !== '') {
                             this.refreshLabel(select);
                         }
+                        select.addClass('is-enriched');
                     }
                 }.bind(this));
             },
@@ -327,14 +326,17 @@ define(
             onSelecting: function (event) {
                 var item = $(event.target);
                 var itemCode = event.val;
-                var alreadySelected = _.contains(this.selection, itemCode);
 
-                if (alreadySelected) {
-                    this.selection = _.without(this.selection, itemCode);
+                if (item.hasClass('select-single-field')) {
+                    this.selection = [itemCode];
                 } else {
-                    this.selection.push(itemCode);
+                    var alreadySelected = _.contains(this.selection, itemCode);
+                    if (alreadySelected) {
+                        this.selection = _.without(this.selection, itemCode);
+                    } else {
+                        this.selection.push(itemCode);
+                    }
                 }
-
                 var line = _.findWhere(this.itemViews, {itemCode: itemCode});
                 if (line) {
                     line.itemView.setCheckedCheckbox(!alreadySelected);
@@ -424,7 +426,11 @@ define(
                 }
                 chosen
                     .html(values.map(function(code) {
-                        return code.charAt(0).toUpperCase() + code.slice(1)
+                        code = code.replace(/_(\w{1})/, function(a, b) {
+                            return ' ' + b.toUpperCase();
+                        });
+
+                        return code.charAt(0).toUpperCase() + code.slice(1);
                     }).join(' - '))
                     .addClass('is-enriched');
             },
@@ -443,6 +449,53 @@ define(
             onEnable: function () {
                 this.disabled = false;
                 this.render();
+            },
+
+            getMultiSelectConfig: function () {
+                return $.extend(true, {}, this.config.select2, {
+                    dropdownCssClass: 'select2--bigDrop select2--annotedLabels ' + this.config.select2.dropdownCssClass,
+                    formatResult: this.onGetResult.bind(this),
+                    query: this.onGetQuery.bind(this)
+                });
+            },
+
+            getSingleSelectConfig: function () {
+                return {
+                    allowClear: true,
+                    ajax: {
+                        url: Routing.generate('pim_enrich_attribute_rest_index'),
+                        quietMillis: 250,
+                        cache: true,
+                        data: function (term, page) {
+                            return {
+                                search: term,
+                                options: {
+                                    limit: 20,
+                                    page: page,
+                                    locale: UserContext.get('catalogLocale')
+                                }
+                            };
+                        },
+                        results: function (attributes) {
+                            var data = {
+                                more: 20 === _.keys(attributes).length,
+                                results: []
+                            };
+                            _.each(attributes, function (value, key) {
+                                data.results.push({
+                                    id: value.code,
+                                    text: i18n.getLabel(
+                                        value.labels,
+                                        UserContext.get('catalogLocale'),
+                                        value.code
+                                    )
+                                });
+                            });
+
+                            return data;
+                        }
+                    }
+                }
             }
         });
     }
