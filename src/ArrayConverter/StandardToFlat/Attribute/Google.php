@@ -329,6 +329,9 @@ class Google extends PimProductLocalized implements ArrayConverterInterface
          * @var mixed[] $mappedAttribute
          */
         foreach ($mappedAttributes as $index => $mappedAttribute) {
+            if (!is_array($mappedAttribute)) {
+                continue;
+            }
             /** @var string $method */
             $method = sprintf('get%s', ucfirst($pimAttribute));
             if (!method_exists(GoogleImportExport::class, $method)) {

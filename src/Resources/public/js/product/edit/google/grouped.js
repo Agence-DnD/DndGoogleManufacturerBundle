@@ -171,13 +171,17 @@ define(
                 }
 
                 let blocks = $('.google-grouped-' + target);
-                let blockId = (blocks && blocks.length) ? blocks.length + 1 : 1;
+                let enrichedBlocks = $('.google-grouped-' + target + '.is-enriched');
 
-                (true === (target === this.targetFieldDescription))
-                    ? this.renderFeatureDescriptionBlock(dropZone, blockId)
-                    : this.renderProductDetailsBlock(dropZone, blockId);
+                if (blocks.length === enrichedBlocks.length) {
+                    let blockId = (blocks && blocks.length) ? blocks.length + 1 : 1;
 
-                this.delegateEvents();
+                    (true === (target === this.targetFieldDescription))
+                        ? this.renderFeatureDescriptionBlock(dropZone, blockId)
+                        : this.renderProductDetailsBlock(dropZone, blockId);
+
+                    this.delegateEvents();
+                }
             },
 
             /**
@@ -193,7 +197,6 @@ define(
 
                 let gBlock = ctxBlock.children().first();
                 let gBlockType = gBlock.attr('data-block');
-                let gBlockId = gBlock.attr('data-block-id');
 
                 let options = {};
 
@@ -287,6 +290,10 @@ define(
                 } else {
                     $.extend(true,  data[gAttrCode], options)
                 }
+
+                let payload = data[gAttrCode];
+                payload = payload.filter(x => !!x);
+                data[gAttrCode] = payload;
 
                 this.setData(data);
             },
@@ -438,6 +445,9 @@ define(
                                 });
                                 if (elem.hasClass('AknIconButton--ok')) {
                                     elem.removeClass('AknIconButton--ok').addClass('AknIconButton--editWhite');
+                                }
+                                if (false === gBlock.hasClass('is-enriched')) {
+                                    gBlock.addClass('is-enriched');
                                 }
                             }
                             let parent = ctxBlock.parent();
