@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dnd\GoogleManufacturerBundle\Controller\Rest;
 
-use Akeneo\Pim\Enrichment\Bundle\Doctrine\ORM\Query\AttributeIsAFamilyVariantAxis;
+use Akeneo\Pim\Structure\Bundle\Query\PublicApi\Attribute\Sql\AttributeIsAFamilyVariantAxis;
 use Akeneo\Pim\Enrichment\Bundle\Filter\ObjectFilterInterface;
 use Akeneo\Pim\Structure\Component\Factory\AttributeFactory;
 use Akeneo\Pim\Structure\Component\Model\AttributeInterface;
@@ -16,6 +16,7 @@ use Akeneo\Tool\Component\StorageUtils\Saver\SaverInterface;
 use Akeneo\Tool\Component\StorageUtils\Updater\ObjectUpdaterInterface;
 use Akeneo\UserManagement\Bundle\Context\UserContext;
 use Akeneo\Pim\Structure\Bundle\Controller\InternalApi\AttributeController as PimAttributeController;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -71,6 +72,7 @@ class AttributeController extends PimAttributeController
      * @param NormalizerInterface           $lightAttributeNormalizer
      * @param TranslatorInterface           $translator
      * @param AttributeIsAFamilyVariantAxis $attributeIsAFamilyVariantAxisQuery
+     * @param ObjectRepository              $channelRepository
      */
     public function __construct(
         AttributeRepositoryInterface $attributeRepository,
@@ -87,7 +89,8 @@ class AttributeController extends PimAttributeController
         LocalizerInterface $numberLocalizer,
         NormalizerInterface $lightAttributeNormalizer,
         TranslatorInterface $translator,
-        AttributeIsAFamilyVariantAxis $attributeIsAFamilyVariantAxisQuery
+        AttributeIsAFamilyVariantAxis $attributeIsAFamilyVariantAxisQuery,
+        ObjectRepository $channelRepository
     ) {
         parent::__construct(
             $attributeRepository,
@@ -104,7 +107,8 @@ class AttributeController extends PimAttributeController
             $numberLocalizer,
             $lightAttributeNormalizer,
             $translator,
-            $attributeIsAFamilyVariantAxisQuery
+            $attributeIsAFamilyVariantAxisQuery,
+            $channelRepository
         );
 
         $this->translator               = $translator;

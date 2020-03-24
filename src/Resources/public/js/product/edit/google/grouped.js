@@ -233,7 +233,8 @@ define(
                 }
                 let containerId = container.attr('data-block-id');
                 let oldData = false;
-                if (false === _.isUndefined(data.googleProductDetail[containerId])) {
+
+                if (data.hasOwnProperty('googleProductDetail') && false === _.isUndefined(data.googleProductDetail[containerId])) {
                     oldData = data.googleProductDetail[containerId].googleProductDetailSectionName[0];
                 }
                 let itemContainer = item.closest('.AknFieldContainer');
@@ -290,7 +291,6 @@ define(
                 } else {
                     $.extend(true,  data[gAttrCode], options)
                 }
-
                 let payload = data[gAttrCode];
                 payload = payload.filter(x => !!x);
                 data[gAttrCode] = payload;
