@@ -7,5 +7,6 @@ Google Manufacturer Connector is compatible with the following versions of Akene
 | Akeneo PIM Version | Google Manufacturer Connector Version |
 |--------------------|---------------------------------------|
 | 3.X                | \>= 3.0.X                             |
+| 4.X                | \>= 4.0.X                             |
 
 ##### [> Back to summary](../summary.md)

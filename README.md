@@ -24,7 +24,7 @@ You can also watch the video demonstration dedicated to the connector [here](htt
 
 ### Requirements:
 
-* Akeneo PIM 3.X
+* Akeneo PIM 3.X or 4.X
 
 ### About us:
 
