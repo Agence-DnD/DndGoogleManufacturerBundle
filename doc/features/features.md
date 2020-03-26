@@ -7,9 +7,9 @@
 
 ![Google Manufacturer Export Type](../img/google-manufacturer-export-type.png)
 
-### Configure and map each mandatory attribute from Google Manufacturer to Akeneo attributes:
+### Configure and map each mandatory attribute from Google Manufacturer to Akeneo PIM attributes:
 
-* Google Manufacturer Connector allows you to map your Akeneo attributes to the mandatory Google Manufacturer attributes from the export profile:
+* Google Manufacturer Connector allows you to map your Akeneo PIM attributes to the mandatory Google Manufacturer attributes from the export profile:
 
 ![Google Manufacturer Mandatory Attribute](../img/google-manufacturer-mandatory-attributes.png)
 
@@ -21,9 +21,9 @@
 * Description (description)
 * Image Link (image_link)
 
-### Configure and map each optional attribute from Google Manufacturer to Akeneo attributes:
+### Configure and map each optional attribute from Google Manufacturer to Akeneo PIM attributes:
 
-* Google Manufacturer Connector allows you to map your Akeneo attributes to the optional Google Manufacturer attributes from the export profile on the same format than above.
+* Google Manufacturer Connector allows you to map your Akeneo PIM attributes to the optional Google Manufacturer attributes from the export profile on the same format than above.
 
 **The optional attributes are:**
 * Additional Image Link (additional_image_link)
@@ -53,7 +53,7 @@
 * Video Link (video_link)
 * Rich Product Content (rich_product_content)
 
-### Configure and generate "Product Detail" and "Feature Description" nodes from Akeneo attributes:
+### Configure and generate "Product Detail" and "Feature Description" nodes from Akeneo PIM attributes:
 
 * You can configure specific "Product Detail" and "Feature Description" nodes directly on the profile configuration:
 
@@ -65,7 +65,7 @@
 
 ### Generate XML file for Google Manufacturer with command line:
 
-* You can also trigger your Google Manufacturer export profile with Akeneo native command line : 
+* You can also trigger your Google Manufacturer export profile with Akeneo PIM native command line : 
 ```bash
 bin/console akeneo:batch:job google_manufacturer_profile_code
 ```
