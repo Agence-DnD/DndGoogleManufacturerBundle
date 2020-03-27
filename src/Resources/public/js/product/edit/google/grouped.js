@@ -233,10 +233,13 @@ define(
                 }
                 let containerId = container.attr('data-block-id');
                 let oldData = false;
-
-                if (data.hasOwnProperty('googleProductDetail') && false === _.isUndefined(data.googleProductDetail[containerId])) {
+                if (
+                    (true === (data.hasOwnProperty('googleProductDetail') && false === _.isNull(data.googleProductDetail))) &&
+                    false === _.isUndefined(data.googleProductDetail[containerId])
+                ) {
                     oldData = data.googleProductDetail[containerId].googleProductDetailSectionName[0];
                 }
+
                 let itemContainer = item.closest('.AknFieldContainer');
                 let error = itemContainer.find('.AknFieldContainer-footer > .below-input-elements-container');
                 if (error) {
@@ -292,7 +295,9 @@ define(
                     $.extend(true,  data[gAttrCode], options)
                 }
                 let payload = data[gAttrCode];
-                payload = payload.filter(x => !!x);
+                if (Array.isArray(payload)) {
+                    payload = payload.filter(x => !!x);
+                }
                 data[gAttrCode] = payload;
 
                 this.setData(data);
