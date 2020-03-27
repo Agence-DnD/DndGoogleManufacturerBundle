@@ -2,7 +2,7 @@
 
 I. Install:
 ------------------
-##### [Install guide](install/install.md)
+##### [Install guides](install/install.md)
 ##### [Compatibility](install/compatibility.md)
 
 II. Configuration:
