@@ -8,6 +8,7 @@ use Akeneo\Pim\Enrichment\Component\Product\Connector\ArrayConverter\StandardToF
 use Akeneo\Pim\Enrichment\Component\Product\Localization\Localizer\AttributeConverterInterface;
 use Akeneo\Pim\Structure\Component\AttributeTypes;
 use Akeneo\Pim\Structure\Component\Model\AttributeInterface;
+use Akeneo\Pim\Structure\Component\Model\AttributeOptionInterface;
 use Akeneo\Pim\Structure\Component\Repository\AttributeRepositoryInterface;
 use Akeneo\Tool\Component\Connector\ArrayConverter\ArrayConverterInterface;
 use Dnd\GoogleManufacturerBundle\Exception\GoogleManufacturerException;
@@ -301,6 +302,24 @@ class Google extends PimProductLocalized implements ArrayConverterInterface
             case AttributeTypes::TEXTAREA:
                 $value = strip_tags($value);
                 break;
+            case AttributeTypes::OPTION_SIMPLE_SELECT || AttributeTypes::OPTION_MULTI_SELECT:
+                if (isset($options['scope'], $options['locale'], $options['attributeRepository'])) {
+                    /** @var AttributeRepositoryInterface $attributeRepository */
+                    $attributeRepository = $options['attributeRepository'];
+                    /** @var AttributeInterface $attribute */
+                    $attribute = $attributeRepository->findOneByIdentifier($attribute->getCode());
+                    if (!$attribute) {
+                        continue;
+                    }
+                    /** @var AttributeOptionInterface $option */
+                    foreach ($attribute->getOptions() as $option) {
+                        if ($option->getCode() !== $value) {
+                            continue;
+                        }
+                        $option->setLocale($options['locale']);
+                        $value = (string)$option;
+                    }
+                }
         }
 
         return $value;

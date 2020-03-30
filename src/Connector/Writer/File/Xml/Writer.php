@@ -203,6 +203,7 @@ class Writer extends AbstractFileWriter implements
      * @param mixed[] $products
      *
      * @return void
+     * @throws \Exception
      */
     public function write(array $products): void
     {
@@ -210,15 +211,21 @@ class Writer extends AbstractFileWriter implements
         $validator = Validation::createValidator();
         /** @var Collection $constraints */
         $constraints = $this->getConstraintValidation();
+        /** @var string $scope */
+        $scope = $this->jobParameters['filters']['structure']['scope'] ?? false;
+        /** @var string $locale */
+        $locale = $this->jobParameters['filters']['structure']['locales'][0] ?? false;
         /** @var mixed[] $product */
         foreach ($products as $product) {
             try {
                 /** @var mixed[] $productNormalized */
                 $productNormalized = $this->arrayConverter->convert($product, [
-                    'jobParameters' => $this->jobParameters,
+                    'jobParameters'       => $this->jobParameters,
                     'attributeRepository' => $this->attributeRepository,
-                    'validator' => $validator,
-                    'constraints' => $constraints
+                    'validator'           => $validator,
+                    'constraints'         => $constraints,
+                    'scope'               => $scope,
+                    'locale'              => $locale
                 ]);
                 $this->addXMLFlatItem(
                     $productNormalized,
