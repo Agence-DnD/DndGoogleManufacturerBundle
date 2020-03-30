@@ -309,12 +309,12 @@ class Google extends PimProductLocalized implements ArrayConverterInterface
                     /** @var AttributeInterface $attribute */
                     $attribute = $attributeRepository->findOneByIdentifier($attribute->getCode());
                     if (!$attribute) {
-                        continue;
+                        break;
                     }
                     /** @var AttributeOptionInterface $option */
                     foreach ($attribute->getOptions() as $option) {
                         if ($option->getCode() !== $value) {
-                            break;
+                            continue;
                         }
                         $option->setLocale($options['locale']);
                         $value = (string)$option;
