@@ -314,7 +314,7 @@ class Google extends PimProductLocalized implements ArrayConverterInterface
                     /** @var AttributeOptionInterface $option */
                     foreach ($attribute->getOptions() as $option) {
                         if ($option->getCode() !== $value) {
-                            continue;
+                            break;
                         }
                         $option->setLocale($options['locale']);
                         $value = (string)$option;
