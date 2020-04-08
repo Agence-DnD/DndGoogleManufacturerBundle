@@ -2,12 +2,15 @@ services:
   dnd_google_manufacturer.controller.rest.attribute:
     class: Dnd\GoogleManufacturerBundle\Controller\Rest\AttributeController
     parent: pim_enrich.controller.rest.attribute
+    public: true
 
   dnd_google_manufacturer.controller.rest.google_grouped_attribute:
     class: Dnd\GoogleManufacturerBundle\Controller\Rest\GoogleGroupedAttributeController
+    public: true
 
   dnd_google_manufacturer.controller.rest.google:
     class: Dnd\GoogleManufacturerBundle\Controller\Rest\GoogleController
+    public: true
     arguments:
       - '@translator'
       - '@pim_user.context.user'
